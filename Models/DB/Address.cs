@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Debie.Models.DB {
     public class Address {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [MaxLength(256)]
         [Required]
@@ -18,5 +20,7 @@ namespace Debie.Models.DB {
         [MaxLength(256)]
         [Required]
         public string Zip { get; set; }
+
+        public virtual Order Order { get; set; }
     }
 }

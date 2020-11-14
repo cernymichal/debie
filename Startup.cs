@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
+using Debie.Models.DB;
 
 namespace Debie {
     public class Startup {
@@ -18,6 +22,18 @@ namespace Debie {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
+            services.AddDbContextPool<DebieContext>(dbContextOptions =>
+                dbContextOptions.UseMySql(
+                    Configuration["ConnectionString"],
+                    new MySqlServerVersion(new Version(8, 0, 22)),
+                    mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)
+                )
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors()
+            );
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddControllersWithViews();
         }
 

@@ -3,13 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Debie.Models.DB {
     public class ProductImage {
-        [Key]
-        [ForeignKey("Product")]
-        public int Product { get; set; }
-        [Key]
-        [ForeignKey("Image")]
-        public int Image { get; set; }
         [Required]
-        public bool Cover { get; set; }
+        public bool Main { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ProductID { get; set; }
+        public virtual Product Product { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ImageID { get; set; }
+        public virtual Image Image { get; set; }
     }
 }
