@@ -15,9 +15,7 @@ namespace Debie.Models.DB {
         public string Description { get; set; }
         [MaxLength(64)]
         public string Color { get; set; }
-        [MaxLength(256)]
-        public string Tags { get; set; }
-        public int Price { get; set; }
+        public float Price { get; set; }
         public int Discount { get; set; } // %
         public DateTime DiscountFrom { get; set; }
         public DateTime DiscountUntil { get; set; }

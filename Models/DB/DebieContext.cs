@@ -28,6 +28,7 @@ namespace Debie.Models.DB {
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<ProductImage>().ToTable("ProductImages");
             modelBuilder.Entity<Size>().ToTable("Sizes");
+            modelBuilder.Entity<Tag>().ToTable("Tags");
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Vendor>().ToTable("Vendors");
 
@@ -48,6 +49,10 @@ namespace Debie.Models.DB {
                 .HasOne(a => a.Image)
                 .WithOne()
                 .HasForeignKey<Article>(a => a.ImageID);
+
+            modelBuilder.Entity<Article>()
+                .HasMany(a => a.Tags)
+                .WithMany(t => t.Articles);
 
             modelBuilder.Entity<Category>()
                 .HasMany(c => c.Products)
