@@ -10,15 +10,15 @@ using Debie.Models;
 using Debie.Models.DB;
 
 namespace Debie.Controllers {
-    public class ProductController : Controller {
-        public ProductController() { }
+    public class BlogController : Controller {
+        public BlogController() { }
 
         public IActionResult List() {
-            return View(new List<Product>());
+            return View(new List<Article>());
         }
 
         public IActionResult Detail() {
-            return View(new Product());
+            return View(new Article());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

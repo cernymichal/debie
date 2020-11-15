@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,18 +10,22 @@ using Debie.Models;
 using Debie.Models.DB;
 
 namespace Debie.Controllers {
-    public class HomeController : Controller {
-        private readonly ILogger<HomeController> _Logger;
+    public class CartController : Controller {
+        public CartController() { }
 
-        public HomeController(ILogger<HomeController> logger) {
-            _Logger = logger;
-        }
-
-        public IActionResult Index() {
+        public IActionResult Customer() {
             return View();
         }
 
-        public IActionResult Privacy() {
+        public IActionResult Shipping() {
+            return View();
+        }
+
+        public IActionResult Payment() {
+            return View();
+        }
+
+        public IActionResult Complete() {
             return View();
         }
 
