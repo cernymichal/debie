@@ -1,6 +1,7 @@
 using System.Linq;
+using Debie.Models.DB;
 
-namespace Debie.Models.DB {
+namespace Debie.Services {
     public static class DebieInitializer {
         public static void Initialize(DebieContext context) {
             context.Database.EnsureDeleted();

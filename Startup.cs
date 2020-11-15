@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-using Debie.Models.DB;
+using Debie.Services;
 
 namespace Debie {
     public class Startup {

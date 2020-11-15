@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Debie.Models.DB {
+using Debie.Models.DB;
+
+namespace Debie.Services {
     public class DebieContext : DbContext {
         public DebieContext(DbContextOptions<DebieContext> options)
             : base(options) {

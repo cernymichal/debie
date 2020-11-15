@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
-using Debie.Models.DB;
+using Debie.Services;
 
 namespace Debie {
     public class Program {
