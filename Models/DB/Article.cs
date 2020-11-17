@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Debie.Models.DB {
     public class Article {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [MaxLength(128)]
         [Required]

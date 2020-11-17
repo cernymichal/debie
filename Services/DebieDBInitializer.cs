@@ -19,34 +19,32 @@ namespace Debie.Services {
             if (context.Articles.Any()) {
                 return;
             }
-
+            var tag = new Tag { Label = "Test" };
+            var admin = new User {
+                Name = "Admin",
+                Password = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8" /* "password" */
+            };
             var articles = new Article[] {
                 new Article {
                     Title = "Article 1",
                     Content = "My very interesting article mmm yes",
-                    User = new User {
-                        Name = "Admin",
-                        Password = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8" /* "password" */ 
-                    },
+                    User = admin,
                     Image = new Image {
                         Title = "Article",
                         Extension = "png",
                         Data = File.ReadAllBytes("wwwroot/media/cover.png")
                     },
-                    Tags = new List<Tag>() { new Tag { Label = "Test" } } },
+                    Tags = new List<Tag>() { tag } },
                 new Article {
                     Title = "Article 2",
                     Content = "My very interesting article mmm yes 222",
-                    User = new User {
-                        Name = "Autor 2",
-                        Password = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8" /* "password" */ 
-                    },
+                    User = admin,
                     Image = new Image {
                         Title = "Portrait",
                         Extension = "png",
                         Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
-                    Tags = new List<Tag>() { new Tag { Label = "Test" } } },
+                    Tags = new List<Tag>() { tag, new Tag { Label = "Test2" } } },
             };
 
             foreach (var a in articles) {

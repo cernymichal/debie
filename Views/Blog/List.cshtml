@@ -5,11 +5,12 @@
 
 <h1>Article List</h1>
 <hr>
-<div class="text-center">
-  @foreach (Article article in Model)
-  {
+
+@foreach (Article article in Model)
+{
+  <div class="text-center">
     <img src=@Url.Action("Get", "Image", new { article.Image.ID }) alt=@article.Image.Title height="200" />
     <br>
     <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>@article.Title</a>
-  }
-</div>
+  </div>
+}
