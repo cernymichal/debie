@@ -7,7 +7,7 @@ using System.IO;
 namespace Debie.Services {
     public static class DebieDBInitializer {
         public static void Initialize(DebieDBContext context) {
-            //context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             AddArticles(context);
@@ -32,6 +32,19 @@ namespace Debie.Services {
                         Title = "Article",
                         Extension = "png",
                         Data = File.ReadAllBytes("wwwroot/media/cover.png")
+                    },
+                    Tags = new List<Tag>() { new Tag { Label = "Test" } } },
+                new Article {
+                    Title = "Article 2",
+                    Content = "My very interesting article mmm yes 222",
+                    User = new User {
+                        Name = "Autor 2",
+                        Password = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8" /* "password" */ 
+                    },
+                    Image = new Image {
+                        Title = "Portrait",
+                        Extension = "png",
+                        Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
                     Tags = new List<Tag>() { new Tag { Label = "Test" } } },
             };
