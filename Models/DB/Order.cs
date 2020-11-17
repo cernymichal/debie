@@ -9,10 +9,13 @@ namespace Debie.Models.DB {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [MaxLength(256)]
+        [Required]
         public string Email { get; set; }
         [MaxLength(256)]
+        [Required]
         public string Phone { get; set; }
-        public bool Updates { get; set; }
+        [Required]
+        public bool Updates { get; set; } = false;
         [MaxLength(256)]
         public string FirstName { get; set; }
         [MaxLength(256)]
@@ -22,18 +25,20 @@ namespace Debie.Models.DB {
         [Required]
         public string ShippingMethod { get; set; }
         [Required]
-        public int ShippingPrice { get; set; }
+        public float ShippingPrice { get; set; }
         [MaxLength(128)]
         [Required]
         public string PaymentMethod { get; set; }
         [Required]
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.Now;
 
         [Required]
         public int BillingAddressID { get; set; }
         [Required]
         public virtual Address BillingAddress { get; set; }
+        [Required]
         public int ShippingAddressID { get; set; }
+        [Required]
         public virtual Address ShippingAddress { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }

@@ -19,8 +19,8 @@ namespace Debie.Models.DB {
         public int Discount { get; set; } // %
         public DateTime DiscountFrom { get; set; }
         public DateTime DiscountUntil { get; set; }
-        public int ReviewsCount { get; set; } // https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
-        public int ReviewsAverage { get; set; }
+        public int ReviewsCount { get; set; } = 0;// https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
+        public float ReviewsAverage { get; set; } = 0F;
 
         public Vendor Vendor { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

@@ -8,7 +8,7 @@ namespace Debie.Models.DB {
         public int ID { get; set; }
         [MaxLength(256)]
         [Required]
-        public string AddressStreet { get; set; }
+        public string Street { get; set; }
         [MaxLength(256)]
         public string Apartment { get; set; }
         [MaxLength(256)]
