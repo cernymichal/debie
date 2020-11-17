@@ -22,7 +22,7 @@ namespace Debie.Models.DB {
         public int ReviewsCount { get; set; } = 0;// https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
         public float ReviewsAverage { get; set; } = 0F;
 
-        public Vendor Vendor { get; set; }
+        public virtual Vendor Vendor { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual ICollection<Size> Sizes { get; set; }

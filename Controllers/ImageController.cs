@@ -11,19 +11,23 @@ using Debie.Models.DB;
 using Debie.Services.Repositories;
 
 namespace Debie.Controllers {
-    public class BlogController : Controller {
-        private readonly IArticleRepository _ArticleRepo;
+    public class ImageController : Controller {
+        private readonly IImageRepository _ImageRepo;
+        public const int CacheAgeSeconds = 60 * 60 * 24 * 7; // 7 days
 
-        public BlogController(IArticleRepository articleRepo) {
-            _ArticleRepo = articleRepo;
+        public ImageController(IImageRepository imageRepo) {
+            _ImageRepo = imageRepo;
         }
 
-        public IActionResult List() {
-            return View(_ArticleRepo.GetAll());
-        }
+        public IActionResult Get(int id) {
+            var image = _ImageRepo.GetByID(id);
 
-        public IActionResult Detail(int id) {
-            return View(_ArticleRepo.GetByID(id));
+            if (image == null)
+                return NotFound();
+
+            Response.Headers["Cache-Control"] = $"public,max-age={CacheAgeSeconds}";
+
+            return File(image.Data, $"image/{image.Extension}");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

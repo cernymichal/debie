@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 
 namespace Debie.Services {
-    public static class DebieInitializer {
-        public static void Initialize(DebieContext context) {
+    public static class DebieDBInitializer {
+        public static void Initialize(DebieDBContext context) {
             //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
@@ -15,7 +15,7 @@ namespace Debie.Services {
             AddOrders(context);
         }
 
-        private static void AddArticles(DebieContext context) {
+        private static void AddArticles(DebieDBContext context) {
             if (context.Articles.Any()) {
                 return;
             }
@@ -30,6 +30,7 @@ namespace Debie.Services {
                     },
                     Image = new Image {
                         Title = "Article",
+                        Extension = "png",
                         Data = File.ReadAllBytes("wwwroot/media/cover.png")
                     },
                     Tags = new List<Tag>() { new Tag { Label = "Test" } } },
@@ -41,7 +42,7 @@ namespace Debie.Services {
             context.SaveChanges();
         }
 
-        private static void AddProducts(DebieContext context) {
+        private static void AddProducts(DebieDBContext context) {
             if (context.Products.Any()) {
                 return;
             }
@@ -67,6 +68,7 @@ namespace Debie.Services {
                             Main = true,
                             Image = new Image {
                                 Title = "Thumbnail",
+                                Extension = "png",
                                 Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                             }
                         },
@@ -74,6 +76,7 @@ namespace Debie.Services {
                             Main = false,
                             Image = new Image {
                                 Title = "Secondary",
+                                Extension = "png",
                                 Data = File.ReadAllBytes("wwwroot/media/cover.png")
                             }
                         }
@@ -97,6 +100,7 @@ namespace Debie.Services {
                             Main = true,
                             Image = new Image {
                                 Title = "Secondary",
+                                Extension = "png",
                                 Data = File.ReadAllBytes("wwwroot/media/cover.png")
                             }
                         }
@@ -121,6 +125,7 @@ namespace Debie.Services {
                             Main = true,
                             Image = new Image {
                                 Title = "Thumbnail",
+                                Extension = "png",
                                 Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                             }
                         }
@@ -139,7 +144,7 @@ namespace Debie.Services {
             context.SaveChanges();
         }
 
-        private static void AddOrders(DebieContext context) {
+        private static void AddOrders(DebieDBContext context) {
             if (context.Orders.Any()) {
                 return;
             }

@@ -4,4 +4,5 @@
 }
 
 <h1>@Model.Title</h1>
+<img src=@Url.Action("Get", "Image", new { Model.Image.ID }) alt=@Model.Image.Title/>
 <p>@Model.Content</p>

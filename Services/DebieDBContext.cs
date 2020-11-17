@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Debie.Models.DB;
 
 namespace Debie.Services {
-    public class DebieContext : DbContext {
-        public DebieContext(DbContextOptions<DebieContext> options)
+    public class DebieDBContext : DbContext {
+        public DebieDBContext(DbContextOptions<DebieDBContext> options)
             : base(options) {
         }
         public DbSet<Address> Addresses { get; set; }
@@ -16,6 +16,7 @@ namespace Debie.Services {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
 

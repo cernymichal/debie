@@ -24,8 +24,8 @@ namespace Debie {
             using (var scope = host.Services.CreateScope()) {
                 var services = scope.ServiceProvider;
                 try {
-                    var context = services.GetRequiredService<DebieContext>();
-                    DebieInitializer.Initialize(context);
+                    var context = services.GetRequiredService<DebieDBContext>();
+                    DebieDBInitializer.Initialize(context);
                 }
                 catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>>();
