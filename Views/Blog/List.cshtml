@@ -4,8 +4,12 @@
 }
 
 <h1>Article List</h1>
-
-@foreach (Article article in Model)
-{
-  <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>@article.Title</a>
-}
+<hr>
+<div class="text-center">
+  @foreach (Article article in Model)
+  {
+    <img src=@Url.Action("Get", "Image", new { article.Image.ID }) alt=@article.Image.Title height="200" />
+    <br>
+    <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>@article.Title</a>
+  }
+</div>

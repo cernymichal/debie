@@ -3,5 +3,13 @@
   ViewData["Title"] = Model.Name;
 }
 
+<img src=@Url.Action("Get", "Image", new { Model.MainImage.ID }) alt=@Model.MainImage.Title />
+
 <h1>@Model.Name</h1>
 <p>@Model.Description</p>
+<p>$@Model.Price</p>
+
+@foreach (Image image in Model.SideImages)
+{
+  <img src=@Url.Action("Get", "Image", new { image.ID }) alt=@image.Title />
+}

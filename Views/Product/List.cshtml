@@ -5,7 +5,4 @@
 
 <h1>Product List</h1>
 
-@foreach (Product product in Model)
-{
-  <a asp-controller="Product" asp-action="Detail" asp-route-id=@product.ID>@product.Name</a>
-}
+<vc:product-list-component products=@Model.ToList() count=10></vc:product-list-component>

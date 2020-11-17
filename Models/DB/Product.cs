@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,5 +28,10 @@ namespace Debie.Models.DB {
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         public virtual ICollection<Size> Sizes { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+
+        [NotMapped]
+        public Image MainImage { get { return ProductImages.Where(pi => pi.Main).First().Image; } }
+        [NotMapped]
+        public ICollection<Image> SideImages { get { return ProductImages.Where(pi => !pi.Main).Select(pi => pi.Image).ToList(); } }
     }
 }
