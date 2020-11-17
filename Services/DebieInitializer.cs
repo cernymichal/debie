@@ -52,7 +52,7 @@ namespace Debie.Services {
             var products = new Product[] {
                 new Product {
                     Name = "Product1",
-                    Description = "Very discriptive 1",
+                    Description = "Very descriptive 1",
                     Color = "Blue",
                     Price = 99.99F,
                     Discount = 20,
@@ -85,7 +85,7 @@ namespace Debie.Services {
                 },
                 new Product {
                     Name = "Product2",
-                    Description = "Very discriptive 2",
+                    Description = "Very descriptive 2",
                     Color = "Black",
                     Price = 19.99F,
                     ReviewsCount = 10000,
@@ -108,7 +108,7 @@ namespace Debie.Services {
                 },
                 new Product {
                     Name = "Product3",
-                    Description = "Very discriptive 3",
+                    Description = "Very descriptive 3",
                     Color = "Red",
                     Price = 49.99F,
                     Discount = 50,

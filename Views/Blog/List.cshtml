@@ -1,6 +1,12 @@
-@model IEnumerable<Debie.Models.DB.Article>
+@using Debie.Models.DB
+@model IEnumerable<Article>
 @{
   ViewData["Title"] = "Blog";
 }
 
 <h1>Article List</h1>
+
+@foreach (Article article in Model)
+{
+  <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>@article.Title</a>
+}
