@@ -7,7 +7,6 @@ namespace Debie.Services {
         public DebieDBContext(DbContextOptions<DebieDBContext> options)
             : base(options) {
         }
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Image> Images { get; set; }
@@ -15,13 +14,13 @@ namespace Debie.Services {
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductImage> MainProductImages { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Address>().ToTable("Addresses");
             modelBuilder.Entity<Article>().ToTable("Articles");
             modelBuilder.Entity<Category>().ToTable("Categories");
             modelBuilder.Entity<Image>().ToTable("Images");
@@ -37,11 +36,12 @@ namespace Debie.Services {
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(op => new { op.OrderID, op.ProductID });
 
-            modelBuilder.Entity<ProductImage>()
-                .HasKey(pi => new { pi.ProductID, pi.ImageID });
-
             modelBuilder.Entity<Size>()
                 .HasKey(s => new { s.ProductID, s.Label });
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Name)
+                .IsUnique();
 
             modelBuilder.Entity<Article>()
                 .HasOne(a => a.User)
@@ -60,16 +60,6 @@ namespace Debie.Services {
                 .HasMany(c => c.Products)
                 .WithMany(p => p.Categories);
 
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.BillingAddress)
-                .WithOne()
-                .HasForeignKey<Order>(o => o.BillingAddressID);
-
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.ShippingAddress)
-                .WithOne(a => a.Order)
-                .HasForeignKey<Order>(o => o.ShippingAddressID);
-
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Vendor)
                 .WithMany(v => v.Products);
@@ -81,6 +71,9 @@ namespace Debie.Services {
             modelBuilder.Entity<ProductImage>()
                 .HasOne(pi => pi.Image)
                 .WithOne();
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.MainImage);
         }
     }
 }

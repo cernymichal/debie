@@ -9,7 +9,7 @@
 <p>@Model.Description</p>
 <p>$@Model.Price</p>
 
-@foreach (Image image in Model.SideImages)
+@foreach (ProductImage productImage in Model.ProductImages)
 {
-  <img src=@Url.Action("Get", "Image", new { image.ID }) alt=@image.Title />
+  <img src=@Url.Action("Get", "Image", new { productImage.Image.ID }) alt=@productImage.Image.Title />
 }

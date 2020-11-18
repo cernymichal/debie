@@ -13,8 +13,6 @@ namespace Debie.Services.Repositories {
         void Save();
     }
 
-    public interface IAddressRepository : IRepository<Address> {
-    }
 
     public interface IArticleRepository : IRepository<Article> {
     }

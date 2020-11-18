@@ -20,18 +20,14 @@ namespace Debie.Models.DB {
         public int Discount { get; set; } // %
         public DateTime DiscountFrom { get; set; }
         public DateTime DiscountUntil { get; set; }
-        public int ReviewsCount { get; set; } = 0;// https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
+        public int ReviewsCount { get; set; } = 0; // https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
         public float ReviewsAverage { get; set; } = 0F;
 
         public virtual Vendor Vendor { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual Image MainImage { get; set; }
         public virtual ICollection<Size> Sizes { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
-
-        [NotMapped]
-        public Image MainImage { get { return ProductImages.Where(pi => pi.Main).First().Image; } }
-        [NotMapped]
-        public ICollection<Image> SideImages { get { return ProductImages.Where(pi => !pi.Main).Select(pi => pi.Image).ToList(); } }
     }
 }

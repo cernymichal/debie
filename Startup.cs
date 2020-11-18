@@ -39,7 +39,6 @@ namespace Debie {
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            services.AddTransient<IAddressRepository, AddressRepository>();
             services.AddTransient<IArticleRepository, ArticleRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IImageRepository, ImageRepository>();

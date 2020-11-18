@@ -76,21 +76,17 @@ namespace Debie.Services {
                     Categories = new List<Category>() { cat1 },
                     ProductImages = new List<ProductImage>() {
                         new ProductImage {
-                            Main = true,
-                            Image = new Image {
-                                Title = "Thumbnail",
-                                Extension = "png",
-                                Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
-                            }
-                        },
-                        new ProductImage {
-                            Main = false,
                             Image = new Image {
                                 Title = "Secondary",
                                 Extension = "png",
                                 Data = File.ReadAllBytes("wwwroot/media/cover.png")
                             }
                         }
+                    },
+                    MainImage = new Image {
+                        Title = "Thumbnail",
+                        Extension = "png",
+                        Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
                     Sizes = new List<Size>() {
                         new Size { Label = "S", Stock = 3 },
@@ -106,15 +102,10 @@ namespace Debie.Services {
                     ReviewsAverage= 2.7F,
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1, cat2 },
-                    ProductImages = new List<ProductImage>() {
-                        new ProductImage {
-                            Main = true,
-                            Image = new Image {
-                                Title = "Secondary",
-                                Extension = "png",
-                                Data = File.ReadAllBytes("wwwroot/media/cover.png")
-                            }
-                        }
+                    MainImage = new Image {
+                        Title = "Thumbnail",
+                        Extension = "png",
+                        Data = File.ReadAllBytes("wwwroot/media/cover.png")
                     },
                     Sizes = new List<Size>() {
                         new Size { Label = "L", Stock = 6 },
@@ -131,15 +122,10 @@ namespace Debie.Services {
                     DiscountUntil = DateTime.Now.AddHours(3),
                     Vendor = new Vendor { Name = "Vendor 2" },
                     Categories = new List<Category>() { cat2 },
-                    ProductImages = new List<ProductImage>() {
-                        new ProductImage {
-                            Main = true,
-                            Image = new Image {
-                                Title = "Thumbnail",
-                                Extension = "png",
-                                Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
-                            }
-                        }
+                    MainImage = new Image {
+                        Title = "Thumbnail",
+                        Extension = "png",
+                        Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
                     Sizes = new List<Size>() {
                         new Size { Label = "XS", Stock = 5 },
@@ -159,13 +145,7 @@ namespace Debie.Services {
             if (context.Orders.Any()) {
                 return;
             }
-            var address = new Address {
-                Street = "Pepegova 12",
-                Apartment = "8",
-                City = "Prague",
-                Country = "CZ",
-                Zip = "120 00"
-            };
+
             var orders = new Order[] {
                 new Order {
                     Email = "customer@example.com",
@@ -175,8 +155,11 @@ namespace Debie.Services {
                     ShippingMethod = "International Post",
                     ShippingPrice = 10F,
                     PaymentMethod = "Online card",
-                    BillingAddress = address,
-                    ShippingAddress = address,
+                    BillingStreet = "Pepegova 12",
+                    BillingApartment = "8",
+                    BillingCity = "Prague",
+                    BillingCountry = "CZ",
+                    BillingZip = "120 00",
                     OrderProducts = new List<OrderProduct>() {
                         new OrderProduct {
                             Product = context.Products.First(),

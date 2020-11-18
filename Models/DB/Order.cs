@@ -31,15 +31,33 @@ namespace Debie.Models.DB {
         public string PaymentMethod { get; set; }
         [Required]
         public DateTime Created { get; set; } = DateTime.Now;
+        [MaxLength(256)]
+        [Required]
+        public string BillingStreet { get; set; }
+        [MaxLength(256)]
+        public string BillingApartment { get; set; }
+        [MaxLength(256)]
+        [Required]
+        public string BillingCity { get; set; }
+        [MaxLength(256)]
+        [Required]
+        public string BillingCountry { get; set; }
+        [MaxLength(256)]
+        [Required]
+        public string BillingZip { get; set; }
+        [MaxLength(256)]
+        public string ShippingStreet { get; set; }
+        [MaxLength(256)]
+        public string ShippingApartment { get; set; }
+        [MaxLength(256)]
+        public string ShippingCity { get; set; }
+        [MaxLength(256)]
+        public string ShippingCountry { get; set; }
+        [MaxLength(256)]
+        public string ShippingZip { get; set; }
+        [Required]
+        public float VAT { get; set; } = 21F;
 
-        [Required]
-        public int BillingAddressID { get; set; }
-        [Required]
-        public virtual Address BillingAddress { get; set; }
-        [Required]
-        public int ShippingAddressID { get; set; }
-        [Required]
-        public virtual Address ShippingAddress { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
