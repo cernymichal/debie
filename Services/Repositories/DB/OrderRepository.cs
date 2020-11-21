@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Order> GetAll() {
             return _Context.Orders.ToList();
         }
-        public override Order GetByID(int id) {
-            return _Context.Orders.Find(id);
+        public override Order GetByID(params object[] keys) {
+            return _Context.Orders.Find(keys);
         }
         public override void Insert(Order order) {
             _Context.Orders.Add(order);

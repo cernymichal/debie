@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Image> GetAll() {
             return _Context.Images.ToList();
         }
-        public override Image GetByID(int id) {
-            return _Context.Images.Find(id);
+        public override Image GetByID(params object[] keys) {
+            return _Context.Images.Find(keys);
         }
         public override void Insert(Image image) {
             _Context.Images.Add(image);

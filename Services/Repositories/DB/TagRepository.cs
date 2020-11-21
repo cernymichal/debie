@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Tag> GetAll() {
             return _Context.Tags.ToList();
         }
-        public override Tag GetByID(int id) {
-            return _Context.Tags.Find(id);
+        public override Tag GetByID(params object[] keys) {
+            return _Context.Tags.Find(keys);
         }
         public override void Insert(Tag tag) {
             _Context.Tags.Add(tag);

@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Product> GetAll() {
             return _Context.Products.ToList();
         }
-        public override Product GetByID(int id) {
-            return _Context.Products.Find(id);
+        public override Product GetByID(params object[] keys) {
+            return _Context.Products.Find(keys);
         }
         public override void Insert(Product product) {
             _Context.Products.Add(product);

@@ -6,11 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Debie.Models.DB {
     public class Product {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [MaxLength(256)]
-        [Required]
+        [MaxLength(256), Required]
         public string Name { get; set; }
         [MaxLength(4096)]
         public string Description { get; set; }

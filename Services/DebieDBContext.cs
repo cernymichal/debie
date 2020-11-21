@@ -40,7 +40,7 @@ namespace Debie.Services {
                 .HasKey(s => new { s.ProductID, s.Label });
 
             modelBuilder.Entity<User>()
-                .HasIndex(u => u.Name)
+                .HasIndex(u => u.Username)
                 .IsUnique();
 
             modelBuilder.Entity<Article>()

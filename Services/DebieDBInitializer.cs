@@ -1,8 +1,11 @@
 using System.Linq;
-using Debie.Models.DB;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Security.Cryptography;
+
+using Debie.Models.DB;
 
 namespace Debie.Services {
     public static class DebieDBInitializer {
@@ -19,10 +22,16 @@ namespace Debie.Services {
             if (context.Articles.Any()) {
                 return;
             }
+
+            byte[] passwordHash;
+            using (var sha = SHA256.Create()) {
+                passwordHash = sha.ComputeHash(Encoding.UTF8.GetBytes("password"));
+            }
+
             var tag = new Tag { Label = "Test" };
             var admin = new User {
-                Name = "Admin",
-                Password = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8" /* "password" */
+                Username = "Admin",
+                Password = passwordHash
             };
             var articles = new Article[] {
                 new Article {

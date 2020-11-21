@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Category> GetAll() {
             return _Context.Categories.ToList();
         }
-        public override Category GetByID(int id) {
-            return _Context.Categories.Find(id);
+        public override Category GetByID(params object[] keys) {
+            return _Context.Categories.Find(keys);
         }
         public override void Insert(Category category) {
             _Context.Categories.Add(category);

@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Vendor> GetAll() {
             return _Context.Vendors.ToList();
         }
-        public override Vendor GetByID(int id) {
-            return _Context.Vendors.Find(id);
+        public override Vendor GetByID(params object[] keys) {
+            return _Context.Vendors.Find(keys);
         }
         public override void Insert(Vendor vendor) {
             _Context.Vendors.Add(vendor);

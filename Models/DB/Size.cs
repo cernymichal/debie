@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Debie.Models.DB {
     public class Size {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [MaxLength(32)]
+        [MaxLength(32), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Label { get; set; }
         [Required]
         public int Stock { get; set; }

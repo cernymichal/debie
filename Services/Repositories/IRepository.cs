@@ -6,13 +6,12 @@ using Debie.Models.DB;
 namespace Debie.Services.Repositories {
     public interface IRepository<T> : IDisposable {
         IEnumerable<T> GetAll();
-        T GetByID(int id);
+        T GetByID(params object[] keys);
         void Insert(T entity);
         void Delete(T entity);
         void Update(T entity);
         void Save();
     }
-
 
     public interface IArticleRepository : IRepository<Article> {
     }

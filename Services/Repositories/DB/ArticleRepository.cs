@@ -11,8 +11,8 @@ namespace Debie.Services.Repositories.DB {
         public override IEnumerable<Article> GetAll() {
             return _Context.Articles.ToList();
         }
-        public override Article GetByID(int id) {
-            return _Context.Articles.Find(id);
+        public override Article GetByID(params object[] keys) {
+            return _Context.Articles.Find(keys);
         }
         public override void Insert(Article article) {
             _Context.Articles.Add(article);

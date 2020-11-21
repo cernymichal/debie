@@ -6,7 +6,7 @@ namespace Debie.Services.Repositories.DB {
         protected DebieDBContext _Context;
         private bool _Disposed = false;
         public abstract IEnumerable<T> GetAll();
-        public abstract T GetByID(int id);
+        public abstract T GetByID(params object[] keys);
         public abstract void Insert(T entity);
         public abstract void Delete(T entity);
         public abstract void Update(T entity);
