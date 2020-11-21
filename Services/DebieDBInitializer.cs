@@ -10,7 +10,7 @@ using Debie.Models.DB;
 namespace Debie.Services {
     public static class DebieDBInitializer {
         public static void Initialize(DebieDBContext context) {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             AddArticles(context);
@@ -30,7 +30,7 @@ namespace Debie.Services {
 
             var tag = new Tag { Label = "Test" };
             var admin = new User {
-                Username = "Admin",
+                Username = "admin",
                 Password = passwordHash
             };
             var articles = new Article[] {

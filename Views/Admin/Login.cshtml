@@ -1,6 +1,37 @@
+@model Login
 @{
   Layout = "~/Views/Shared/_Layout.cshtml";
-  ViewData["Title"] = "Administration";
+  ViewData["Title"] = "Login";
 }
 
-login
+@section Head {
+  <link rel="stylesheet" href="~/css/login.css">
+}
+
+<form class="form-signin" method="post" asp-action="Login">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <p class="text-danger">@ViewBag.ErrorMessage</p>
+
+  <label asp-for="Username" class="sr-only"></label>
+  <input asp-for="Username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+  <span asp-validation-for="Username" class="text-danger"></span>
+
+  <label asp-for="Password" class="sr-only"></label>
+  <input asp-for="Password" id="inputPassword" class="form-control" placeholder="Password" type="password" required>
+  <span asp-validation-for="Password" class="text-danger"></span>
+
+  <div class="checkbox mb-3">
+    <label asp-for="RememberMe">
+      <input asp-for="RememberMe"> Remember me
+    </label>
+  </div>
+  <span asp-validation-for="RememberMe" class="text-danger"></span>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}

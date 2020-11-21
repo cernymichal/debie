@@ -9,7 +9,7 @@ namespace Debie.Models.DB {
         public int ID { get; set; }
         [MaxLength(256), Required]
         public string Username { get; set; }
-        [MaxLength(256), Required]
+        [MaxLength(32), Required]
         public byte[] Password { get; set; }
         [Required]
         public DateTime LastChanged { get; set; } = DateTime.UtcNow;

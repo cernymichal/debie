@@ -26,15 +26,21 @@ namespace Debie.Controllers {
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody] Login login) {
-            try {
-                _LoginService.Login(login);
-            }
-            catch (CryptographicException) {
-                return Unauthorized();
-            }
+        public IActionResult Login(Login login) {
+            if (ModelState.IsValid) {
+                var invalid = false;
+                try {
+                    _LoginService.Login(login);
+                }
+                catch (CryptographicException) {
+                    ViewBag.ErrorMessage = "Wrong username or password.";
+                    invalid = true;
+                }
 
-            return RedirectToAction("Products");
+                if (!invalid)
+                    return RedirectToAction("Products");
+            }
+            return View(login);
         }
 
         public IActionResult Logout() {

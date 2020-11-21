@@ -35,7 +35,7 @@ namespace Debie.Services {
 
         public void Login(Login login) {
             var passwordHash = PasswordHash(login.Password);
-            var user = _UserRepo.GetAll().SingleOrDefault(u => u.Username == login.Username && u.Password == passwordHash);
+            var user = _UserRepo.GetAll().SingleOrDefault(u => u.Username == login.Username && u.Password.SequenceEqual(passwordHash));
 
             if (user != null) {
                 CreateCookie(user, login.RememberMe);
