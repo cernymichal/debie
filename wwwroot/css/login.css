@@ -54,3 +54,12 @@ form #inputPassword {
     font-size: 3.5rem;
   }
 }
+
+#warnings {
+  margin-top: 0.5rem;
+}
+
+#warnings p {
+  margin: 0;
+  margin-top: 0.3rem;
+}

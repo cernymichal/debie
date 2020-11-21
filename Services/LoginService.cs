@@ -51,7 +51,7 @@ namespace Debie.Services {
         private async void CreateCookie(User user, bool persistent) {
             var claims = new List<Claim>() {
                 new Claim(ClaimTypes.NameIdentifier, user.ID.ToString()),
-                new Claim("LastChanged", user.LastChanged.ToString())
+                new Claim("Created", DateTime.UtcNow.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

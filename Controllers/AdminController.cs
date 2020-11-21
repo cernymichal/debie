@@ -20,13 +20,17 @@ namespace Debie.Controllers {
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Login() {
+        public IActionResult Login(string returnUrl = "") {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
+
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login(Login login) {
+        public IActionResult Login(Login login, string returnUrl = "") {
             if (ModelState.IsValid) {
                 var invalid = false;
                 try {
@@ -38,14 +42,23 @@ namespace Debie.Controllers {
                 }
 
                 if (!invalid)
-                    return RedirectToAction("Products");
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        return Redirect(returnUrl);
+                    else
+                        return RedirectToAction("Index");
             }
+
+            ViewBag.ReturnUrl = returnUrl;
             return View(login);
         }
 
         public IActionResult Logout() {
             _LoginService.Logout();
             return RedirectToAction("Index", "Page");
+        }
+
+        public IActionResult Index() {
+            return View();
         }
 
         public IActionResult Products() {

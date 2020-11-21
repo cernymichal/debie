@@ -16,20 +16,18 @@ namespace Debie.Services {
         }
 
         public override async Task ValidatePrincipal(CookieValidatePrincipalContext context) {
-            /*
-            var lastChanged = context.Principal.Claims.First(c => c.Type == "LastChanged").Value;
+            var created = context.Principal.Claims.First(c => c.Type == "Created").Value;
             var id = Convert.ToInt32(
                 context.Principal.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value
             );
 
             var user = _UserRepo.GetByID(id);
 
-            if (string.IsNullOrEmpty(lastChanged) || user != null || user.LastChanged < DateTime.Parse(lastChanged)) {
+            if (string.IsNullOrEmpty(created) || user == null || user.LastChanged > DateTime.Parse(created)) {
                 context.RejectPrincipal();
 
                 await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             }
-            */
         }
     }
 }

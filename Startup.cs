@@ -41,6 +41,7 @@ namespace Debie {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.EventsType = typeof(CookieEvents);
+                    options.ReturnUrlParameter = "returnUrl";
                     options.LoginPath = new PathString("/Admin/Login");
                     options.LogoutPath = new PathString("/Admin/Logout");
                 });
