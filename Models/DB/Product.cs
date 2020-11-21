@@ -18,8 +18,8 @@ namespace Debie.Models.DB {
         public float Discount { get; set; }
         public DateTime DiscountFrom { get; set; }
         public DateTime DiscountUntil { get; set; }
-        public int ReviewsCount { get; set; } = 0; // https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
-        public float ReviewsAverage { get; set; } = 0F;
+        public int ReviewsCount { get; set; } = 0;
+        public float ReviewsSum { get; set; } = 0F;
 
         public virtual Vendor Vendor { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
@@ -38,6 +38,12 @@ namespace Debie.Models.DB {
         public float CurrentPrice {
             get {
                 return Price * (1 - (Discounted ? Discount : 0));
+            }
+        }
+        [NotMapped]
+        public float ReviewsAvg {
+            get {
+                return ReviewsSum / ReviewsCount;
             }
         }
     }

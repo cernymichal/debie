@@ -80,7 +80,7 @@ namespace Debie.Services {
                     DiscountFrom = DateTime.Now,
                     DiscountUntil = DateTime.Now.AddDays(1),
                     ReviewsCount = 4,
-                    ReviewsAverage= 4F,
+                    ReviewsSum= 4 * 2.5F,
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1 },
                     ProductImages = new List<ProductImage>() {
@@ -108,7 +108,7 @@ namespace Debie.Services {
                     Color = "Black",
                     Price = 19.99F,
                     ReviewsCount = 10000,
-                    ReviewsAverage= 2.7F,
+                    ReviewsSum = 10000 * 4.5F,
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1, cat2 },
                     MainImage = new Image {
