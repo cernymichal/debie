@@ -14,8 +14,15 @@ namespace Debie.Controllers {
     [Authorize]
     public class AdminController : Controller {
         private readonly ILoginService _LoginService;
-        public AdminController(ILoginService loginService) {
+        private readonly IArticleRepository _ArticleRepo;
+        private readonly IOrderRepository _OrderRepo;
+        private readonly IProductRepository _ProductRepo;
+
+        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo, IProductRepository productRepo) {
             _LoginService = loginService;
+            _ArticleRepo = articleRepo;
+            _OrderRepo = orderRepo;
+            _ProductRepo = productRepo;
         }
 
         [AllowAnonymous]
@@ -58,11 +65,19 @@ namespace Debie.Controllers {
         }
 
         public IActionResult Index() {
-            return View();
+            return RedirectToAction("Products");
         }
 
         public IActionResult Products() {
-            return View();
+            return View(_ProductRepo.GetAll());
+        }
+
+        public IActionResult Articles() {
+            return View(_ArticleRepo.GetAll());
+        }
+
+        public IActionResult Orders() {
+            return View(_OrderRepo.GetAll());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

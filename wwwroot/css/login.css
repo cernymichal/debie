@@ -49,12 +49,6 @@ form #inputPassword {
   border-top-right-radius: 0;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
-
 #warnings {
   margin-top: 0.5rem;
 }

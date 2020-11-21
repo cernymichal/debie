@@ -1,15 +1,77 @@
 ﻿@{
-  ViewData["Title"] = ViewData["Title"] + " - Admin";
+  ViewData["ViewTitle"] = ViewData["Title"];
+  ViewData["Title"] = ViewData["Title"] + " | Admin";
   Layout = "_Layout";
 }
 
-<header>
-  <nav>
-    <a asp-controller="Admin" asp-action="Products">Products</a>
-    <a asp-controller="Admin" asp-action="Logout">Logout</a>
-  </nav>
-</header>
+@section Head {
+  <link rel="stylesheet" href="~/css/admin.css">
+  @await RenderSectionAsync("Head", required: false)
+}
 
-<main>
-  @RenderBody()
-</main>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <p class="navbar-brand col-md-3 col-lg-2 m-0 px-3">Debie</p>
+  <button
+    class="navbar-toggler position-absolute d-md-none collapsed"
+    type="button"
+    data-toggle="collapse"
+    data-target="#sidebarMenu"
+    aria-controls="sidebarMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input
+    class="form-control form-control-dark w-100"
+    type="text"
+    placeholder="Search"
+    aria-label="Search"
+  />
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" asp-action="Logout">Sign out</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav
+      id="sidebarMenu"
+      class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+    >
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" asp-action="Products" id="link-products">
+              <i class="fas fa-fw fa-tshirt"></i>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" asp-action="Articles" id="link-articles">
+              <i class="fas fa-fw fa-newspaper"></i>
+              Articles
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" asp-action="Orders" id="link-orders">
+              <i class="fas fa-fw fa-clipboard-list"></i>
+              Orders
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+      >
+        <h1 class="h2">@ViewData["ViewTitle"]</h1>
+      </div>
+      @RenderBody()
+    </main>
+  </div>
+</div>

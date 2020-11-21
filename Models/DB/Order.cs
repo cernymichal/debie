@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Debie.Models.DB {
     public class Order {
@@ -46,8 +47,11 @@ namespace Debie.Models.DB {
         [MaxLength(256)]
         public string ShippingZip { get; set; }
         [Required]
-        public float VAT { get; set; } = 21F;
+        public float VAT { get; set; } = .21F;
 
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+
+        [NotMapped]
+        public float Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }
     }
 }

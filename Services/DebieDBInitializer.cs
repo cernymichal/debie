@@ -76,7 +76,7 @@ namespace Debie.Services {
                     Description = "Very descriptive 1",
                     Color = "Blue",
                     Price = 99.99F,
-                    Discount = 20,
+                    Discount = .20F,
                     DiscountFrom = DateTime.Now,
                     DiscountUntil = DateTime.Now.AddDays(1),
                     ReviewsCount = 4,
@@ -126,7 +126,7 @@ namespace Debie.Services {
                     Description = "Very descriptive 3",
                     Color = "Red",
                     Price = 49.99F,
-                    Discount = 50,
+                    Discount = .50F,
                     DiscountFrom = DateTime.Now,
                     DiscountUntil = DateTime.Now.AddHours(3),
                     Vendor = new Vendor { Name = "Vendor 2" },
@@ -155,6 +155,8 @@ namespace Debie.Services {
                 return;
             }
 
+            var product = context.Products.First();
+
             var orders = new Order[] {
                 new Order {
                     Email = "customer@example.com",
@@ -171,9 +173,9 @@ namespace Debie.Services {
                     BillingZip = "120 00",
                     OrderProducts = new List<OrderProduct>() {
                         new OrderProduct {
-                            Product = context.Products.First(),
-                            UnitPrice = context.Products.First().Price,
-                            Discount = context.Products.First().Discount,
+                            Product = product,
+                            UnitPrice = product.Price,
+                            Discount = product.Discounted ? product.Discount : 0,
                             Count = 2
                         }
                     }

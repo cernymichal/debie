@@ -15,7 +15,7 @@ namespace Debie.Models.DB {
         [MaxLength(64)]
         public string Color { get; set; }
         public float Price { get; set; }
-        public int Discount { get; set; } // %
+        public float Discount { get; set; }
         public DateTime DiscountFrom { get; set; }
         public DateTime DiscountUntil { get; set; }
         public int ReviewsCount { get; set; } = 0; // https://stackoverflow.com/questions/12636613/how-to-calculate-moving-average-without-keeping-the-count-and-data-total
@@ -27,5 +27,18 @@ namespace Debie.Models.DB {
         public virtual Image MainImage { get; set; }
         public virtual ICollection<Size> Sizes { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+
+        [NotMapped]
+        public bool Discounted {
+            get {
+                return DiscountFrom >= DateTime.UtcNow && DiscountUntil < DateTime.UtcNow;
+            }
+        }
+        [NotMapped]
+        public float CurrentPrice {
+            get {
+                return Price * (1 - (Discounted ? Discount : 0));
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Debie.Models.DB {
         [Required]
         public float UnitPrice { get; set; }
         [Required]
-        public float Discount { get; set; } // %
+        public float Discount { get; set; }
         [Required]
         public int Count { get; set; }
 
