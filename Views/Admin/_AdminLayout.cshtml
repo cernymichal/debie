@@ -1,7 +1,7 @@
 ﻿@{
   ViewData["ViewTitle"] = ViewData["Title"];
   ViewData["Title"] = ViewData["Title"] + " | Admin";
-  Layout = "_Layout";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Head {
@@ -10,7 +10,7 @@
 }
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <p class="navbar-brand col-md-3 col-lg-2 m-0 px-3">Debie</p>
+  <a class="navbar-brand col-md-3 col-lg-2 m-0 px-3" asp-controller="Page" asp-action="Index">Debie</a>
   <button
     class="navbar-toggler position-absolute d-md-none collapsed"
     type="button"
@@ -22,12 +22,19 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input
-    class="form-control form-control-dark w-100"
-    type="text"
-    placeholder="Search"
-    aria-label="Search"
-  />
+  @if (@ViewData["SearchAction"] != null)
+  {
+    <form method="GET" asp-action=@ViewData["SearchAction"] class="w-100">
+      <input
+        class="form-control form-control-dark w-100"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+        name="Query"
+        value=@ViewBag.Query
+      />
+    </form>
+  }
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link" asp-action="Logout">Sign out</a>

@@ -46,5 +46,13 @@ namespace Debie.Models.DB {
                 return ReviewsSum / ReviewsCount;
             }
         }
+
+        public bool Search(string query) {
+            return
+                Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                Vendor.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                Color.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                Categories.FirstOrDefault(c => c.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) != null;
+        }
     }
 }

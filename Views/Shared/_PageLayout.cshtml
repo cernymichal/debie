@@ -33,7 +33,7 @@
                 class="fas fa-pen-alt"></i> Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Customer"><i
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index"><i
                 class="fas fa-shopping-cart"></i> Cart</a>
           </li>
         </ul>
@@ -47,8 +47,13 @@
   </main>
 </div>
 
-<footer class="border-top footer text-muted">
-  <div class="container">
-    &copy; 2020 - Debie
+<footer class="border-top footer text-muted ">
+  <div class="d-flex container">
+    <div class="flex-fill">
+      &copy; 2020 - Debie
+    </div>
+    <div class="text-right flex-fill">
+      <a asp-controller="Admin">Admin</a>
+    </div>
   </div>
 </footer>

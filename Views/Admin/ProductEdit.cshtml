@@ -1,0 +1,6 @@
+@model Product
+@{
+  Layout = "_AdminLayout";
+  ViewData["Title"] = $"{Model.Name} ({Model.Color})";
+  ViewData["SearchAction"] = "Products";
+}

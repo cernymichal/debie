@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
+using System.Linq;
 
 using Debie.Models;
 using Debie.Models.DB;
@@ -68,16 +69,40 @@ namespace Debie.Controllers {
             return RedirectToAction("Products");
         }
 
-        public IActionResult Products() {
+        public IActionResult Products(string query = null) {
+            ViewBag.Query = query;
+            if (!string.IsNullOrEmpty(query))
+                return View(_ProductRepo.GetAll().Where(p => p.Search(query)));
             return View(_ProductRepo.GetAll());
         }
 
-        public IActionResult Articles() {
+        public IActionResult ProductEdit(int? id = null) {
+            var product = _ProductRepo.GetByID(id);
+            return View(product ?? new Product());
+        }
+
+        public IActionResult Articles(string query = null) {
+            ViewBag.Query = query;
+            if (!string.IsNullOrEmpty(query))
+                return View(_ArticleRepo.GetAll().Where(a => a.Search(query)));
             return View(_ArticleRepo.GetAll());
         }
 
-        public IActionResult Orders() {
+        public IActionResult ArticleEdit(int? id = null) {
+            var article = _ArticleRepo.GetByID(id);
+            return View(article ?? new Article());
+        }
+
+        public IActionResult Orders(string query = null) {
+            ViewBag.Query = query;
+            if (!string.IsNullOrEmpty(query))
+                return View(_OrderRepo.GetAll().Where(o => o.Search(query)));
             return View(_OrderRepo.GetAll());
+        }
+
+        public IActionResult OrderEdit(int? id = null) {
+            var order = _OrderRepo.GetByID(id);
+            return View(order ?? new Order());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

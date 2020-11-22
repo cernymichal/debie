@@ -53,5 +53,9 @@ namespace Debie.Models.DB {
 
         [NotMapped]
         public float Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }
+
+        public bool Search(string query) {
+            return LastName.Contains(query, StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

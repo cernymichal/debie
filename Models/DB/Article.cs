@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using System;
+
 namespace Debie.Models.DB {
     public class Article {
         [Key]
@@ -17,5 +19,11 @@ namespace Debie.Models.DB {
         public int ImageID { get; set; }
         public virtual Image Image { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public bool Search(string query) {
+            return
+                Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                User.Username.Contains(query, StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

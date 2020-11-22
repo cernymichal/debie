@@ -1,7 +1,8 @@
 @model IEnumerable<Order>
 @{
-  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+  Layout = "_AdminLayout";
   ViewData["Title"] = "Orders";
+  ViewData["SearchAction"] = "Orders";
 }
 
 @section Head {
@@ -12,7 +13,7 @@
   </style>
 }
 
-<table class="table table-dark">
+<table class="table table-hover table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -25,7 +26,7 @@
   <tbody>
     @foreach (Order order in Model)
     {
-      <tr>
+      <tr onclick="location.href = '@Url.Action("OrderEdit", new { order.ID })'">
         <th scope="row">@order.ID</th>
         <td>@order.Created.ToString()</td>
         <td>@order.FirstName @order.LastName</td>

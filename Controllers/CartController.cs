@@ -13,6 +13,10 @@ namespace Debie.Controllers {
     public class CartController : Controller {
         public CartController() { }
 
+        public IActionResult Index() {
+            return View();
+        }
+
         public IActionResult Customer() {
             return View();
         }
