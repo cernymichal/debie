@@ -5,11 +5,11 @@ namespace Debie.Models.DB {
     public class Image {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [MaxLength(256)]
+        [MaxLength(256), Display(Name = "Image title")]
         public string Title { get; set; }
-        [MaxLength(4), Required]
-        public string Extension { get; set; }
-        [MaxLength(8192), Required]
+        [MaxLength(16), Required]
+        public string ContentType { get; set; }
+        [MaxLength(8388608), Required]
         public byte[] Data { get; set; }
     }
 }

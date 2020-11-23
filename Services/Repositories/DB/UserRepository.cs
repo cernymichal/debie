@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using Debie.Models.DB;
 
@@ -24,7 +25,7 @@ namespace Debie.Services.Repositories.DB {
         }
         public override void Update(User user) {
             user.LastChanged = DateTime.UtcNow;
-            _Context.Update(user);
+            _Context.Users.Update(user);
         }
     }
 }

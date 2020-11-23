@@ -20,8 +20,8 @@ namespace Debie.Models.DB {
         public string LastName { get; set; }
         [MaxLength(128), Required]
         public string ShippingMethod { get; set; }
-        [Required]
-        public float ShippingPrice { get; set; }
+        [Required, DataType(DataType.Currency)]
+        public decimal ShippingPrice { get; set; }
         [MaxLength(128), Required]
         public string PaymentMethod { get; set; }
         [Required]
@@ -46,13 +46,13 @@ namespace Debie.Models.DB {
         public string ShippingCountry { get; set; }
         [MaxLength(256)]
         public string ShippingZip { get; set; }
-        [Required]
-        public float VAT { get; set; } = .21F;
+        [Required, DataType(DataType.Currency)]
+        public decimal VAT { get; set; } = .21M;
 
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 
         [NotMapped]
-        public float Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }
+        public decimal Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }
 
         public bool Search(string query) {
             return LastName.Contains(query, StringComparison.OrdinalIgnoreCase);

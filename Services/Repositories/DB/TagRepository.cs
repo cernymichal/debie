@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using Debie.Models.DB;
 
@@ -21,7 +22,7 @@ namespace Debie.Services.Repositories.DB {
             _Context.Tags.Remove(tag);
         }
         public override void Update(Tag tag) {
-            _Context.Update(tag);
+            _Context.Tags.Update(tag);
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 using Debie.Models;
 using Debie.Models.DB;
@@ -18,12 +19,16 @@ namespace Debie.Controllers {
         private readonly IArticleRepository _ArticleRepo;
         private readonly IOrderRepository _OrderRepo;
         private readonly IProductRepository _ProductRepo;
+        private readonly IUserRepository _UserRepo;
+        private readonly IVendorRepository _VendorRepo;
 
-        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo, IProductRepository productRepo) {
+        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo, IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo) {
             _LoginService = loginService;
             _ArticleRepo = articleRepo;
             _OrderRepo = orderRepo;
             _ProductRepo = productRepo;
+            _UserRepo = userRepo;
+            _VendorRepo = vendorRepo;
         }
 
         [AllowAnonymous]
@@ -76,9 +81,44 @@ namespace Debie.Controllers {
             return View(_ProductRepo.GetAll());
         }
 
-        public IActionResult ProductEdit(int? id = null) {
+        [HttpGet, Route("{controller}/Product/{id?}")]
+        public IActionResult Product(int? id = null) {
+            ViewBag.Vendors = _VendorRepo.GetAll();
+
             var product = _ProductRepo.GetByID(id);
-            return View(product ?? new Product());
+            return View(ProductForm.FromModel(product) ?? new ProductForm());
+        }
+
+        [HttpPost, Route("{controller}/Product/{id?}")]
+        public IActionResult ProductEdit(ProductForm productForm) {
+            ViewBag.Vendors = _VendorRepo.GetAll();
+
+            if (ModelState.IsValid) {
+                var product = _ProductRepo.GetByID(productForm.ID);
+                var passed = true;
+                try {
+                    _ProductRepo.Update(productForm.ToModel(product));
+                }
+                catch (System.FormatException) {
+                    ViewBag.Alert = "Couldn't parse";
+                    passed = false;
+                }
+
+                if (passed) {
+                    _ProductRepo.Save();
+                    ViewBag.Alert = "Saved!";
+                    productForm = ProductForm.FromModel(product);
+                }
+            }
+
+            return View("Product", productForm);
+        }
+
+        [HttpDelete, Route("{controller}/Product/{id?}")]
+        public IActionResult ProductDelete(Product product) {
+            _ProductRepo.Delete(product);
+            _ProductRepo.Save();
+            return RedirectToAction("Products");
         }
 
         public IActionResult Articles(string query = null) {
@@ -88,9 +128,49 @@ namespace Debie.Controllers {
             return View(_ArticleRepo.GetAll());
         }
 
-        public IActionResult ArticleEdit(int? id = null) {
+        [HttpGet, Route("{controller}/Article/{id?}")]
+        public IActionResult Article(int? id = null) {
+            ViewBag.Users = _UserRepo.GetAll();
+
             var article = _ArticleRepo.GetByID(id);
-            return View(article ?? new Article());
+            return View(ArticleForm.FromModel(article) ?? new ArticleForm());
+        }
+
+        [HttpPost, Route("{controller}/Article/{id?}")]
+        public IActionResult ArticleEdit(ArticleForm articleForm) {
+            ViewBag.Users = _UserRepo.GetAll();
+
+            if (Request.Form.Files["cover-image"] != null) {
+                var article = _ArticleRepo.GetByID(articleForm.ID);
+                article.Image = new Image {
+                    ContentType = Request.Form.Files["cover-image"].ContentType,
+                    Data = new byte[Request.Form.Files["cover-image"].Length]
+                };
+
+                Request.Form.Files["cover-image"].OpenReadStream().Read(article.Image.Data, 0, article.Image.Data.Length);
+
+                articleForm.Image.ToModel(article.Image);
+
+                _ArticleRepo.Update(article);
+                _ArticleRepo.Save();
+                ViewBag.Message = "Image updated!";
+            }
+
+            if (ModelState.IsValid) {
+                var article = _ArticleRepo.GetByID(articleForm.ID);
+                _ArticleRepo.Update(articleForm.ToModel(article));
+                _ArticleRepo.Save();
+                ViewBag.Alert = "Saved!";
+                articleForm = ArticleForm.FromModel(article);
+            }
+            return View("Article", articleForm);
+        }
+
+        [HttpDelete, Route("{controller}/Article/{id?}")]
+        public IActionResult ArticleDelete(Article article) {
+            _ArticleRepo.Delete(article);
+            _ArticleRepo.Save();
+            return RedirectToAction("Articles");
         }
 
         public IActionResult Orders(string query = null) {
@@ -100,10 +180,20 @@ namespace Debie.Controllers {
             return View(_OrderRepo.GetAll());
         }
 
-        public IActionResult OrderEdit(int? id = null) {
+        [HttpGet]
+        [HttpDelete, Route("{controller}/Order/{id?}")]
+        public IActionResult Order(int? id = null) {
             var order = _OrderRepo.GetByID(id);
             return View(order ?? new Order());
         }
+
+        [HttpDelete, Route("{controller}/Order/{id?}")]
+        public IActionResult OrderDelete(Order order) {
+            _OrderRepo.Delete(order);
+            _OrderRepo.Save();
+            return RedirectToAction("Orders");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() {

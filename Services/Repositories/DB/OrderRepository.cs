@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using Debie.Models.DB;
 
@@ -21,7 +22,7 @@ namespace Debie.Services.Repositories.DB {
             _Context.Orders.Remove(order);
         }
         public override void Update(Order order) {
-            _Context.Update(order);
+            _Context.Orders.Update(order);
         }
     }
 }

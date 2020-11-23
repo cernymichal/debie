@@ -23,7 +23,7 @@ namespace Debie {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddDbContextPool<DebieDBContext>(dbContextOptions =>
+            services.AddDbContext<DebieDBContext>(dbContextOptions =>
                 dbContextOptions.UseMySql(
                     Configuration["ConnectionString"],
                     new MySqlServerVersion(new Version(8, 0, 22)),
@@ -52,14 +52,14 @@ namespace Debie {
 
             services.AddTransient<ILoginService, LoginService>();
 
-            services.AddTransient<IArticleRepository, ArticleRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
-            services.AddTransient<IImageRepository, ImageRepository>();
-            services.AddTransient<IOrderRepository, OrderRepository>();
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<ITagRepository, TagRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IVendorRepository, VendorRepository>();
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IVendorRepository, VendorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

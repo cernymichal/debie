@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using Debie.Models.DB;
 
@@ -21,7 +22,7 @@ namespace Debie.Services.Repositories.DB {
             _Context.Categories.Remove(category);
         }
         public override void Update(Category category) {
-            _Context.Update(category);
+            _Context.Categories.Update(category);
         }
     }
 }

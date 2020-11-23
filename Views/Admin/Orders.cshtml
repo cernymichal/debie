@@ -26,7 +26,7 @@
   <tbody>
     @foreach (Order order in Model)
     {
-      <tr onclick="location.href = '@Url.Action("OrderEdit", new { order.ID })'">
+      <tr onclick="location.href = '@Url.Action("Order", new { order.ID })'">
         <th scope="row">@order.ID</th>
         <td>@order.Created.ToString()</td>
         <td>@order.FirstName @order.LastName</td>

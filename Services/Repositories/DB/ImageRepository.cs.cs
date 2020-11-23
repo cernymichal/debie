@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using Debie.Models.DB;
 
@@ -21,7 +22,7 @@ namespace Debie.Services.Repositories.DB {
             _Context.Images.Remove(image);
         }
         public override void Update(Image image) {
-            _Context.Update(image);
+            _Context.Images.Update(image);
         }
     }
 }

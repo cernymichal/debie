@@ -40,7 +40,7 @@ namespace Debie.Services {
                     User = admin,
                     Image = new Image {
                         Title = "Article",
-                        Extension = "png",
+                        ContentType = "image/png",
                         Data = File.ReadAllBytes("wwwroot/media/cover.png")
                     },
                     Tags = new List<Tag>() { tag } },
@@ -50,7 +50,7 @@ namespace Debie.Services {
                     User = admin,
                     Image = new Image {
                         Title = "Portrait",
-                        Extension = "png",
+                        ContentType = "image/png",
                         Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
                     Tags = new List<Tag>() { tag, new Tag { Label = "Test2" } } },
@@ -75,26 +75,26 @@ namespace Debie.Services {
                     Name = "Product1",
                     Description = "Very descriptive 1",
                     Color = "Blue",
-                    Price = 99.99F,
-                    Discount = .20F,
+                    Price = 99.99M,
+                    Discount = .20M,
                     DiscountFrom = DateTime.Now,
                     DiscountUntil = DateTime.Now.AddDays(1),
                     ReviewsCount = 4,
-                    ReviewsSum= 4 * 2.5F,
+                    ReviewsSum= 4 * 2.5M,
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1 },
                     ProductImages = new List<ProductImage>() {
                         new ProductImage {
                             Image = new Image {
                                 Title = "Secondary",
-                                Extension = "png",
+                                ContentType = "image/png",
                                 Data = File.ReadAllBytes("wwwroot/media/cover.png")
                             }
                         }
                     },
                     MainImage = new Image {
                         Title = "Thumbnail",
-                        Extension = "png",
+                        ContentType = "image/png",
                         Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
                     Sizes = new List<Size>() {
@@ -106,14 +106,14 @@ namespace Debie.Services {
                     Name = "Product2",
                     Description = "Very descriptive 2",
                     Color = "Black",
-                    Price = 19.99F,
+                    Price = 19.99M,
                     ReviewsCount = 10000,
-                    ReviewsSum = 10000 * 4.5F,
+                    ReviewsSum = 10000 * 4.5M,
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1, cat2 },
                     MainImage = new Image {
                         Title = "Thumbnail",
-                        Extension = "png",
+                        ContentType = "image/png",
                         Data = File.ReadAllBytes("wwwroot/media/cover.png")
                     },
                     Sizes = new List<Size>() {
@@ -125,15 +125,15 @@ namespace Debie.Services {
                     Name = "Product3",
                     Description = "Very descriptive 3",
                     Color = "Red",
-                    Price = 49.99F,
-                    Discount = .50F,
+                    Price = 49.99M,
+                    Discount = .50M,
                     DiscountFrom = DateTime.Now,
                     DiscountUntil = DateTime.Now.AddHours(3),
                     Vendor = new Vendor { Name = "Vendor 2" },
                     Categories = new List<Category>() { cat2 },
                     MainImage = new Image {
                         Title = "Thumbnail",
-                        Extension = "png",
+                        ContentType = "image/png",
                         Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
                     Sizes = new List<Size>() {
@@ -164,7 +164,7 @@ namespace Debie.Services {
                     FirstName = "Petr",
                     LastName = "Novák",
                     ShippingMethod = "International Post",
-                    ShippingPrice = 10F,
+                    ShippingPrice = 10M,
                     PaymentMethod = "Online card",
                     BillingStreet = "Pepegova 12",
                     BillingApartment = "8",

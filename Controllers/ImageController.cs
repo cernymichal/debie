@@ -27,7 +27,7 @@ namespace Debie.Controllers {
 
             Response.Headers["Cache-Control"] = $"public,max-age={CacheAgeSeconds}";
 
-            return File(image.Data, $"image/{image.Extension}");
+            return File(image.Data, image.ContentType);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

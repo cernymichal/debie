@@ -14,13 +14,16 @@ namespace Debie.Models.DB {
         public string Description { get; set; }
         [MaxLength(64)]
         public string Color { get; set; }
-        public float Price { get; set; }
-        public float Discount { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Price { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Discount { get; set; }
         public DateTime DiscountFrom { get; set; }
         public DateTime DiscountUntil { get; set; }
         public int ReviewsCount { get; set; } = 0;
-        public float ReviewsSum { get; set; } = 0F;
+        public decimal ReviewsSum { get; set; } = 0;
 
+        public int VendorID { get; set; }
         public virtual Vendor Vendor { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
@@ -35,13 +38,13 @@ namespace Debie.Models.DB {
             }
         }
         [NotMapped]
-        public float CurrentPrice {
+        public decimal CurrentPrice {
             get {
                 return Price * (1 - (Discounted ? Discount : 0));
             }
         }
         [NotMapped]
-        public float ReviewsAvg {
+        public decimal ReviewsAvg {
             get {
                 return ReviewsSum / ReviewsCount;
             }

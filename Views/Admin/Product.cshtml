@@ -1,0 +1,63 @@
+@model ProductForm
+@{
+  Layout = "_AdminLayout";
+  ViewData["Title"] = $"Product n.{Model.ID}";
+  ViewData["SearchAction"] = "Products";
+}
+
+<form method=POST enctype=multipart/form-data>
+  <div class="form-group">
+    <input asp-for="ID" hidden />
+
+    <div class="form-row">
+      <div class="col-sm-6 col-lg-4">
+        <label asp-for="Name"></label> <span asp-validation-for="Name" class="text-danger"></span>
+        <input asp-for="Name" class="form-control" placeholder="Name" required />
+
+        <label asp-for="Color"></label> <span asp-validation-for="Color" class="text-danger"></span>
+        <input asp-for="Color" class="form-control" placeholder="Color" required />
+
+        <label asp-for="Price"></label> <span asp-validation-for="Price" class="text-danger"></span>
+        <input asp-for="Price" class="form-control" placeholder="Price" required />
+
+        <label asp-for="VendorID"></label> <span asp-validation-for="VendorID" class="text-danger"></span>
+        <select asp-for="VendorID" class="form-control" required/>
+          @foreach (Vendor vendor in ViewBag.Vendors)
+          {
+            <option value=@vendor.ID selected=@(Model.VendorID == vendor.ID)>@vendor.Name</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-sm-6 col-lg-8">
+        <label asp-for="Description"></label> <span asp-validation-for="Description" class="text-danger"></span>
+        <textarea asp-for="Description" class="form-control" placeholder="Description" required rows=9></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-sm-4">
+        <label asp-for="Discount"></label> <span asp-validation-for="Discount" class="text-danger"></span>
+        <input asp-for="Discount" class="form-control" placeholder="Discount" required />
+      </div>
+
+      <div class="col-sm-4">
+        <label asp-for="DiscountFrom"></label> <span asp-validation-for="DiscountFrom" class="text-danger"></span>
+        <input asp-for="DiscountFrom" class="form-control" placeholder="DiscountFrom" required />
+      </div>
+
+      <div class="col-sm-4">
+        <label asp-for="DiscountUntil"></label> <span asp-validation-for="DiscountUntil" class="text-danger"></span>
+        <input asp-for="DiscountUntil" class="form-control" placeholder="DiscountUntil" required />
+      </div>
+    </div>
+  </div>
+    
+
+  <button class="btn btn-primary" type="submit">Save</button>
+  <button class="btn btn-danger" type="submit" formmethod="delete">Delete</button>
+</form>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}

@@ -79,6 +79,15 @@
         <h1 class="h2">@ViewData["ViewTitle"]</h1>
       </div>
       @RenderBody()
+      @if(ViewBag.Alert != null) {
+        <div class="alert alert-warning mt-3" role="alert">
+          @ViewBag.Alert
+        </div>
+      }
     </main>
   </div>
 </div>
+
+@section Scripts {
+  @await RenderSectionAsync("Scripts", required: false)
+}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using Debie.Models.DB;
 
@@ -21,7 +22,7 @@ namespace Debie.Services.Repositories.DB {
             _Context.Vendors.Remove(vendor);
         }
         public override void Update(Vendor vendor) {
-            _Context.Update(vendor);
+            _Context.Vendors.Update(vendor);
         }
     }
 }

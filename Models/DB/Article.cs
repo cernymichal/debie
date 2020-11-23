@@ -5,16 +5,15 @@ using System;
 
 namespace Debie.Models.DB {
     public class Article {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        [MaxLength(128)]
-        [Required]
+        [Required, MaxLength(128)]
         public string Title { get; set; }
-        [MaxLength(16384)]
-        [Required]
+        [Required, MaxLength(16384)]
         public string Content { get; set; }
 
+        [Required, Display(Name = "Author")]
+        public int UserID { get; set; }
         public virtual User User { get; set; }
         public int ImageID { get; set; }
         public virtual Image Image { get; set; }

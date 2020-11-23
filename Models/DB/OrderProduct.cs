@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Debie.Models.DB {
     public class OrderProduct {
         [Required]
-        public float UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
         [Required]
-        public float Discount { get; set; }
+        public decimal Discount { get; set; }
         [Required]
         public int Count { get; set; }
 
