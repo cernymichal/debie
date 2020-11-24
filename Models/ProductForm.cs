@@ -41,7 +41,7 @@ namespace Debie.Models {
                 DiscountUntil = model.DiscountUntil,
                 VendorID = model.VendorID,
                 Images = model.ProductImages.Select(i => ImageForm.FromModel(i.Image)).ToList(),
-                MainImageID = model.MainImage.ID
+                MainImageID = model.MainProductImage.Image.ID
             };
         }
 
@@ -54,7 +54,7 @@ namespace Debie.Models {
             model.DiscountFrom = DiscountFrom;
             model.DiscountUntil = DiscountUntil;
             model.VendorID = VendorID;
-            model.MainImage = model.ProductImages.First(pi => pi.ImageID == MainImageID).Image;
+            model.MainProductImage = model.ProductImages.First(pi => pi.ImageID == MainImageID);
             return model;
         }
     }

@@ -71,20 +71,26 @@ namespace Debie.Services {
             var cat1 = new Category { Name = "Category 1" };
             var cat2 = new Category { Name = "Category 2" };
 
-            var main1 = new Image {
-                Title = "Thumbnail",
-                ContentType = "image/png",
-                Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+            var main1 = new ProductImage {
+                Image = new Image {
+                    Title = "Thumbnail",
+                    ContentType = "image/png",
+                    Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+                }
             };
-            var main2 = new Image {
-                Title = "Thumbnail",
-                ContentType = "image/png",
-                Data = File.ReadAllBytes("wwwroot/media/cover.png")
+            var main2 = new ProductImage {
+                Image = new Image {
+                    Title = "Thumbnail",
+                    ContentType = "image/png",
+                    Data = File.ReadAllBytes("wwwroot/media/cover.png")
+                }
             };
-            var main3 = new Image {
-                Title = "Thumbnail",
-                ContentType = "image/png",
-                Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+            var main3 = new ProductImage {
+                Image = new Image {
+                    Title = "Thumbnail",
+                    ContentType = "image/png",
+                    Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+                }
             };
 
             var products = new Product[] {
@@ -108,9 +114,9 @@ namespace Debie.Services {
                                 Data = File.ReadAllBytes("wwwroot/media/cover.png")
                             }
                         },
-                        new ProductImage { Image = main1 }
+                        main1
                     },
-                    MainImage = main1,
+                    MainProductImage = main1,
                     Sizes = new List<Size>() {
                         new Size { Label = "S", Stock = 3 },
                         new Size { Label = "M", Stock = 2 }
@@ -126,9 +132,9 @@ namespace Debie.Services {
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1, cat2 },
                     ProductImages = new List<ProductImage>() {
-                        new ProductImage { Image = main2 }
+                        main2
                     },
-                    MainImage = main2,
+                    MainProductImage = main2,
                     Sizes = new List<Size>() {
                         new Size { Label = "L", Stock = 6 },
                         new Size { Label = "XXL", Stock = 1 }
@@ -145,9 +151,9 @@ namespace Debie.Services {
                     Vendor = new Vendor { Name = "Vendor 2" },
                     Categories = new List<Category>() { cat2 },
                     ProductImages = new List<ProductImage>() {
-                        new ProductImage { Image = main3 }
+                        main3
                     },
-                    MainImage = main3,
+                    MainProductImage = main3,
                     Sizes = new List<Size>() {
                         new Size { Label = "XS", Stock = 5 },
                         new Size { Label = "M", Stock = 2 },

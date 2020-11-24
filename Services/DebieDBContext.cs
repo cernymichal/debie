@@ -14,7 +14,6 @@ namespace Debie.Services {
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-        public DbSet<ProductImage> MainProductImages { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
@@ -64,16 +63,17 @@ namespace Debie.Services {
                 .HasOne(p => p.Vendor)
                 .WithMany(v => v.Products);
 
-            modelBuilder.Entity<Product>()
-                .HasMany(p => p.ProductImages)
-                .WithOne(pi => pi.Product);
+            modelBuilder.Entity<ProductImage>()
+                .HasOne(pi => pi.Product)
+                .WithMany(p => p.ProductImages)
+                .HasForeignKey("ProductID");
 
             modelBuilder.Entity<ProductImage>()
                 .HasOne(pi => pi.Image)
                 .WithOne();
 
             modelBuilder.Entity<Product>()
-                .HasOne(p => p.MainImage);
+                .HasOne(p => p.MainProductImage);
         }
     }
 }

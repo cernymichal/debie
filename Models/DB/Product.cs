@@ -27,7 +27,7 @@ namespace Debie.Models.DB {
         public virtual Vendor Vendor { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<ProductImage> ProductImages { get; set; }
-        public virtual Image MainImage { get; set; }
+        public virtual ProductImage MainProductImage { get; set; }
         public virtual ICollection<Size> Sizes { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 

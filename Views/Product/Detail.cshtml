@@ -3,7 +3,7 @@
   ViewData["Title"] = Model.Name;
 }
 
-<img src=@Url.Action("Get", "Image", new { Model.MainImage.ID }) alt=@Model.MainImage.Title />
+<img src=@Url.Action("Get", "Image", new { Model.MainProductImage.Image.ID }) alt=@Model.MainProductImage.Image.Title />
 
 <h1>@Model.Name</h1>
 <p>@Model.Description</p>

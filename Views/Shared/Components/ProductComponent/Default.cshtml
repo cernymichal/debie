@@ -1,5 +1,5 @@
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src=@Url.Action("Get", "Image", new { ViewBag.Product.MainImage.ID }) alt=@ViewBag.Product.MainImage.Title>
+  <img class="card-img-top" src=@Url.Action("Get", "Image", new { ViewBag.Product.MainProductImage.Image.ID }) alt=@ViewBag.Product.MainProductImage.Image.Title>
   <div class="card-body">
     <a class="btn btn-primary" asp-controller="Product" asp-action="Detail" asp-route-id=@ViewBag.Product.ID>@ViewBag.Product.Name</a>
   </div>
