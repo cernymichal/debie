@@ -31,8 +31,7 @@ namespace Debie.Controllers {
             _VendorRepo = vendorRepo;
         }
 
-        [AllowAnonymous]
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public IActionResult Login(string returnUrl = "") {
             if (HttpContext.User.Identity.IsAuthenticated)
                 return RedirectToAction("Index");
@@ -41,8 +40,7 @@ namespace Debie.Controllers {
             return View();
         }
 
-        [AllowAnonymous]
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public IActionResult Login(Login login, string returnUrl = "") {
             if (ModelState.IsValid) {
                 var invalid = false;
@@ -114,9 +112,8 @@ namespace Debie.Controllers {
             return View("Product", productForm);
         }
 
-        [HttpDelete, Route("{controller}/Product/{id?}")]
-        public IActionResult ProductDelete(Product product) {
-            _ProductRepo.Delete(product);
+        public IActionResult ProductDelete(int id) {
+            _ProductRepo.Delete(_ProductRepo.GetByID(id));
             _ProductRepo.Save();
             return RedirectToAction("Products");
         }
@@ -166,9 +163,8 @@ namespace Debie.Controllers {
             return View("Article", articleForm);
         }
 
-        [HttpDelete, Route("{controller}/Article/{id?}")]
-        public IActionResult ArticleDelete(Article article) {
-            _ArticleRepo.Delete(article);
+        public IActionResult ArticleDelete(int id) {
+            _ArticleRepo.Delete(_ArticleRepo.GetByID(id));
             _ArticleRepo.Save();
             return RedirectToAction("Articles");
         }
@@ -180,16 +176,14 @@ namespace Debie.Controllers {
             return View(_OrderRepo.GetAll());
         }
 
-        [HttpGet]
-        [HttpDelete, Route("{controller}/Order/{id?}")]
+        [HttpGet, Route("{controller}/Order/{id?}")]
         public IActionResult Order(int? id = null) {
             var order = _OrderRepo.GetByID(id);
             return View(order ?? new Order());
         }
 
-        [HttpDelete, Route("{controller}/Order/{id?}")]
-        public IActionResult OrderDelete(Order order) {
-            _OrderRepo.Delete(order);
+        public IActionResult OrderDelete(int id) {
+            _OrderRepo.Delete(_OrderRepo.GetByID(id));
             _OrderRepo.Save();
             return RedirectToAction("Orders");
         }

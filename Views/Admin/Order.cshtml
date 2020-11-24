@@ -76,5 +76,5 @@
     <p>@Model.Sum</p>
   </div>
 
-  <button class="btn btn-danger" type="submit" formmethod="delete">Delete</button>
+  <a asp-action="OrderDelete" asp-route-id=@Model.ID class="btn btn-danger">Delete</a>
 </form>

@@ -55,7 +55,7 @@
     
 
   <button class="btn btn-primary" type="submit">Save</button>
-  <button class="btn btn-danger" type="submit" formmethod="delete">Delete</button>
+  <a asp-action="ProductDelete" asp-route-id=@Model.ID class="btn btn-danger">Delete</a>
 </form>
 
 @section Scripts {
