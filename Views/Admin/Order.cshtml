@@ -9,72 +9,125 @@
   <input asp-for="ID" hidden />
 
   <div class="form-group">
-    <label asp-for="Email"></label>
-    <input asp-for="Email" class="form-control" placeholder="Email" disabled />
+    <div class="form-row">
+      <div class="col-sm-6">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" placeholder="FirstName" disabled />
 
-    <label asp-for="Phone"></label>
-    <input asp-for="Phone" class="form-control" placeholder="Phone" disabled />
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" placeholder="LastName" disabled />
+      </div>
 
-    <label asp-for="FirstName"></label>
-    <input asp-for="FirstName" class="form-control" placeholder="FirstName" disabled />
+      <div class="col-sm-6">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" placeholder="Email" disabled />
 
-    <label asp-for="LastName"></label>
-    <input asp-for="LastName" class="form-control" placeholder="LastName" disabled />
-
-    <label asp-for="ShippingMethod"></label>
-    <input asp-for="ShippingMethod" class="form-control" placeholder="ShippingMethod" disabled />
-
-    <label asp-for="ShippingPrice"></label>
-    <input asp-for="ShippingPrice" class="form-control" placeholder="ShippingPrice" disabled />
-
-    <label asp-for="PaymentMethod"></label>
-    <input asp-for="PaymentMethod" class="form-control" placeholder="PaymentMethod" disabled />
-
-    <label asp-for="Created"></label>
-    <input asp-for="Created" class="form-control" placeholder="Created" disabled />
-
-    <label asp-for="BillingStreet"></label>
-    <input asp-for="BillingStreet" class="form-control" placeholder="BillingStreet" disabled />
-
-    <label asp-for="BillingApartment"></label>
-    <input asp-for="BillingApartment" class="form-control" placeholder="BillingApartment" disabled />
-
-    <label asp-for="BillingCity"></label>
-    <input asp-for="BillingCity" class="form-control" placeholder="BillingCity" disabled />
-
-    <label asp-for="BillingCountry"></label>
-    <input asp-for="BillingCountry" class="form-control" placeholder="BillingCountry" disabled />
-
-    <label asp-for="BillingZip"></label>
-    <input asp-for="BillingZip" class="form-control" placeholder="BillingZip" disabled />
-
-    <label asp-for="ShippingStreet"></label>
-    <input asp-for="ShippingStreet" class="form-control" placeholder="ShippingStreet" disabled />
-
-    <label asp-for="ShippingApartment"></label>
-    <input asp-for="ShippingApartment" class="form-control" placeholder="ShippingApartment" disabled />
-
-    <label asp-for="ShippingCity"></label>
-    <input asp-for="ShippingCity" class="form-control" placeholder="ShippingCity" disabled />
-
-    <label asp-for="ShippingCountry"></label>
-    <input asp-for="ShippingCountry" class="form-control" placeholder="ShippingCountry" disabled />
-
-    <label asp-for="ShippingZip"></label>
-    <input asp-for="ShippingZip" class="form-control" placeholder="ShippingZip" disabled />
-
-    <label asp-for="VAT"></label>
-    <input asp-for="VAT" class="form-control" placeholder="VAT" disabled />
-
-    @foreach (OrderProduct orderProduct in Model.OrderProducts)
-    {
-      <p>@orderProduct.Product.Name</p>
-      <p>@orderProduct.Count</p>
-      <p>@orderProduct.UnitPrice</p>
-    }
-
-    <p>@Model.Sum</p>
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control" placeholder="Phone" disabled />
+      </div>
+    </div>
   </div>
+
+  <br>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-6">
+        <label asp-for="BillingStreet"></label>
+        <input asp-for="BillingStreet" class="form-control" placeholder="BillingStreet" disabled />
+
+        <label asp-for="BillingApartment"></label>
+        <input asp-for="BillingApartment" class="form-control" placeholder="BillingApartment" disabled />
+
+        <label asp-for="BillingCity"></label>
+        <input asp-for="BillingCity" class="form-control" placeholder="BillingCity" disabled />
+
+        <label asp-for="BillingCountry"></label>
+        <input asp-for="BillingCountry" class="form-control" placeholder="BillingCountry" disabled />
+
+        <label asp-for="BillingZip"></label>
+        <input asp-for="BillingZip" class="form-control" placeholder="BillingZip" disabled />
+      </div>
+
+      <div class="col-sm-6">
+        <label asp-for="ShippingStreet"></label>
+        <input asp-for="ShippingStreet" class="form-control" placeholder="ShippingStreet" disabled />
+
+        <label asp-for="ShippingApartment"></label>
+        <input asp-for="ShippingApartment" class="form-control" placeholder="ShippingApartment" disabled />
+
+        <label asp-for="ShippingCity"></label>
+        <input asp-for="ShippingCity" class="form-control" placeholder="ShippingCity" disabled />
+
+        <label asp-for="ShippingCountry"></label>
+        <input asp-for="ShippingCountry" class="form-control" placeholder="ShippingCountry" disabled />
+
+        <label asp-for="ShippingZip"></label>
+        <input asp-for="ShippingZip" class="form-control" placeholder="ShippingZip" disabled />
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-6">
+        <label asp-for="ShippingMethod"></label>
+        <input asp-for="ShippingMethod" class="form-control" placeholder="ShippingMethod" disabled />
+
+        <label asp-for="PaymentMethod"></label>
+        <input asp-for="PaymentMethod" class="form-control" placeholder="PaymentMethod" disabled />
+      </div>
+
+      <div class="col-sm-6">
+        <label asp-for="ShippingPrice"></label>
+        <input asp-for="ShippingPrice" class="form-control" placeholder="ShippingPrice" disabled />
+
+
+        <label>Sum</label>
+        <input class="form-control" value="@Model.Sum" disabled />
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col-sm-6">
+        <label asp-for="Created"></label>
+        <input asp-for="Created" class="form-control" placeholder="Created" disabled />
+      </div>
+
+      <div class="col-sm-6">
+        <label asp-for="VAT"></label>
+        <input asp-for="VAT" class="form-control" placeholder="VAT" disabled />
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Count</th>
+        <th scope="col">UnitPrice</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (OrderProduct orderProduct in Model.OrderProducts)
+      {
+        <tr>
+          <th scope="row">@orderProduct.Product.Name</th>
+          <td>@orderProduct.Count</td>
+          <td>@orderProduct.UnitPrice</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 
   <a asp-action="OrderDelete" asp-route-id=@Model.ID class="btn btn-danger">Delete</a>
 </form>
