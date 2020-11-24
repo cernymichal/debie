@@ -24,12 +24,10 @@ namespace Debie.Models {
         public DateTime DiscountUntil { get; set; }
         [Display(Name = "Vendor")]
         public int VendorID { get; set; }
-        /*
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<ProductImage> ProductImages { get; set; }
-        public virtual Image MainImage { get; set; }
-        public virtual ICollection<Size> Sizes { get; set; }
-        */
+        public ICollection<ImageForm> Images { get; set; }
+        [Display(Name = "Main")]
+        public int MainImageID { get; set; }
+
 
         public static ProductForm FromModel(Product model) {
             return new ProductForm {
@@ -41,7 +39,9 @@ namespace Debie.Models {
                 Discount = model.Discount.ToString(),
                 DiscountFrom = model.DiscountFrom,
                 DiscountUntil = model.DiscountUntil,
-                VendorID = model.VendorID
+                VendorID = model.VendorID,
+                Images = model.ProductImages.Select(i => ImageForm.FromModel(i.Image)).ToList(),
+                MainImageID = model.MainImage.ID
             };
         }
 
@@ -54,6 +54,7 @@ namespace Debie.Models {
             model.DiscountFrom = DiscountFrom;
             model.DiscountUntil = DiscountUntil;
             model.VendorID = VendorID;
+            model.MainImage = model.ProductImages.First(pi => pi.ImageID == MainImageID).Image;
             return model;
         }
     }

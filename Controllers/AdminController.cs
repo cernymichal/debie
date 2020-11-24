@@ -21,14 +21,16 @@ namespace Debie.Controllers {
         private readonly IProductRepository _ProductRepo;
         private readonly IUserRepository _UserRepo;
         private readonly IVendorRepository _VendorRepo;
+        private readonly IImageRepository _ImageRepo;
 
-        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo, IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo) {
+        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo, IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo, IImageRepository imageRepo) {
             _LoginService = loginService;
             _ArticleRepo = articleRepo;
             _OrderRepo = orderRepo;
             _ProductRepo = productRepo;
             _UserRepo = userRepo;
             _VendorRepo = vendorRepo;
+            _ImageRepo = imageRepo;
         }
 
         [HttpGet, AllowAnonymous]
@@ -91,6 +93,22 @@ namespace Debie.Controllers {
         public IActionResult ProductEdit(ProductForm productForm) {
             ViewBag.Vendors = _VendorRepo.GetAll();
 
+            if (Request.Form.Files["product-image"] != null) {
+                var product = _ProductRepo.GetByID(productForm.ID);
+                var image = new Image {
+                    ContentType = Request.Form.Files["product-image"].ContentType,
+                    Data = new byte[Request.Form.Files["product-image"].Length]
+                };
+
+                Request.Form.Files["product-image"].OpenReadStream().Read(image.Data, 0, image.Data.Length);
+
+                product.ProductImages.Add(new ProductImage { Image = image, Product = product });
+
+                _ProductRepo.Update(product);
+                _ProductRepo.Save();
+                ViewBag.Message = "Image added!";
+            }
+
             if (ModelState.IsValid) {
                 var product = _ProductRepo.GetByID(productForm.ID);
                 var passed = true;
@@ -116,6 +134,16 @@ namespace Debie.Controllers {
             _ProductRepo.Delete(_ProductRepo.GetByID(id));
             _ProductRepo.Save();
             return RedirectToAction("Products");
+        }
+
+        public IActionResult ImageDelete(int id, string returnUrl = "") {
+            _ImageRepo.Delete(_ImageRepo.GetByID(id));
+            _ImageRepo.Save();
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+            else
+                return RedirectToAction("Products");
         }
 
         public IActionResult Articles(string query = null) {

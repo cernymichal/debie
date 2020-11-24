@@ -70,6 +70,23 @@ namespace Debie.Services {
             var vendor1 = new Vendor { Name = "Vendor 1" };
             var cat1 = new Category { Name = "Category 1" };
             var cat2 = new Category { Name = "Category 2" };
+
+            var main1 = new Image {
+                Title = "Thumbnail",
+                ContentType = "image/png",
+                Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+            };
+            var main2 = new Image {
+                Title = "Thumbnail",
+                ContentType = "image/png",
+                Data = File.ReadAllBytes("wwwroot/media/cover.png")
+            };
+            var main3 = new Image {
+                Title = "Thumbnail",
+                ContentType = "image/png",
+                Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+            };
+
             var products = new Product[] {
                 new Product {
                     Name = "Product1",
@@ -90,13 +107,10 @@ namespace Debie.Services {
                                 ContentType = "image/png",
                                 Data = File.ReadAllBytes("wwwroot/media/cover.png")
                             }
-                        }
+                        },
+                        new ProductImage { Image = main1 }
                     },
-                    MainImage = new Image {
-                        Title = "Thumbnail",
-                        ContentType = "image/png",
-                        Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
-                    },
+                    MainImage = main1,
                     Sizes = new List<Size>() {
                         new Size { Label = "S", Stock = 3 },
                         new Size { Label = "M", Stock = 2 }
@@ -111,11 +125,10 @@ namespace Debie.Services {
                     ReviewsSum = 10000 * 4.5M,
                     Vendor = vendor1,
                     Categories = new List<Category>() { cat1, cat2 },
-                    MainImage = new Image {
-                        Title = "Thumbnail",
-                        ContentType = "image/png",
-                        Data = File.ReadAllBytes("wwwroot/media/cover.png")
+                    ProductImages = new List<ProductImage>() {
+                        new ProductImage { Image = main2 }
                     },
+                    MainImage = main2,
                     Sizes = new List<Size>() {
                         new Size { Label = "L", Stock = 6 },
                         new Size { Label = "XXL", Stock = 1 }
@@ -131,11 +144,10 @@ namespace Debie.Services {
                     DiscountUntil = DateTime.Now.AddHours(3),
                     Vendor = new Vendor { Name = "Vendor 2" },
                     Categories = new List<Category>() { cat2 },
-                    MainImage = new Image {
-                        Title = "Thumbnail",
-                        ContentType = "image/png",
-                        Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
+                    ProductImages = new List<ProductImage>() {
+                        new ProductImage { Image = main3 }
                     },
+                    MainImage = main3,
                     Sizes = new List<Size>() {
                         new Size { Label = "XS", Stock = 5 },
                         new Size { Label = "M", Stock = 2 },
