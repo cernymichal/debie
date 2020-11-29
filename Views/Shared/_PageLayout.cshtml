@@ -2,58 +2,98 @@
   Layout = "_Layout";
 }
 
-<header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+@section Head {
+  <link rel="stylesheet" href="~/css/page-layout.css" />
+  @await RenderSectionAsync("Head", required: false)
+}
+
+<header id="page-header" class="sticky-top">
+  <div>
     <div class="container">
-      <a class="navbar-brand" asp-area="" asp-controller="Page" asp-action="Index">Debie</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-        <ul class="navbar-nav flex-grow-1">
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Page" asp-action="Index"><i
-                class="fas fa-home"></i> Index</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Page" asp-action="About"><i
-                class="fas fa-align-center"></i> About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Page" asp-action="Contact"><i
-                class="fas fa-phone"></i> Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="List"><i
-                class="fas fa-tshirt"></i> Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="List"><i
-                class="fas fa-pen-alt"></i> Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index"><i
-                class="fas fa-shopping-cart"></i> Cart</a>
-          </li>
-        </ul>
+      <div id="header-top">
+        <div id="follow-links">
+          <p>Follow Us:
+            <a href="https://facebook.com/"><i class="fa-fw fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/"><i class="fa-fw fab fa-twitter"></i></a>
+            <a href="https://instagram.com/"><i class="fa-fw fab fa-instagram"></i></a>
+            <a href="https://youtube.com/"><i class="fa-fw fab fa-youtube"></i></a>
+          </p>
+        </div>
+        <div id="admin-link">
+          <a asp-controller="Admin" asp-action="Index">Administration</a>
+        </div>
+      </div>
+
+      <div id="header-mid">
+        <h1>DEBIE</h1>
+        <div id="header-search">
+          <input type="text" placeholder="Search"> <a href=""><i class="fa-fw fas fa-search"></i></a>
+        </div>
+        <div id="header-cart">
+          <a asp-controller="Cart" asp-action="Index"><i class="fa-fw fas fa-shopping-cart"></i></a>
+        </div>
       </div>
     </div>
+  </div>
+  
+  <nav>
+    <a asp-controller="Page" asp-action="Index">Home</a>
+    <a asp-controller="Product" asp-action="List">Products</a>
+    <a asp-controller="Blog" asp-action="List">Blog</a>
+    <a asp-controller="Page" asp-action="About">About</a>
+    <a asp-controller="Page" asp-action="Contact">Contact</a>
   </nav>
 </header>
-<div class="container">
-  <main role="main" class="pb-3">
-    @RenderBody()
-  </main>
-</div>
 
-<footer class="border-top footer text-muted ">
-  <div class="d-flex container">
-    <div class="flex-fill">
-      &copy; 2020 - Debie
+@RenderBody()
+
+<footer id="page-footer">
+  <div class="container">
+    <div id="footer-top">
+      <div id="footer-address">
+        <h1>DEBIE</h1>
+
+        <address>
+          <h3>Address:</h3>
+          <p>123 Main Street, New York, NY</p>
+          <h3>Need Help?</h3>
+          <p>Call: <a href="tel:123456789">123 456 789</a></p>
+          <h3>Email:</h3>
+          <p><a href="mailto:example@example.com">example@example.com</a></p>
+        </address>
+      </div>
+      <div id="footer-about">
+        <h2>About Us</h2>
+        <p><a asp-controller="Page" asp-action="About">About us</a></p>
+        <p><a asp-controller="Page" asp-action="Contact">Contact</a></p>
+      </div>
+      <div id="footer-articles">
+        <h2>Latest Articles</h2>
+        <div>
+          <div>
+            <img />
+            <h3></h3>
+            <p>by <strong></strong> • </p>
+          </div>
+          <div>
+            <img />
+            <h3></h3>
+            <p>by <strong></strong> • </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="text-right flex-fill">
-      <a asp-controller="Admin" asp-action="Index">Admin</a>
+    
+    <hr>
+
+    <div id="footer-bottom">
+      <p class="text-muted">Noright ○ <span class="text-body">Cernymichal</span> No Rights Reserved.</p>
+      <div id="footer-links">
+        <a href="https://facebook.com/"><i class="fa-fw fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/"><i class="fa-fw fab fa-twitter"></i></a>
+        <a href="https://instagram.com/"><i class="fa-fw fab fa-instagram"></i></a>
+        <a href="https://youtube.com/"><i class="fa-fw fab fa-youtube"></i></a>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,1 +1,17 @@
-﻿
+﻿@font-face {
+  font-family: lato;
+  src: url("/lib/lato/Lato-Regular.ttf")
+}
+
+@font-face {
+  font-family: opensans;
+  src: url("/lib/opensans/Opensans-Regular.ttf")
+}
+
+* {
+  font-family: opensans, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: lato, sans-serif;
+}

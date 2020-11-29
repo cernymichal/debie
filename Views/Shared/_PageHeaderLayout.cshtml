@@ -1,0 +1,23 @@
+@{
+  Layout = "_PageLayout";
+}
+
+@section Head {
+  <link rel="stylesheet" href="~/css/page-header-layout.css" />
+  @await RenderSectionAsync("Head", required: false)
+}
+
+<div #image-header>
+  <h1>@ViewData["Header"]</h1>
+  @if (@ViewData.ContainsKey("Crumbs")) {
+    @foreach (Crumb crumb in (Crumb[]) @ViewData["Crumbs"])
+    {
+      <a asp-controller="Page" asp-action="Index">Home</a>
+      <i class="fas fa-chevron-right"></i><text>&nbsp;</text><a asp-controller=@crumb.Controller asp-action=@crumb.Action>@crumb.Title</a> 
+    }
+  }
+</div>
+
+<main class="container">
+  @RenderBody()
+</main>
