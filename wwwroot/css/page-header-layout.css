@@ -1,0 +1,20 @@
+#image-header {
+  background-image: url("/media/cover.png");
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+}
+
+#image-header i.fa-fw {
+  color: #cccccc !important;
+}
+
+#image-header a {
+  text-decoration: none;
+  transition: 300ms;
+  color: #ffffff;
+}
+
+#image-header a:hover {
+  color: #cccccc;
+}

@@ -1,6 +1,11 @@
 @model Product
 @{
-  ViewData["Title"] = Model.Name;
+  ViewData["Header"] = Model.Name;
+  ViewData["Title"] = ViewData["Header"];
+  ViewData["Crumbs"] = new Crumb[] {
+    new Crumb("Product", "List", "Products"),
+    new Crumb("Product", "List", Model.Name, new Dictionary<string, string> { {"ID", Model.ID.ToString() } })
+  };
 }
 
 <img src=@Url.Action("Get", "Image", new { Model.MainProductImage.Image.ID }) alt=@Model.MainProductImage.Image.Title />

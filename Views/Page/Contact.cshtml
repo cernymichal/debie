@@ -1,5 +1,9 @@
 @{
-  ViewData["Title"] = "Contact";
+  ViewData["Header"] = "Contact";
+  ViewData["Title"] = ViewData["Header"];
+  ViewData["Crumbs"] = new Crumb[] {
+    new Crumb("Page", "Contact", "Contact")
+  };
 }
 
 <h1>Page Contact</h1>

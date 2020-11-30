@@ -7,13 +7,13 @@
   @await RenderSectionAsync("Head", required: false)
 }
 
-<div #image-header>
+<div id="image-header" class="py-5 text-center">
   <h1>@ViewData["Header"]</h1>
   @if (@ViewData.ContainsKey("Crumbs")) {
+    <text>Home</text>
     @foreach (Crumb crumb in (Crumb[]) @ViewData["Crumbs"])
     {
-      <a asp-controller="Page" asp-action="Index">Home</a>
-      <i class="fas fa-chevron-right"></i><text>&nbsp;</text><a asp-controller=@crumb.Controller asp-action=@crumb.Action>@crumb.Title</a> 
+      <i class="fa-fw fas fa-chevron-right mx-1"></i> <a asp-controller=@crumb.Controller asp-action=@crumb.Action asp-all-route-data=@crumb.Values>@crumb.Title</a> 
     }
   }
 </div>

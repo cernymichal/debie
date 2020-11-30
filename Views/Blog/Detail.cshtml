@@ -1,6 +1,11 @@
 @model Article
 @{
-  ViewData["Title"] = Model.Title;
+  ViewData["Header"] = Model.Title;
+  ViewData["Title"] = ViewData["Header"];
+  ViewData["Crumbs"] = new Crumb[] {
+    new Crumb("Blog", "List", "Blog"),
+    new Crumb("Blog", "Detail", Model.Title, new Dictionary<string, string> { {"ID", Model.ID.ToString() } })
+  };
 }
 
 <div class="text-center">

@@ -1,6 +1,10 @@
 @model IEnumerable<Article>
 @{
-  ViewData["Title"] = "Blog";
+  ViewData["Header"] = "Blog";
+  ViewData["Title"] = ViewData["Header"];
+  ViewData["Crumbs"] = new Crumb[] {
+    new Crumb("Blog", "List", "Blog")
+  };
 }
 
 <h1>Article List</h1>
