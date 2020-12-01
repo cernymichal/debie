@@ -21,3 +21,9 @@
 <main class="container">
   @RenderBody()
 </main>
+
+@await RenderSectionAsync("Outside", required: false);
+
+@section Scripts {
+  @await RenderSectionAsync("Scripts", required: false)
+}

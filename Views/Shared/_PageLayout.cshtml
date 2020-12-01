@@ -47,7 +47,9 @@
   </nav>
 </header>
 
-@RenderBody()
+<div>
+  @RenderBody()
+</div>
 
 <footer id="page-footer">
   <div class="container">
@@ -99,3 +101,7 @@
     </div>
   </div>
 </footer>
+
+@section Scripts {
+  @await RenderSectionAsync("Scripts", required: false)
+}
