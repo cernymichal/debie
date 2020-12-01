@@ -11,6 +11,8 @@ namespace Debie.Models.DB {
         public string Title { get; set; }
         [Required, MaxLength(16384)]
         public string Content { get; set; }
+        [Required]
+        public DateTime Created { get; set; }
 
         [Required, Display(Name = "Author")]
         public int UserID { get; set; }

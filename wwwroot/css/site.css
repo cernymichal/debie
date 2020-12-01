@@ -1,17 +1,72 @@
 ﻿@font-face {
   font-family: lato;
-  src: url("/lib/lato/Lato-Regular.ttf")
+  src: url("/lib/lato/Lato-Regular.ttf");
 }
 
 @font-face {
   font-family: opensans;
-  src: url("/lib/opensans/Opensans-Regular.ttf")
+  src: url("/lib/opensans/Opensans-Regular.ttf");
 }
 
 * {
   font-family: opensans, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: lato, sans-serif;
+}
+
+.my-button {
+  background-color: #aca2ff;
+  border: none;
+  color: #ffffff;
+  padding: 8px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.my-button-big {
+  background-color: #aca2ff;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.my-button:hover,
+.my-button-big:hover {
+  transition: 300ms;
+  background-color: #342b80;
+}
+
+.my-button-black {
+  background-color: #000000;
+  border: none;
+  color: #ffffff;
+  padding: 8px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.my-button-black:hover {
+  transition: 300ms;
+  background-color: #8a83cc;
+}
+
+.recent-articles h2 {
+  font-size: 1.2em;
+}
+
+.recent-articles img {
+  object-fit: cover;
 }

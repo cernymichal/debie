@@ -40,6 +40,25 @@
   color: #8a83cc;
 }
 
+#search {
+  background-color: #d1ccff;
+  border-radius: 5px;
+}
+
+#search input {
+  color: #342b80;
+  outline: none;
+}
+
+#serch in #search input::placeholder {
+  color: #ffffff;
+}
+
+#search > div * {
+  background-color: transparent;
+  border: none;
+}
+
 body {
   display: flex;
   flex-direction: column;

@@ -10,28 +10,28 @@
 <header id="page-header" class="sticky-top">
   <div class="py-2">
     <div class="container">
-      <div class="d-flex">
-        <div id="follow-links">
-          <p class="flex-grow-1">Follow Us:
-            <a href="https://facebook.com/"><i class="fa-fw fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/"><i class="fa-fw fab fa-twitter"></i></a>
-            <a href="https://instagram.com/"><i class="fa-fw fab fa-instagram"></i></a>
-            <a href="https://youtube.com/"><i class="fa-fw fab fa-youtube"></i></a>
-          </p>
-        </div>
-        <div class="flex-grow-1 text-right">
-          <a asp-controller="Admin" asp-action="Index"><i class="fas fa-user-cog"></i></a>
-        </div>
+      <div id="follow-links"">
+        <p>Follow Us:
+          <a href="https://facebook.com/"><i class="fa-fw fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/"><i class="fa-fw fab fa-twitter"></i></a>
+          <a href="https://instagram.com/"><i class="fa-fw fab fa-instagram"></i></a>
+          <a href="https://youtube.com/"><i class="fa-fw fab fa-youtube"></i></a>
+        </p>
       </div>
 
-      <div class="d-flex mt-2">
-        <h1 class="flex-grow-1">
+      <div class="row justify-content-center align-items-center mt-2">
+        <h1 class="col-3">
           <a asp-controller="Page" asp-action="Index">DEBIE</a>
         </h1>
-        <div class="flex-grow-4 text-center">
-          <input type="text" placeholder="Search"> <a href=""><i class="fa-fw fas fa-search"></i></a>
+        <div class="col-6">
+          <form action="" id="search" class="w-100">
+            <div class="row m-0 p-0">
+              <input type="text" name="query" placeholder="Search our store" class="col-11 pl-3 py-2 m-0">
+              <button type="submit" class="col-1 p-0 py-2 pr-3 m-0 text-center"><i class="fa-fw fas fa-search p0"></i></button>
+            </div>
+          </form>
         </div>
-        <div class="flex-grow-1 text-right">
+        <div class="col-3 text-right">
           <a asp-controller="Cart" asp-action="Index"><i class="fa-fw fas fa-shopping-cart"></i></a>
         </div>
       </div>
@@ -53,8 +53,8 @@
 
 <footer id="page-footer">
   <div class="container">
-    <div class="d-flex mt-4">
-      <div class="flex-grow-1" id="footer-address">
+    <div class="row mt-4">
+      <div class="col-md-4" id="footer-address">
         <h1 class="mb-4">DEBIE</h1>
 
         <address class="mb-0">
@@ -66,33 +66,24 @@
           <p class="mb-0"><a href="mailto:example@example.com">example@example.com</a></p>
         </address>
       </div>
-      <div class="flex-grow-1" id="footer-about">
+      <div class="col-md-4" id="footer-about">
         <h2>About Us</h2>
         <p><a asp-controller="Page" asp-action="About">About us</a></p>
         <p><a asp-controller="Page" asp-action="Contact">Contact</a></p>
       </div>
-      <div class="flex-grow-1" id="footer-articles">
+      <div class="col-md-4" id="footer-articles">
         <h2>Latest Articles</h2>
-        <div>
-          <div>
-            <img />
-            <h3></h3>
-            <p>by <strong></strong> • </p>
-          </div>
-          <div>
-            <img />
-            <h3></h3>
-            <p>by <strong></strong> • </p>
-          </div>
-        </div>
+        <vc:recent-articles-component count=2></vc:recent-articles-component>
       </div>
     </div>
     
     <hr class="my-2">
 
-    <div class="d-flex mb-1">
-      <p class="text-muted flex-grow-1 mb-0">Noright ○ <span class="text-body">Cernymichal</span> No Rights Reserved.</p>
-      <div class="text-right flex-grow-1">
+    <div class="row my-3">
+      <p class="text-muted col-8 mb-0">Noright ○ No Rights Reserved.</p>
+      <div class="text-right col-4">
+        <a asp-controller="Admin" asp-action="Index"><i class="fa-fw fas fa-user-cog"></i></a>
+        <text>&nbsp;</text>
         <a href="https://facebook.com/"><i class="fa-fw fab fa-facebook-f"></i></a>
         <a href="https://twitter.com/"><i class="fa-fw fab fa-twitter"></i></a>
         <a href="https://instagram.com/"><i class="fa-fw fab fa-instagram"></i></a>

@@ -37,6 +37,7 @@ namespace Debie.Services {
                 new Article {
                     Title = "Article 1",
                     Content = "My very interesting article mmm yes",
+                    Created = DateTime.UtcNow,
                     User = admin,
                     Image = new Image {
                         Title = "Article",
@@ -47,6 +48,7 @@ namespace Debie.Services {
                 new Article {
                     Title = "Article 2",
                     Content = "My very interesting article mmm yes 222",
+                    Created = DateTime.UtcNow,
                     User = admin,
                     Image = new Image {
                         Title = "Portrait",
