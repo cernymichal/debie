@@ -46,9 +46,11 @@ h6 {
 .my-button-big:hover {
   transition: 300ms;
   background-color: #342b80;
+  text-decoration: none;
+  color: #ffffff;
 }
 
-.my-button-black {
+.my-button-dark {
   background-color: #000000;
   border: none;
   color: #ffffff;
@@ -58,9 +60,11 @@ h6 {
   display: inline-block;
 }
 
-.my-button-black:hover {
+.my-button-dark:hover {
   transition: 300ms;
   background-color: #8a83cc;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .recent-articles h2 {
@@ -69,4 +73,8 @@ h6 {
 
 .recent-articles img {
   object-fit: cover;
+}
+
+.blog-sidebar {
+  
 }
