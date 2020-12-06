@@ -6,8 +6,7 @@ using System.Linq;
 namespace Debie.Components {
     public class ProductListComponent : ViewComponent {
         public IViewComponentResult Invoke(ICollection<Product> products, int count) {
-            ViewBag.Products = products.Take(count);
-            return View();
+            return View(products.Take(count));
         }
     }
 }

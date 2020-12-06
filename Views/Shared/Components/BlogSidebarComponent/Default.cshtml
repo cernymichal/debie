@@ -1,3 +1,27 @@
+@model ICollection<Tag>
 <div class="blog-sidebar bg-light">
-  sidebar
+  <div class="p-4">
+    <div class="mb-4">
+      <h6>Search</h6>
+      <form action="" class="row m-0 p-0 py-2">
+        <input type="text" class="col-9" />
+        <button type="submit" class="col-3">Search</button>
+      </form>
+    </div>
+
+    <div class="mb-4">
+      <h6>Recent posts</h6>
+      <vc:recent-articles-component count=3 small=true></vc:recent-articles-component>
+    </div>
+
+    <div>
+      <h6 class="mb-3">Tags</h6>
+      <div class="blog-sidebar-tags">
+        @foreach (var tag in Model)
+        {
+          <a class="px-2 py-1 mx-1">@tag.Label</a>
+        }
+      </div>
+    </div>
+  </div>
 </div>

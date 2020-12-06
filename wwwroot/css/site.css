@@ -71,10 +71,46 @@ h6 {
   font-size: 1.2em;
 }
 
-.recent-articles img {
-  object-fit: cover;
+.recent-articles-small h2 {
+  font-size: 1em;
 }
 
-.blog-sidebar {
-  
+.recent-articles-small a {
+  color: #000000;
+}
+
+.recent-articles-small p {
+  font-size: 0.8em;
+  color: #555555;
+}
+
+.blog-sidebar form {
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.blog-sidebar form input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.blog-sidebar form span {
+  color: #cccccc;
+}
+
+.blog-sidebar form button {
+  background-color: transparent;
+  border: none;
+  border-left: 1px solid #cccccc;
+}
+
+.blog-sidebar h6 {
+  font-weight: bold;
+}
+
+.blog-sidebar-tags a {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 }

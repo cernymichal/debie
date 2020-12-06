@@ -1,6 +1,7 @@
+@model ICollection<Product>
 <div class="container">
   <div class="row">
-    @foreach (Product product in ViewBag.Products)
+    @foreach (Product product in Model)
     {
       <div class="col">
         <vc:product-component product=@product></vc:product-component>

@@ -8,11 +8,18 @@
   };
 }
 
-<div class="text-center">
-  <h1>@Model.Title</h1>
-  <i>@Model.User.Username</i>
-  <img src=@Url.Action("Get", "Image", new { Model.Image.ID }) alt=@Model.Image.Title />
-  <div class="text-left">
-    <p>@Model.Content</p>
+<div class="row my-5">
+  <div class="col-sm-8">
+    <div class="text-center">
+      <h1>@Model.Title</h1>
+      <i>@Model.User.Username</i>
+      <img src=@Url.Action("Get", "Image", new { Model.Image.ID }) alt=@Model.Image.Title />
+      <div class="text-left">
+        <p>@Model.Content</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <vc:blog-sidebar-component></vc:blog-sidebar-component>
   </div>
 </div>

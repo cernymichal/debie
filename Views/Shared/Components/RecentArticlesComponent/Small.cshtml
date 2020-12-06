@@ -1,0 +1,22 @@
+@model List<Article>
+
+<div class="recent-articles-small">
+  @for (int i = 0; i < Model.Count; i++)
+  {
+    <div class="row my-3">
+      <img class="col-4" src=@Url.Action("Get", "Image", new { Model[i].Image.ID }) alt=@Model[i].Image.Title>
+      <div class="col-8">
+        <h2 class="mb-1">
+          <a asp-controller="Blog" asp-action="Detail" asp-route-id=@Model[i].ID>
+            @(Model[i].Title.Length > 15 ? Model[i].Title.Substring(0, 15) + "..." : Model[i].Title)
+          </a>
+        </h2>
+        <p class="m-0">@Model[i].Created.ToShortDateString()</p>
+      </div>
+    </div>
+    @if (i + 1 != Model.Count)
+    {
+      <hr>
+    }
+  }
+</div>

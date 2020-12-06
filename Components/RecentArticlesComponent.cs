@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System;
 using System.Collections.Generic;
 
 using Debie.Services.Repositories;
@@ -11,11 +12,15 @@ namespace Debie.Components {
         public RecentArticlesComponent(IArticleRepository articleRepo) {
             _ArticleRepo = articleRepo;
         }
-        public IViewComponentResult Invoke(int count) {
+        public IViewComponentResult Invoke(int count, bool small = false) {
             var articles = _ArticleRepo.GetAll().ToList();
             articles.Sort((a1, a2) => a1.Created.CompareTo(a2.Created));
+            articles = articles.GetRange(0, Math.Min(count, articles.Count));
 
-            return View(articles.GetRange(0, count));
+            if (small)
+                return View("Small", articles);
+
+            return View(articles);
         }
     }
 }
