@@ -9,7 +9,7 @@ namespace Debie.Services.Repositories.DB {
         public TagRepository(DebieDBContext context) {
             _Context = context;
         }
-        public override IEnumerable<Tag> GetAll() {
+        public override List<Tag> GetAll() {
             return _Context.Tags.ToList();
         }
         public override Tag GetByID(params object[] keys) {

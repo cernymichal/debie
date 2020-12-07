@@ -10,7 +10,7 @@ namespace Debie.Services.Repositories.DB {
         public UserRepository(DebieDBContext context) {
             _Context = context;
         }
-        public override IEnumerable<User> GetAll() {
+        public override List<User> GetAll() {
             return _Context.Users.ToList();
         }
         public override User GetByID(params object[] keys) {

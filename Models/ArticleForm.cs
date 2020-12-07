@@ -18,7 +18,7 @@ namespace Debie.Models {
         [Required, Display(Name = "Author")]
         public int UserID { get; set; }
         public ImageForm Image { get; set; }
-        public ICollection<string> Tags { get; set; }
+        public List<string> Tags { get; set; }
 
         public static ArticleForm FromModel(Article model) {
             return new ArticleForm {

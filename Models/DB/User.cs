@@ -14,6 +14,6 @@ namespace Debie.Models.DB {
         [Required]
         public DateTime LastChanged { get; set; } = DateTime.UtcNow;
 
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual List<Article> Articles { get; set; }
     }
 }

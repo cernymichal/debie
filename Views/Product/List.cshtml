@@ -1,4 +1,4 @@
-@model IEnumerable<Product>
+@model List<Product>
 @{
   ViewData["Header"] = "Products";
   ViewData["Title"] = ViewData["Header"];
@@ -9,4 +9,4 @@
 
 <h1>Product List</h1>
 
-<vc:product-list-component products=@Model.ToList() count=10></vc:product-list-component>
+<vc:product-list-component products=@Model count=10></vc:product-list-component>

@@ -9,6 +9,6 @@ namespace Debie.Models.DB {
         [MaxLength(256), Required]
         public string Name { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

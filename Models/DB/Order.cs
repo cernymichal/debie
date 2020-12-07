@@ -49,7 +49,7 @@ namespace Debie.Models.DB {
         [Required, DataType(DataType.Currency)]
         public decimal VAT { get; set; } = .21M;
 
-        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        public virtual List<OrderProduct> OrderProducts { get; set; }
 
         [NotMapped]
         public decimal Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }

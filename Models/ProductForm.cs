@@ -24,7 +24,7 @@ namespace Debie.Models {
         public DateTime DiscountUntil { get; set; }
         [Display(Name = "Vendor")]
         public int VendorID { get; set; }
-        public ICollection<ImageForm> Images { get; set; }
+        public List<ImageForm> Images { get; set; }
         [Display(Name = "Main")]
         public int MainImageID { get; set; }
 

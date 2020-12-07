@@ -9,7 +9,7 @@ namespace Debie.Services.Repositories.DB {
         public ImageRepository(DebieDBContext context) {
             _Context = context;
         }
-        public override IEnumerable<Image> GetAll() {
+        public override List<Image> GetAll() {
             return _Context.Images.ToList();
         }
         public override Image GetByID(params object[] keys) {

@@ -13,7 +13,7 @@ namespace Debie.Components {
             _ArticleRepo = articleRepo;
         }
         public IViewComponentResult Invoke(int count, bool small = false) {
-            var articles = _ArticleRepo.GetAll().ToList();
+            var articles = _ArticleRepo.GetAll();
             articles.Sort((a1, a2) => a1.Created.CompareTo(a2.Created));
             articles = articles.GetRange(0, Math.Min(count, articles.Count));
 

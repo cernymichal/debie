@@ -19,7 +19,7 @@ namespace Debie.Models.DB {
         public virtual User User { get; set; }
         public int ImageID { get; set; }
         public virtual Image Image { get; set; }
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual List<Tag> Tags { get; set; }
 
         public bool Search(string query) {
             return

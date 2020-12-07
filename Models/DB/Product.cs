@@ -25,11 +25,11 @@ namespace Debie.Models.DB {
 
         public int VendorID { get; set; }
         public virtual Vendor Vendor { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual List<Category> Categories { get; set; }
+        public virtual List<ProductImage> ProductImages { get; set; }
         public virtual ProductImage MainProductImage { get; set; }
-        public virtual ICollection<Size> Sizes { get; set; }
-        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        public virtual List<Size> Sizes { get; set; }
+        public virtual List<OrderProduct> OrderProducts { get; set; }
 
         [NotMapped]
         public bool Discounted {
@@ -47,6 +47,15 @@ namespace Debie.Models.DB {
         public decimal ReviewsAvg {
             get {
                 return ReviewsSum / ReviewsCount;
+            }
+        }
+        [NotMapped]
+        public decimal Stock {
+            get {
+                var stock = 0;
+                foreach (var size in Sizes)
+                    stock += size.Stock;
+                return stock;
             }
         }
 

@@ -9,7 +9,7 @@ namespace Debie.Services.Repositories.DB {
         public ArticleRepository(DebieDBContext context) {
             _Context = context;
         }
-        public override IEnumerable<Article> GetAll() {
+        public override List<Article> GetAll() {
             return _Context.Articles.ToList();
         }
         public override Article GetByID(params object[] keys) {
