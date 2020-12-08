@@ -86,7 +86,14 @@ namespace Debie.Controllers {
             ViewBag.Vendors = _VendorRepo.GetAll();
 
             var product = _ProductRepo.GetByID(id);
-            return View(ProductForm.FromModel(product) ?? new ProductForm());
+
+            ProductForm productForm;
+            if (product != null)
+                productForm = ProductForm.FromModel(product);
+            else
+                productForm = new ProductForm();
+
+            return View(productForm);
         }
 
         [HttpPost, Route("{controller}/Product/{id?}")]
@@ -110,7 +117,7 @@ namespace Debie.Controllers {
             }
 
             if (ModelState.IsValid) {
-                var product = _ProductRepo.GetByID(productForm.ID);
+                var product = productForm.ID != 0 ?  _ProductRepo.GetByID(productForm.ID) : new Product { ID = productForm.ID };
                 var passed = true;
                 try {
                     _ProductRepo.Update(productForm.ToModel(product));

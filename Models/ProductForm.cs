@@ -28,6 +28,9 @@ namespace Debie.Models {
         [Display(Name = "Main")]
         public int MainImageID { get; set; }
 
+        public ProductForm() {
+            Images = new List<ImageForm>();
+        }
 
         public static ProductForm FromModel(Product model) {
             return new ProductForm {
@@ -49,8 +52,8 @@ namespace Debie.Models {
             model.Name = Name;
             model.Description = Description;
             model.Color = Color;
-            model.Price = decimal.Parse(Price);
-            model.Discount = decimal.Parse(Discount);
+            model.Price = Price is null ? 0M : decimal.Parse(Price);
+            model.Discount = Discount is null ? 0M : decimal.Parse(Discount);
             model.DiscountFrom = DiscountFrom;
             model.DiscountUntil = DiscountUntil;
             model.VendorID = VendorID;

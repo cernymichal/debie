@@ -39,19 +39,11 @@
   margin-right: 3px;
 }
 
-.carousel-control-prev {
-  height: 95%;
+.carousel-control-next, .carousel-control-prev {
+  height: 100%;
 }
 
-.carousel-control-next {
-  height: 95%;
-}
-
-.carousel-control-prev:hover {
-  background-color: black;
-}
-
-.carousel-control-next:hover {
+.carousel-control-next:hover, .carousel-control-prev:hover {
   background-color: black;
 }
 

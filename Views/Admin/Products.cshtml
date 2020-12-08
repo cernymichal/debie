@@ -3,6 +3,7 @@
   Layout = "_AdminLayout";
   ViewData["Title"] = "Products";
   ViewData["SearchAction"] = "Products";
+  ViewData["NewButton"] = Url.Action("ProductEdit", new { id = 0 });
 }
 
 @section Head {
