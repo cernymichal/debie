@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 using Debie.Models;
@@ -100,24 +101,10 @@ namespace Debie.Controllers {
         public IActionResult ProductEdit(ProductForm productForm) {
             ViewBag.Vendors = _VendorRepo.GetAll();
 
-            if (Request.Form.Files["product-image"] != null) {
-                var product = _ProductRepo.GetByID(productForm.ID);
-                var image = new Image {
-                    ContentType = Request.Form.Files["product-image"].ContentType,
-                    Data = new byte[Request.Form.Files["product-image"].Length]
-                };
-
-                Request.Form.Files["product-image"].OpenReadStream().Read(image.Data, 0, image.Data.Length);
-
-                product.ProductImages.Add(new ProductImage { Image = image, Product = product });
-
-                _ProductRepo.Update(product);
-                _ProductRepo.Save();
-                ViewBag.Message = "Image added!";
-            }
+            var zeroId = productForm.ID == 0;
 
             if (ModelState.IsValid) {
-                var product = productForm.ID != 0 ?  _ProductRepo.GetByID(productForm.ID) : new Product { ID = productForm.ID };
+                var product = productForm.ID != 0 ? _ProductRepo.GetByID(productForm.ID) : new Product { ID = productForm.ID };
                 var passed = true;
                 try {
                     _ProductRepo.Update(productForm.ToModel(product));
@@ -132,6 +119,32 @@ namespace Debie.Controllers {
                     ViewBag.Alert = "Saved!";
                     productForm = ProductForm.FromModel(product);
                 }
+            }
+
+            if (Request.Form.Files["product-image"] != null) {
+                var product = _ProductRepo.GetByID(productForm.ID);
+                var image = new Image {
+                    ContentType = Request.Form.Files["product-image"].ContentType,
+                    Data = new byte[Request.Form.Files["product-image"].Length]
+                };
+
+                Request.Form.Files["product-image"].OpenReadStream().Read(image.Data, 0, image.Data.Length);
+
+                var pi = new ProductImage { Image = image, Product = product };
+                if (product.ProductImages is null) {
+                    product.ProductImages = new List<ProductImage>();
+                    product.MainProductImage = pi;
+                }
+
+                product.ProductImages.Add(pi);
+
+                _ProductRepo.Update(product);
+                _ProductRepo.Save();
+                ViewBag.Message = "Image added!";
+            }
+
+            if (zeroId) {
+                return RedirectToAction("Product", new { productForm.ID });
             }
 
             return View("Product", productForm);
@@ -165,12 +178,28 @@ namespace Debie.Controllers {
             ViewBag.Users = _UserRepo.GetAll();
 
             var article = _ArticleRepo.GetByID(id);
-            return View(ArticleForm.FromModel(article) ?? new ArticleForm());
+            ArticleForm articleForm;
+            if (article != null)
+                articleForm = ArticleForm.FromModel(article);
+            else
+                articleForm = new ArticleForm();
+
+            return View(articleForm);
         }
 
         [HttpPost, Route("{controller}/Article/{id?}")]
         public IActionResult ArticleEdit(ArticleForm articleForm) {
             ViewBag.Users = _UserRepo.GetAll();
+
+            var zeroId = articleForm.ID == 0;
+
+            if (ModelState.IsValid) {
+                var article = articleForm.ID != 0 ? _ArticleRepo.GetByID(articleForm.ID) : new Article { ID = articleForm.ID };
+                _ArticleRepo.Update(articleForm.ToModel(article));
+                _ArticleRepo.Save();
+                ViewBag.Alert = "Saved!";
+                articleForm = ArticleForm.FromModel(article);
+            }
 
             if (Request.Form.Files["cover-image"] != null) {
                 var article = _ArticleRepo.GetByID(articleForm.ID);
@@ -188,13 +217,10 @@ namespace Debie.Controllers {
                 ViewBag.Message = "Image updated!";
             }
 
-            if (ModelState.IsValid) {
-                var article = _ArticleRepo.GetByID(articleForm.ID);
-                _ArticleRepo.Update(articleForm.ToModel(article));
-                _ArticleRepo.Save();
-                ViewBag.Alert = "Saved!";
-                articleForm = ArticleForm.FromModel(article);
+            if (zeroId) {
+                return RedirectToAction("Article", new { articleForm.ID });
             }
+
             return View("Article", articleForm);
         }
 

@@ -84,7 +84,7 @@
       }
     </div>
     <label>Add image</label>
-    <input name="product-image" type="file" class="form-control-file" />
+    <input name="product-image" type="file" class="form-control-file" @(Model.MainImageID == 0 ? "required" : "") />
   </div>
 
   <br>

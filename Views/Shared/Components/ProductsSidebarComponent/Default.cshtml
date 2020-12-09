@@ -1,0 +1,31 @@
+<div class="p-3 bg-light products-sidebar">
+  <form action="">
+    <h6>Search</h6>
+    <div class="row m-0 p-0 py-1 mb-5 search-input">
+      <input type="text" class="col-8" />
+      <button type="submit" class="col-4">Search</button>
+    </div>
+
+    <h6>Vendors</h6>
+    <div>
+      @foreach (Vendor v in ViewBag.Vendors)
+      {
+        <div class="d-block">
+          <input type="checkbox" /><label class="ml-2">@v.Name</label>
+        </div>
+      }
+    </div>
+
+    <hr class="my-4">
+
+    <h6>Categories</h6>
+    <div>
+      @foreach (Vendor v in ViewBag.Vendors)
+      {
+        <div class="d-block">
+          <input type="checkbox" /><label class="ml-2">@v.Name</label>
+        </div>
+      }
+    </div>
+  </form>
+</div>

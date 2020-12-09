@@ -7,6 +7,11 @@
   };
 }
 
-<h1>Product List</h1>
-
-<vc:product-list-component products=@Model count=10></vc:product-list-component>
+<div class="row mt-4">
+  <div class="col-sm-9">
+    <vc:product-list-component products=@Model count=10></vc:product-list-component>
+  </div>
+  <div class="col-sm-3">
+    <vc:products-sidebar-component></vc:products-sidebar-component>
+  </div>
+</div>

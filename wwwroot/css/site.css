@@ -84,23 +84,22 @@ h6 {
   color: #555555;
 }
 
-.blog-sidebar form {
+.blog-sidebar form,
+.products-sidebar .search-input {
   border: 1px solid #cccccc;
   background-color: #ffffff;
   border-radius: 5px;
 }
 
-.blog-sidebar form input {
+.blog-sidebar form input,
+.products-sidebar .search-input input {
   background-color: transparent;
   border: none;
   outline: none;
 }
 
-.blog-sidebar form span {
-  color: #cccccc;
-}
-
-.blog-sidebar form button {
+.blog-sidebar form button,
+.products-sidebar .search-input button {
   background-color: transparent;
   border: none;
   border-left: 1px solid #cccccc;
@@ -113,4 +112,12 @@ h6 {
 .blog-sidebar-tags a {
   border: 1px solid #cccccc;
   border-radius: 5px;
+}
+
+.product-component a h5 {
+  color: black;
+}
+
+.product-component-price {
+  color: #aca2ff;
 }
