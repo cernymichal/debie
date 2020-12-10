@@ -1,9 +1,9 @@
 @model List<Product>
-<div>
+<div class="container">
   <div class="row">
     @foreach (Product product in Model)
     {
-      <div class="col">
+      <div class="col-sm-4">
         <vc:product-component product=@product></vc:product-component>
       </div>
     }

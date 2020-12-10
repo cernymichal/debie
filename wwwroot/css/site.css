@@ -1,15 +1,7 @@
-﻿@font-face {
-  font-family: lato;
-  src: url("/lib/lato/Lato-Regular.ttf");
-}
-
-@font-face {
-  font-family: opensans;
-  src: url("/lib/opensans/Opensans-Regular.ttf");
-}
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
 
 * {
-  font-family: opensans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1,
@@ -18,7 +10,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: lato, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .my-button {
