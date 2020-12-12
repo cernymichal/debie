@@ -1,8 +1,19 @@
+@model OrderForm
 @{
   ViewData["Title"] = "Cart";
   Layout = "~/Views/Shared/_PageLayout.cshtml";
 }
 
-cart lol
+@foreach (var op in Model.OrderProducts)
+{
+  <p>
+    @op.ProductID - @op.Count
+    <a asp-action="RemoveOrderProduct" asp-route-id=@op.ProductID><i class="fas fa-times"></i></a>
+  </p>
+}
 
-<a class="nav-link" asp-action="Customer">Checkout</a>
+<a class="nav-link" asp-action="Contact">Checkout</a>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}

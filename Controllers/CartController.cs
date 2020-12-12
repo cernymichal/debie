@@ -8,25 +8,60 @@ using Microsoft.Extensions.Logging;
 
 using Debie.Models;
 using Debie.Models.DB;
+using Debie.Services;
 
 namespace Debie.Controllers {
     public class CartController : Controller {
-        public CartController() { }
-
-        public IActionResult Index() {
-            return View();
+        private readonly IOrderService _OrderService;
+        public CartController(IOrderService orderService) {
+            _OrderService = orderService;
         }
 
-        public IActionResult Customer() {
-            return View();
+        public IActionResult Index() {
+            return View(_OrderService.CurrentOrder());
+        }
+
+        public IActionResult RemoveOrderProduct(int id) {
+            _OrderService.RemoveProduct(id);
+            _OrderService.SaveCurrentOrder();
+            return RedirectToAction("Index");
+        }
+
+
+        public IActionResult Contact() {
+            var contactForm = OrderContactForm.FromOrderForm(_OrderService.CurrentOrder());
+            return View(contactForm);
+        }
+
+        [HttpPost]
+        public IActionResult ContactUpdate(OrderContactForm contact) {
+            contact.ToOrderForm(_OrderService.CurrentOrder());
+            _OrderService.SaveCurrentOrder();
+            return RedirectToAction("Shipping");
         }
 
         public IActionResult Shipping() {
-            return View();
+            var shippingForm = OrderShippingForm.FromOrderForm(_OrderService.CurrentOrder());
+            return View(shippingForm);
+        }
+
+        [HttpPost]
+        public IActionResult ShippingUpdate(OrderShippingForm shipping) {
+            shipping.ToOrderForm(_OrderService.CurrentOrder());
+            _OrderService.SaveCurrentOrder();
+            return RedirectToAction("Payment");
         }
 
         public IActionResult Payment() {
-            return View();
+            var paymentForm = OrderPaymentForm.FromOrderForm(_OrderService.CurrentOrder());
+            return View(paymentForm);
+        }
+
+        [HttpPost]
+        public IActionResult PaymentUpdate(OrderPaymentForm payment) {
+            payment.ToOrderForm(_OrderService.CurrentOrder());
+            _OrderService.SaveCurrentOrder();
+            return RedirectToAction("Complete");
         }
 
         public IActionResult Complete() {

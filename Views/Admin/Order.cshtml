@@ -21,9 +21,6 @@
       <div class="col-sm-6">
         <label asp-for="Email"></label>
         <input asp-for="Email" class="form-control" placeholder="Email" disabled />
-
-        <label asp-for="Phone"></label>
-        <input asp-for="Phone" class="form-control" placeholder="Phone" disabled />
       </div>
     </div>
   </div>
@@ -130,6 +127,6 @@
   </table>
 
   <br>
-  
+
   <a asp-action="OrderDelete" asp-route-id=@Model.ID class="btn btn-danger">Delete</a>
 </form>

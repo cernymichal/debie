@@ -46,11 +46,16 @@ namespace Debie {
                     options.LogoutPath = new PathString("/Admin/Logout");
                 });
 
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+            });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped<CookieEvents>();
 
             services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -74,6 +79,8 @@ namespace Debie {
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -1,8 +1,16 @@
+@model OrderShippingForm
 @{
   ViewData["Title"] = "Shipping";
   Layout = "_CheckoutLayout";
 }
 
-<h1>Cart Shipping</h1>
+<form asp-action="ShippingUpdate" method="POST">
+  <label asp-for="ShippingMethod"></label> <span asp-validation-for="ShippingMethod" class="text-danger"></span>
+  <input asp-for="ShippingMethod" class="form-control" placeholder="ShippingMethod" />
 
-<a class="nav-link" asp-action="Payment">Next</a>
+  <button type="submit">Continue to payment</button>
+</form>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}

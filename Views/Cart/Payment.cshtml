@@ -1,8 +1,31 @@
+@model OrderPaymentForm
 @{
   ViewData["Title"] = "Payment";
   Layout = "_CheckoutLayout";
 }
 
-<h1>Cart Payment</h1>
+<form asp-action="PaymentUpdate" method="POST">
+  <label asp-for="PaymentMethod"></label> <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+  <input asp-for="PaymentMethod" class="form-control" placeholder="PaymentMethod" />
 
-<a class="nav-link" asp-action="Complete">Next</a>
+  <label asp-for="BillingStreet"></label> <span asp-validation-for="BillingStreet" class="text-danger"></span>
+  <input asp-for="BillingStreet" class="form-control" placeholder="BillingStreet" />
+
+  <label asp-for="BillingApartment"></label> <span asp-validation-for="BillingApartment" class="text-danger"></span>
+  <input asp-for="BillingApartment" class="form-control" placeholder="BillingApartment" />
+
+  <label asp-for="BillingCity"></label> <span asp-validation-for="BillingCity" class="text-danger"></span>
+  <input asp-for="BillingCity" class="form-control" placeholder="BillingCity" />
+
+  <label asp-for="BillingCountry"></label> <span asp-validation-for="BillingCountry" class="text-danger"></span>
+  <input asp-for="BillingCountry" class="form-control" placeholder="BillingCountry" />
+
+  <label asp-for="BillingZip"></label> <span asp-validation-for="BillingZip" class="text-danger"></span>
+  <input asp-for="BillingZip" class="form-control" placeholder="BillingZip" />
+
+  <button type="submit">Complete order</button>
+</form>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}
