@@ -9,15 +9,15 @@
   <input asp-for="ID" hidden />
   <input asp-for="Image.ID" hidden />
 
-  <div class="form-group">
-    <div class="form-row">
+  <div class="mb-3">
+    <div class="row">
       <div class="col-sm-8">
-        <label asp-for="Title"></label> <span asp-validation-for="Title" class="text-danger"></span>
+        <label class="form-label" asp-for="Title"></label> <span asp-validation-for="Title" class="text-danger "></span>
         <input asp-for="Title" class="form-control" placeholder="Title" required />
       </div>
       <div class="col-sm-4">
-        <label asp-for="UserID"></label> <span asp-validation-for="UserID" class="text-danger"></span>
-        <select asp-for="UserID" class="form-control" required/>
+        <label class="form-label" asp-for="UserID"></label> <span asp-validation-for="UserID" class="text-danger "></span>
+        <select asp-for="UserID" class="form-select" required/>
           @foreach (User user in ViewBag.Users)
           {
             <option value=@user.ID selected=@(Model.UserID == user.ID)>@user.Username</option>
@@ -26,23 +26,28 @@
       </div>
     </div>
 
-    <label asp-for="Content"></label> <span asp-validation-for="Content" class="text-danger"></span>
+    <label class="form-label" asp-for="Content"></label> <span asp-validation-for="Content" class="text-danger "></span>
     <textarea asp-for="Content" class="form-control" rows="10" required></textarea>
   </div>
 
   <br>
 
-  <div class="form-group">
-    <div class="form-row">
-      <div class="col-sm-6 col-md-8">
-        <label asp-for="Image.Title"></label>
-        <span asp-validation-for="Image.Title" class="text-danger"></span>
-        <input asp-for="Image.Title" type="text" class="form-control" />
-        <label>Upload image</label>
-        <input name="cover-image" type="file" class="form-control-file" @(Model.Image is null ? "required" : "")/>
+  <div class="mb-3">
+    <div class="row">
+      <div class="col-lg-8 row">
+        <div class="col-5">
+          <label class="form-label" asp-for="Image.Title"></label>
+          <span asp-validation-for="Image.Title" class="text-danger"></span>
+          <input asp-for="Image.Title" type="text" class="form-control" />
+        </div>
+
+        <div class="col-7">
+          <label for="product-image-input" class="form-label">Upload image</label>
+          <input class="form-control" type="file" id="product-image-input" name="cover-image" @(Model.Image is null ? "required" : "") />
+        </div>
       </div>
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-lg-4">
         @if (@Model.Image is not null) {
           <img src=@Url.Action("Get", "Image", new { Model.Image.ID }) alt=@Model.Image.Title class="img-thumbnail w-100" />
         }

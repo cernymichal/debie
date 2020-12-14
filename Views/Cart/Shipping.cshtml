@@ -5,7 +5,7 @@
 }
 
 <form asp-action="ShippingUpdate" method="POST">
-  <label asp-for="ShippingMethod"></label> <span asp-validation-for="ShippingMethod" class="text-danger"></span>
+  <label class="form-label" asp-for="ShippingMethod"></label> <span asp-validation-for="ShippingMethod" class="text-danger"></span>
   <input asp-for="ShippingMethod" class="form-control" placeholder="ShippingMethod" />
 
   <button type="submit">Continue to payment</button>

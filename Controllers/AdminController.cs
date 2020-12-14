@@ -78,7 +78,7 @@ namespace Debie.Controllers {
         public IActionResult Products(string query = null) {
             ViewBag.Query = query;
             if (!string.IsNullOrEmpty(query))
-                return View(_ProductRepo.GetAll().Where(p => p.Search(query)));
+                return View(_ProductRepo.GetAll().Where(p => p.Search(query)).ToList());
             return View(_ProductRepo.GetAll());
         }
 
@@ -169,7 +169,7 @@ namespace Debie.Controllers {
         public IActionResult Articles(string query = null) {
             ViewBag.Query = query;
             if (!string.IsNullOrEmpty(query))
-                return View(_ArticleRepo.GetAll().Where(a => a.Search(query)));
+                return View(_ArticleRepo.GetAll().Where(a => a.Search(query)).ToList());
             return View(_ArticleRepo.GetAll());
         }
 
@@ -233,7 +233,7 @@ namespace Debie.Controllers {
         public IActionResult Orders(string query = null) {
             ViewBag.Query = query;
             if (!string.IsNullOrEmpty(query))
-                return View(_OrderRepo.GetAll().Where(o => o.Search(query)));
+                return View(_OrderRepo.GetAll().Where(o => o.Search(query)).ToList());
             return View(_OrderRepo.GetAll());
         }
 

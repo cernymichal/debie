@@ -13,6 +13,14 @@ h6 {
   font-family: 'Lato', sans-serif;
 }
 
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .my-button {
   background-color: #aca2ff;
   border: none;

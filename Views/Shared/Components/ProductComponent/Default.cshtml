@@ -4,8 +4,8 @@
     <img src=@Url.Action("Get", "Image", new { Model.MainProductImage.Image.ID }) class="img-fluid" />
   </a>
   <div class="p-3">
-    <a href=@Url.Action("Detail", new { Model.ID })>
-      <h5 class="mb-1">@Model.Name</h5>
+    <a class="mb-1" href=@Url.Action("Detail", new { Model.ID })>
+      <h5>@Model.Name</h5>
     </a>
 
     <div class="mb-2">

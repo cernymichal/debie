@@ -10,8 +10,9 @@
     <div>
       @foreach (Vendor v in ViewBag.Vendors)
       {
-        <div class="d-block">
-          <input type="checkbox" /><label class="ml-2">@v.Name</label>
+        <div class="d-block form-check">
+          <input class="form-check-input" type="checkbox" id="vendors-check-@v.ID" /><label class="ms-2 form-check-label"
+            for="vendors-check-@v.ID">@v.Name</label>
         </div>
       }
     </div>
@@ -22,8 +23,9 @@
     <div>
       @foreach (Vendor v in ViewBag.Vendors)
       {
-        <div class="d-block">
-          <input type="checkbox" /><label class="ml-2">@v.Name</label>
+        <div class="d-block form-check">
+          <input class="form-check-input" type="checkbox" id="categories-check-@v.ID" /><label
+            class="ms-2 form-check-label" for="categories-check-@v.ID">@v.Name</label>
         </div>
       }
     </div>

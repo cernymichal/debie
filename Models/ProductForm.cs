@@ -57,7 +57,7 @@ namespace Debie.Models {
             model.DiscountFrom = DiscountFrom;
             model.DiscountUntil = DiscountUntil;
             model.VendorID = VendorID;
-            model.MainProductImage = model.ProductImages is null ? null : model.ProductImages.First(pi => pi.ImageID == MainImageID);
+            model.MainProductImage = model.ProductImages?.First(pi => pi.ImageID == MainImageID);
             return model;
         }
     }

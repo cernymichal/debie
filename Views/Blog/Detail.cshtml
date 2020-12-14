@@ -14,7 +14,7 @@
       <h1>@Model.Title</h1>
       <i>@Model.User.Username</i>
       <img src=@Url.Action("Get", "Image", new { Model.Image.ID }) alt=@Model.Image.Title />
-      <div class="text-left">
+      <div class="text-start">
         <p>@Model.Content</p>
       </div>
     </div>

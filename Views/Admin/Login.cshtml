@@ -14,14 +14,14 @@
   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
   
 
-  <label asp-for="Username" class="sr-only"></label>
+  <label class="form-label" asp-for="Username" class="sr-only"></label>
   <input asp-for="Username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 
-  <label asp-for="Password" class="sr-only"></label>
+  <label class="form-label" asp-for="Password" class="sr-only"></label>
   <input asp-for="Password" id="inputPassword" class="form-control" placeholder="Password" type="password" required>
   
   <div class="checkbox mb-3">
-    <label asp-for="RememberMe">
+    <label class="form-label" asp-for="RememberMe">
       <input asp-for="RememberMe"> Remember me
     </label>
   </div>
