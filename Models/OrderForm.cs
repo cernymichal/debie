@@ -42,7 +42,7 @@ namespace Debie.Models {
         public decimal VAT { get; set; } = .21M;
         public List<OrderProductForm> OrderProducts { get; set; }
 
-        public decimal Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }
+        public decimal Subtotal { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount)).Sum(); } }
 
         public OrderForm() {
             OrderProducts = new List<OrderProductForm>();

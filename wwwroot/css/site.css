@@ -1,7 +1,7 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
+﻿@import url("https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap");
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 h1,
@@ -10,7 +10,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 a {
@@ -84,6 +84,11 @@ a:hover {
   color: #555555;
 }
 
+.recent-articles img,
+.recent-articles-small p {
+  object-fit: contain;
+}
+
 .blog-sidebar form,
 .products-sidebar .search-input {
   border: 1px solid #cccccc;
@@ -120,4 +125,8 @@ a:hover {
 
 .product-component-price {
   color: #aca2ff;
+}
+
+#product-image-corousel {
+  height: 600px;
 }

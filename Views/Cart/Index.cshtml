@@ -4,17 +4,60 @@
   Layout = "~/Views/Shared/_PageLayout.cshtml";
 }
 
-@foreach (var op in Model.OrderProducts)
-{
-  <p>
-    @op.ProductID - @op.Count
-    <a asp-action="RemoveOrderProduct" asp-route-id=@op.ProductID><i class="fas fa-times"></i></a>
-  </p>
-}
+<main class="container">
+  <table class="table table-hover table-bordered text-center align-middle mt-5">
+    <thead>
+      <tr>
+        <th scope="col" class="fw-normal">Image</th>
+        <th scope="col" class="fw-normal">Product</th>
+        <th scope="col" class="fw-normal">Price</th>
+        <th scope="col" class="fw-normal">Quantity</th>
+        <th scope="col" class="fw-normal">Total</th>
+        <th scope="col" class="fw-normal">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var op in Model.OrderProducts)
+      {
+        <tr>
+          <td><img height=150 src=@Url.Action("Get", "Image", new { id = op.MainProductImageID })></td>
+          <th scope="row" class="fw-normal">@op.Name</th>
+          <td>$@op.UnitPrice.ToString("0.00")</td>
+          <td>@op.Count</td>
+          <td>$@((op.UnitPrice * op.Count * (1 - op.Discount)).ToString("0.00"))</td>
+          <td><a asp-action="RemoveOrderProduct" asp-route-id=@op.ProductID><i class="fas fa-times text-dark"></i></a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="text-end">
+    <a class="nav-link my-button-dark" asp-controller="Product" asp-action="List">Continue Shopping</a>
+  </div>
 
-@if (Model.OrderProducts.Count != 0) {
-  <a class="nav-link" asp-action="Contact">Checkout</a>
-}
+  <div class="row mt-4">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6">
+      @if (Model.OrderProducts.Count != 0) {
+        <h3>Cart Totals</h3>
+        <table class="table table-bordered">
+          <tbody>
+              <tr>
+                <th scope="row" class="w-50">Subtotal</th>
+                <td>$@Model.Subtotal.ToString("0.00")</td>
+              </tr>
+              <tr>
+                <th scope="row">Total (+VAT)</th>
+                <td><strong>$@((Model.Subtotal * (1 + Model.VAT)).ToString("0.00"))</strong></td>
+              </tr>
+          </tbody>
+        </table>
+        <a class="nav-link my-button-dark" asp-action="Contact">Checkout</a>
+      }
+    </div>
+  </div>
+</main>
 
 @section Scripts {
   <partial name="_ValidationScriptsPartial" />

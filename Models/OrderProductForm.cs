@@ -6,6 +6,8 @@ namespace Debie.Models {
         public decimal Discount { get; set; }
         public int Count { get; set; }
         public int ProductID { get; set; }
+        public string Name { get; set; }
+        public int MainProductImageID { get; set; }
 
         public OrderProduct ToModel() {
             return new OrderProduct() {

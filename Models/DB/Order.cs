@@ -50,7 +50,7 @@ namespace Debie.Models.DB {
         public virtual List<OrderProduct> OrderProducts { get; set; }
 
         [NotMapped]
-        public decimal Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT) + ShippingPrice).Sum(); } }
+        public decimal Sum { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount) * (1 + VAT)).Sum() + ShippingPrice; } }
 
         public bool Search(string query) {
             return LastName.Contains(query, StringComparison.OrdinalIgnoreCase);

@@ -51,7 +51,9 @@ namespace Debie.Services {
                 op = new OrderProductForm() {
                     UnitPrice = product.Price,
                     Discount = product.Discount,
-                    ProductID = product.ID
+                    ProductID = product.ID,
+                    Name = product.Name,
+                    MainProductImageID = product.MainProductImage.ImageID
                 };
                 CurrentOrder().OrderProducts.Add(op);
             }
