@@ -6,7 +6,7 @@
 
 <form asp-action="ContactUpdate" method="POST">
   <label class="form-label" asp-for="Email"></label> <span asp-validation-for="Email" class="text-danger"></span>
-  <input asp-for="Email" class="form-control" placeholder="Email" />
+  <input asp-for="Email" class="form-control" placeholder="Email" type="email" />
 
   <label class="form-label" asp-for="Updates"></label> <span asp-validation-for="Updates" class="text-danger"></span>
   <input asp-for="Updates" placeholder="Updates" /><br>

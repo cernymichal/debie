@@ -12,7 +12,9 @@
   </p>
 }
 
-<a class="nav-link" asp-action="Contact">Checkout</a>
+@if (Model.OrderProducts.Count != 0) {
+  <a class="nav-link" asp-action="Contact">Checkout</a>
+}
 
 @section Scripts {
   <partial name="_ValidationScriptsPartial" />

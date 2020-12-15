@@ -13,7 +13,7 @@
 }
 
 <div class="row justify-content-between mt-5">
-  <div class="productInfo col-lg-5 p-4 w-100">
+  <div class="productInfo col-lg-5 p-4">
     <div>
       <h1>@Model.Name</h1>
       <div>
@@ -40,17 +40,17 @@
       <input type="number" name="id"  value=@Model.ID hidden />
       <input type="checkbox" name="redirect" hidden />
 
-      <label for="count" class="col-2">Qty:</label>
-      <input type="number" name="count" class="form-control col-2" value=1 />
-      <div class="col-8">
+      <label for="input-count" class="col form-label">Qty:</label>
+      <input type="number" name="count" id="input-count" class="form-control col" value=1  min=1 />
+      <div class="col-6">
         <button type="submit" class="btn my-button">Add to cart</button>
       </div>
     </form>
-    <form asp-action="AddToOrder" class="mt-3">
+    <form asp-action="AddToOrder" class="mt-3 text-center">
       <input type="number" name="id"  value=@Model.ID hidden />
       <input type="number" name="count" value=1 hidden />
       <input type="checkbox" name="redirect" checked hidden />
-      <button type="submit" class="btn my-button btn-block">Buy now</button>
+      <button type="submit" class="btn my-button" id="buy-now-button">Buy now</button>
     </form>
     <hr />
     <div>
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div id="ProductImageCarousel" class="carousel slide col-lg-6" data-ride="carousel">
+  <div id="ProductImageCarousel" class="carousel slide col-lg-6" data-bs-ride="carousel">
     <div>
       <div class="carousel-inner">
         @foreach (ProductImage productImage in Model.ProductImages)
@@ -90,11 +90,11 @@
             </div>
           }
         }
-        <a class="carousel-control-prev" href="#ProductImageCarousel" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#ProductImageCarousel" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#ProductImageCarousel" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#ProductImageCarousel" role="button" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -108,12 +108,12 @@
         if (Model.ProductImages[i].ID == Model.MainProductImage.ID)
         {
           <img src=@Url.Action("Get", "Image", new { Model.ProductImages[i].Image.ID})
-            data-target="#ProductImageCarousel" data-slide-to=@i class="active" />
+            data-bs-target="#ProductImageCarousel" data-bs-slide-to=@i class="active" />
         }
         else
         {
           <img src=@Url.Action("Get", "Image", new { Model.ProductImages[i].Image.ID})
-            data-target="#ProductImageCarousel" data-slide-to=@i />
+            data-bs-target="#ProductImageCarousel" data-bs-slide-to=@i />
         }
       }
     </div>
@@ -123,9 +123,9 @@
 <div class="mt-4">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+      <a class="nav-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
         aria-controls="nav-home" aria-selected="true">Description</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+      <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab"
         aria-controls="nav-profile" aria-selected="false">Shipping Policy</a>
     </div>
   </nav>

@@ -13,6 +13,7 @@ using Debie.Services;
 namespace Debie.Controllers {
     public class CartController : Controller {
         private readonly IOrderService _OrderService;
+
         public CartController(IOrderService orderService) {
             _OrderService = orderService;
         }
@@ -60,7 +61,7 @@ namespace Debie.Controllers {
         [HttpPost]
         public IActionResult PaymentUpdate(OrderPaymentForm payment) {
             payment.ToOrderForm(_OrderService.CurrentOrder());
-            _OrderService.SaveCurrentOrder();
+            _OrderService.SubmitCurrentOrder();
             return RedirectToAction("Complete");
         }
 

@@ -12,7 +12,7 @@ namespace Debie.Models {
 
         [MaxLength(256), Required]
         public string ShippingStreet { get; set; }
-        [MaxLength(256), Required]
+        [MaxLength(256)]
         public string ShippingApartment { get; set; }
         [MaxLength(256), Required]
         public string ShippingCity { get; set; }

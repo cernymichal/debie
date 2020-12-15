@@ -58,3 +58,7 @@
 .productImagesIcons .active {
   border-bottom: solid;
 }
+
+#buy-now-button {
+  width: 80%
+}

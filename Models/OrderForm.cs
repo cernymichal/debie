@@ -47,5 +47,30 @@ namespace Debie.Models {
         public OrderForm() {
             OrderProducts = new List<OrderProductForm>();
         }
+
+        public Order ToModel(int id) {
+            return new Order() {
+                ID = id,
+                Email = Email,
+                Updates = Updates,
+                FirstName = FirstName,
+                LastName = LastName,
+                ShippingMethod = ShippingMethod,
+                ShippingPrice = ShippingPrice,
+                PaymentMethod = PaymentMethod,
+                BillingStreet = BillingStreet,
+                BillingApartment = BillingApartment,
+                BillingCity = BillingCity,
+                BillingCountry = BillingCountry,
+                BillingZip = BillingZip,
+                ShippingStreet = ShippingStreet,
+                ShippingApartment = ShippingApartment,
+                ShippingCity = ShippingCity,
+                ShippingCountry = ShippingCountry,
+                ShippingZip = ShippingZip,
+                VAT = VAT,
+                OrderProducts = OrderProducts.Select(opf => opf.ToModel()).ToList()
+            };
+        }
     }
 }

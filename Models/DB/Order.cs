@@ -24,25 +24,25 @@ namespace Debie.Models.DB {
         public string PaymentMethod { get; set; }
         [Required]
         public DateTime Created { get; set; } = DateTime.Now;
-        [MaxLength(256), Required]
+        [MaxLength(256)]
         public string BillingStreet { get; set; }
         [MaxLength(256)]
         public string BillingApartment { get; set; }
-        [MaxLength(256), Required]
-        public string BillingCity { get; set; }
-        [MaxLength(256), Required]
-        public string BillingCountry { get; set; }
-        [MaxLength(256), Required]
-        public string BillingZip { get; set; }
         [MaxLength(256)]
+        public string BillingCity { get; set; }
+        [MaxLength(256)]
+        public string BillingCountry { get; set; }
+        [MaxLength(256)]
+        public string BillingZip { get; set; }
+        [MaxLength(256), Required]
         public string ShippingStreet { get; set; }
         [MaxLength(256)]
         public string ShippingApartment { get; set; }
-        [MaxLength(256)]
+        [MaxLength(256), Required]
         public string ShippingCity { get; set; }
-        [MaxLength(256)]
+        [MaxLength(256), Required]
         public string ShippingCountry { get; set; }
-        [MaxLength(256)]
+        [MaxLength(256), Required]
         public string ShippingZip { get; set; }
         [Required, DataType(DataType.Currency)]
         public decimal VAT { get; set; } = .21M;
