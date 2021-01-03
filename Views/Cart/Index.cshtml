@@ -5,36 +5,41 @@
 }
 
 <main class="container">
-  <table class="table table-hover table-bordered text-center align-middle mt-5">
-    <thead>
-      <tr>
-        <th scope="col" class="fw-normal">Image</th>
-        <th scope="col" class="fw-normal">Product</th>
-        <th scope="col" class="fw-normal">Price</th>
-        <th scope="col" class="fw-normal">Quantity</th>
-        <th scope="col" class="fw-normal">Total</th>
-        <th scope="col" class="fw-normal">Remove</th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach (var op in Model.OrderProducts)
-      {
+  @if (Model.OrderProducts.Count != 0) {
+    <table class="table table-hover table-bordered text-center align-middle mt-5">
+      <thead>
         <tr>
-          <td><img height=150 src=@Url.Action("Get", "Image", new { id = op.MainProductImageID })></td>
-          <th scope="row" class="fw-normal">@op.Name</th>
-          @if (!op.Discounted) {
-            <td>$@op.UnitPrice.ToString("0.00")</td>
-          }
-          else {
-            <td class="accent">$@op.DiscountedUnitPrice.ToString("0.00") (-@((int) (op.Discount * 100))%)</td>
-          }
-          <td>@op.Count</td>
-          <td>$@op.Sum.ToString("0.00")</td>
-          <td><a asp-action="RemoveOrderProduct" asp-route-id=@op.ProductID><i class="fas fa-times text-dark"></i></a></td>
+          <th scope="col" class="fw-normal">Image</th>
+          <th scope="col" class="fw-normal">Product</th>
+          <th scope="col" class="fw-normal">Price</th>
+          <th scope="col" class="fw-normal">Quantity</th>
+          <th scope="col" class="fw-normal">Total</th>
+          <th scope="col" class="fw-normal">Remove</th>
         </tr>
-      }
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        @foreach (var op in Model.OrderProducts)
+        {
+          <tr>
+            <td><img height=150 src=@Url.Action("Get", "Image", new { id = op.MainProductImageID })></td>
+            <th scope="row" class="fw-normal">@op.Name</th>
+            @if (!op.Discounted) {
+              <td>$@op.UnitPrice.ToString("0.00")</td>
+            }
+            else {
+              <td class="accent">$@op.DiscountedUnitPrice.ToString("0.00") (-@((int) (op.Discount * 100))%)</td>
+            }
+            <td>@op.Count</td>
+            <td>$@op.Sum.ToString("0.00")</td>
+            <td><a asp-action="RemoveOrderProduct" asp-route-id=@op.ProductID><i class="fas fa-times text-dark"></i></a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  else {
+    <div class="my-5"></div>
+  }
   <div class="text-end">
     <a class="nav-link my-button-dark" asp-controller="Product" asp-action="List">Continue Shopping</a>
   </div>

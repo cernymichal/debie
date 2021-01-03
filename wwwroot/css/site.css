@@ -132,3 +132,51 @@ a:hover {
 .product-component a h5 {
   color: black;
 }
+
+.navbar-component > * {
+  margin: 0 10px;
+}
+
+.navbar-component a {
+  color: #000000;
+  text-decoration: none;
+  transition: 300ms;
+}
+
+.navbar-component a:hover {
+  color: #8a83cc;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown > * > i {
+  font-size: .7em;
+  color: #bbbbbb;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  text-align: center;
+  z-index: 1;
+  padding: 10px 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.dropdown-content a {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 5px 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

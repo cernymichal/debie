@@ -1,0 +1,17 @@
+<nav class="navbar-component text-center my-2">
+  <a asp-controller="Page" asp-action="Index">Home</a>
+  <div class="dropdown">
+    <a asp-controller="Product" asp-action="List">Products <i class="fas fa-chevron-down"></i></a>
+    <div class="dropdown-content">
+      <a asp-controller="Product" asp-action="List">Category 1</a>
+      <a asp-controller="Product" asp-action="List">Category 2</a>
+    </div>
+  </div>
+  <a asp-controller="Blog" asp-action="List">Blog</a>
+  <div class="dropdown">
+    <a asp-controller="Page" asp-action="About">About <i class="fas fa-chevron-down"></i></a>
+    <div class="dropdown-content">
+      <a asp-controller="Page" asp-action="Contact">Contact</a>
+    </div>
+  </div>
+</nav>

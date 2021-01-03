@@ -26,20 +26,6 @@
   margin: 0 5px;
 }
 
-#page-header nav > * {
-  margin: 0 10px;
-}
-
-#page-header nav a {
-  color: #000000;
-  text-decoration: none;
-  transition: 300ms;
-}
-
-#page-header nav a:hover {
-  color: #8a83cc;
-}
-
 #search {
   background-color: #d1ccff;
   border-radius: 5px;
@@ -50,7 +36,7 @@
   outline: none;
 }
 
-#serch in #search input::placeholder {
+#search input::placeholder {
   color: #ffffff;
 }
 
