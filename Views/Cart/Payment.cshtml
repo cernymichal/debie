@@ -2,28 +2,53 @@
 @{
   ViewData["Title"] = "Payment";
   Layout = "_CheckoutLayout";
+  ViewData["Step"] = 4;
 }
 
+<div id="crumbs">
+  <a asp-action="Index">Cart</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a asp-action="Contact">Information</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a asp-action="Shipping">Shipping</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a>Payment</a>
+</div>
+
 <form asp-action="PaymentUpdate" method="POST">
-  <label class="form-label" asp-for="PaymentMethod"></label> <span asp-validation-for="PaymentMethod" class="text-danger"></span>
-  <input asp-for="PaymentMethod" class="form-control" placeholder="PaymentMethod" />
+  <div>
+    <h4 class="mb-1">Shipping method</h4>
+    <p>All transactions are secure and encrypted</p>
 
-  <label class="form-label" asp-for="BillingStreet"></label> <span asp-validation-for="BillingStreet" class="text-danger"></span>
-  <input asp-for="BillingStreet" class="form-control" placeholder="BillingStreet" />
+    <select asp-for="PaymentMethod" class="form-select"/>
+      @foreach (var method in OrderForm.Options.PaymentMethods)
+      {
+          <option selected=@(Model.PaymentMethod == method)>@method</option>
+      }
+    </select>
+  </div>
 
-  <label class="form-label" asp-for="BillingApartment"></label> <span asp-validation-for="BillingApartment" class="text-danger"></span>
-  <input asp-for="BillingApartment" class="form-control" placeholder="BillingApartment" />
+  <div>
+    <h4 class="mb-1">Billing address</h4>
+    <p>If different from shipping address</p>
 
-  <label class="form-label" asp-for="BillingCity"></label> <span asp-validation-for="BillingCity" class="text-danger"></span>
-  <input asp-for="BillingCity" class="form-control" placeholder="BillingCity" />
+    <input asp-for="BillingStreet" class="form-control" placeholder="Billing street (optional)" />
 
-  <label class="form-label" asp-for="BillingCountry"></label> <span asp-validation-for="BillingCountry" class="text-danger"></span>
-  <input asp-for="BillingCountry" class="form-control" placeholder="BillingCountry" />
+    <input asp-for="BillingApartment" class="form-control" placeholder="Billing apartment (optional)" />
 
-  <label class="form-label" asp-for="BillingZip"></label> <span asp-validation-for="BillingZip" class="text-danger"></span>
-  <input asp-for="BillingZip" class="form-control" placeholder="BillingZip" />
+    <input asp-for="BillingCity" class="form-control" placeholder="Billing city (optional)" />
 
-  <button type="submit">Complete order</button>
+    <div class="d-flex">
+      <input asp-for="BillingCountry" class="form-control" placeholder="Billing country (optional)" />
+      <input asp-for="BillingZip" class="form-control" placeholder="Billing zip (optional)" />
+    </div>
+  </div>
+
+  <button type="submit" class="my-button-big">Complete order</button>
+
+  <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+  <span asp-validation-for="BillingStreet" class="text-danger"></span>
+  <span asp-validation-for="BillingApartment" class="text-danger"></span>
+  <span asp-validation-for="BillingCity" class="text-danger"></span>
+  <span asp-validation-for="BillingCountry" class="text-danger"></span>
+  <span asp-validation-for="BillingZip" class="text-danger"></span>
 </form>
 
 @section Scripts {

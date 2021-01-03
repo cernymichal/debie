@@ -8,6 +8,7 @@ namespace Debie.Models {
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int MainProductImageID { get; set; }
+        public string Color { get; set; }
 
         public OrderProduct ToModel() {
             return new OrderProduct() {
@@ -17,5 +18,7 @@ namespace Debie.Models {
                 ProductID = ProductID
             };
         }
+
+        public decimal Sum { get { return UnitPrice * Count * (1 - Discount); } }
     }
 }

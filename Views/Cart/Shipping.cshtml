@@ -2,13 +2,31 @@
 @{
   ViewData["Title"] = "Shipping";
   Layout = "_CheckoutLayout";
+  ViewData["Step"] = 3;
 }
 
-<form asp-action="ShippingUpdate" method="POST">
-  <label class="form-label" asp-for="ShippingMethod"></label> <span asp-validation-for="ShippingMethod" class="text-danger"></span>
-  <input asp-for="ShippingMethod" class="form-control" placeholder="ShippingMethod" />
+<div id="crumbs">
+  <a asp-action="Index">Cart</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a asp-action="Contact">Information</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a>Shipping</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a class="text-muted">Payment</a>
+</div>
 
-  <button type="submit">Continue to payment</button>
+<form asp-action="ShippingUpdate" method="POST">
+  <div>
+    <h4>Shipping method</h4>
+
+    <select asp-for="ShippingMethod" class="form-select"/>
+      @foreach (var method in OrderForm.Options.ShippingMethods.Keys)
+      {
+          <option selected=@(Model.ShippingMethod == method)>@method</option>
+      }
+    </select>
+  </div>
+
+  <button type="submit" class="my-button-big">Continue to payment</button>
+
+  <span asp-validation-for="ShippingMethod" class="text-danger"></span>
 </form>
 
 @section Scripts {

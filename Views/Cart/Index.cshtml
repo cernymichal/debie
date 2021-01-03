@@ -24,7 +24,7 @@
           <th scope="row" class="fw-normal">@op.Name</th>
           <td>$@op.UnitPrice.ToString("0.00")</td>
           <td>@op.Count</td>
-          <td>$@((op.UnitPrice * op.Count * (1 - op.Discount)).ToString("0.00"))</td>
+          <td>$@op.Sum.ToString("0.00")</td>
           <td><a asp-action="RemoveOrderProduct" asp-route-id=@op.ProductID><i class="fas fa-times text-dark"></i></a></td>
         </tr>
       }
@@ -34,7 +34,7 @@
     <a class="nav-link my-button-dark" asp-controller="Product" asp-action="List">Continue Shopping</a>
   </div>
 
-  <div class="row mt-4">
+  <div class="row my-4">
     <div class="col-md-6">
 
     </div>
@@ -49,7 +49,7 @@
               </tr>
               <tr>
                 <th scope="row">Total (+VAT)</th>
-                <td><strong>$@((Model.Subtotal * (1 + Model.VAT)).ToString("0.00"))</strong></td>
+                <td><strong>$@Model.Total.ToString("0.00")</strong></td>
               </tr>
           </tbody>
         </table>

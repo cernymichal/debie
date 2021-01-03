@@ -1,8 +1,15 @@
 @{
   ViewData["Title"] = "Complete!";
   Layout = "_CheckoutLayout";
+  ViewData["Sidebar"] = false;
 }
 
-<h1>Cart Complete</h1>
+<div class="my-5 d-flex" id="thank-you">
+  <i class="fas fa-check fs-2 align-self-center rounded-circle p-2"></i>
+  <div class="ms-4">
+    <h1>Thank you!</h1>
+    <p class="mb-0">You'll receive a confirmation email with your order number shorly.</p>
+  </div>
+</div>
 
-<a asp-controller="Page" asp-action="Index">Ok</a>
+<a asp-controller="Page" asp-action="Index" class="my-button-big">Continue shopping</a>

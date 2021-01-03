@@ -1,0 +1,117 @@
+body {
+  background: #fafafa;
+}
+
+h1 > a {
+  color: #000000;
+  transition: 300ms;
+}
+
+h1 > a:hover {
+  color: #8a83cc;
+}
+
+#crumbs a[href] {
+  color: #8a83cc;
+}
+
+#crumbs a[href]:hover {
+  text-decoration: underline !important;
+}
+
+form span {
+  display: block;
+}
+
+form > div {
+  margin-top: 2em;
+}
+
+form > div > h4 {
+  margin-bottom: 1em;
+}
+
+form > div > p {
+  margin-bottom: 1em;
+}
+
+form input,
+form select {
+  margin-bottom: 0.8em;
+}
+
+form .d-flex {
+  gap: 0.8em;
+}
+
+.my-button-big {
+  float: right;
+}
+
+#sidebar-component {
+  border-top: 1px #eeeeee solid;
+}
+
+#sidebar-component hr {
+  color: #c6c6c6;
+}
+
+#sidebar-component .d-flex p {
+  margin: 0;
+}
+
+.sidebar-product-image img {
+  border-radius: 10px;
+  border: 1px #eeeeee solid;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.sidebar-product-image div {
+  background-color: #757575;
+  color: #ffffff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin-left: -15px;
+  margin-top: -11px;
+}
+
+.sidebar-product-image div span {
+  line-height: 25px;
+}
+
+.sidebar-product div aside {
+  font-size: 0.8em;
+}
+
+#thank-you i {
+  color: #8a83cc;
+  border: 3px #8a83cc solid;
+}
+
+@media only screen and (min-width: 576px) {
+  body {
+    background: linear-gradient(90deg, #ffffff 50%, #fafafa 50%);
+  }
+
+  body > div.container > div.row > div {
+    min-height: 100vh;
+  }
+
+  #sidebar-component {
+    border: none;
+    border-left: 1px #eeeeee solid;
+  }
+
+  .sidebar-product-image {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .sidebar-product-image {
+    display: initial;
+  }
+}

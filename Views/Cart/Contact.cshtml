@@ -4,35 +4,54 @@
   Layout = "_CheckoutLayout";
 }
 
+<div id="crumbs">
+  <a asp-action="Index">Cart</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a>Information</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a class="text-muted">Shipping</a> <i class="fa-fw fas fa-chevron-right mx-1"></i>
+  <a class="text-muted">Payment</a>
+</div>
+
 <form asp-action="ContactUpdate" method="POST">
-  <label class="form-label" asp-for="Email"></label> <span asp-validation-for="Email" class="text-danger"></span>
-  <input asp-for="Email" class="form-control" placeholder="Email" type="email" />
+  <div>
+    <h4>Contact information</h4>
 
-  <label class="form-label" asp-for="Updates"></label> <span asp-validation-for="Updates" class="text-danger"></span>
-  <input asp-for="Updates" placeholder="Updates" /><br>
+    <input asp-for="Email" class="form-control" placeholder="Email" type="email" />
+    
+    <input asp-for="Updates" placeholder="Updates" id="form-input-updates" />
+    <label class="form-label ms-2" for="form-input-updates"> Keep me up to date on news and exlusive offers</label>
+  </div>
 
-  <label class="form-label" asp-for="FirstName"></label> <span asp-validation-for="FirstName" class="text-danger"></span>
-  <input asp-for="FirstName" class="form-control" placeholder="FirstName" />
+  <div>
+    <h4>Shipping address</h4>
 
-  <label class="form-label" asp-for="LastName"></label> <span asp-validation-for="LastName" class="text-danger"></span>
-  <input asp-for="LastName" class="form-control" placeholder="LastName" />
+    <div class="d-flex">
+      <input asp-for="FirstName" class="form-control" placeholder=" First name (optional)" />
+      <input asp-for="LastName" class="form-control" placeholder="Last name" />
+    </div>
 
-  <label class="form-label" asp-for="ShippingStreet"></label> <span asp-validation-for="ShippingStreet" class="text-danger"></span>
-  <input asp-for="ShippingStreet" class="form-control" placeholder="ShippingStreet" />
+    <input asp-for="ShippingStreet" class="form-control" placeholder="Address" />
 
-  <label class="form-label" asp-for="ShippingApartment"></label> <span asp-validation-for="ShippingApartment" class="text-danger"></span>
-  <input asp-for="ShippingApartment" class="form-control" placeholder="ShippingApartment" />
+    <input asp-for="ShippingApartment" class="form-control" placeholder="Apartment, suite, etc. (optional)" />
 
-  <label class="form-label" asp-for="ShippingCity"></label> <span asp-validation-for="ShippingCity" class="text-danger"></span>
-  <input asp-for="ShippingCity" class="form-control" placeholder="ShippingCity" />
+    <input asp-for="ShippingCity" class="form-control" placeholder="City" />
 
-  <label class="form-label" asp-for="ShippingCountry"></label> <span asp-validation-for="ShippingCountry" class="text-danger"></span>
-  <input asp-for="ShippingCountry" class="form-control" placeholder="ShippingCountry" />
+    <div class="d-flex">
+      <input asp-for="ShippingCountry" class="form-control" placeholder="Country / region" />
+      <input asp-for="ShippingZip" class="form-control" placeholder="Postal code" />
+    </div>
+  </div>
 
-  <label class="form-label" asp-for="ShippingZip"></label> <span asp-validation-for="ShippingZip" class="text-danger"></span>
-  <input asp-for="ShippingZip" class="form-control" placeholder="ShippingZip" />
+  <button type="submit" class="my-button-big">Continue to shipping</button>
 
-  <button type="submit">Continue to shipping</button>
+  <span asp-validation-for="Email" class="text-danger"></span>
+  <span asp-validation-for="Updates" class="text-danger"></span>
+  <span asp-validation-for="FirstName" class="text-danger"></span>
+  <span asp-validation-for="LastName" class="text-danger"></span>
+  <span asp-validation-for="ShippingStreet" class="text-danger"></span>
+  <span asp-validation-for="ShippingApartment" class="text-danger"></span>
+  <span asp-validation-for="ShippingCity" class="text-danger"></span>
+  <span asp-validation-for="ShippingCountry" class="text-danger"></span>
+  <span asp-validation-for="ShippingZip" class="text-danger"></span>
 </form>
 
 @section Scripts {

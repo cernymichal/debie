@@ -108,6 +108,7 @@ a:hover {
   background-color: transparent;
   border: none;
   border-left: 1px solid #cccccc;
+  outline: none;
 }
 
 .blog-sidebar h6 {
@@ -125,8 +126,4 @@ a:hover {
 
 .product-component-price {
   color: #aca2ff;
-}
-
-#product-image-corousel {
-  height: 600px;
 }

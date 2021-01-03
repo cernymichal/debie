@@ -43,7 +43,7 @@ namespace Debie.Models {
         public List<OrderProductForm> OrderProducts { get; set; }
 
         public decimal Subtotal { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount)).Sum(); } }
-
+        public decimal Total { get { return Subtotal * (1 + VAT) + ShippingPrice; } }
         public OrderForm() {
             OrderProducts = new List<OrderProductForm>();
         }
@@ -70,6 +70,18 @@ namespace Debie.Models {
                 ShippingZip = ShippingZip,
                 VAT = VAT,
                 OrderProducts = OrderProducts.Select(opf => opf.ToModel()).ToList()
+            };
+        }
+
+        public static class Options {
+            public static Dictionary<string, decimal> ShippingMethods { get; set; } = new Dictionary<string, decimal> {
+                { "3 day", 0.5m },
+                { "Economic", 0.1m },
+            };
+
+            public static List<string> PaymentMethods { get; set; } = new List<string> {
+                "Online card",
+                "Transfer"
             };
         }
     }

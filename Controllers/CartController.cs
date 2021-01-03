@@ -60,8 +60,14 @@ namespace Debie.Controllers {
 
         [HttpPost]
         public IActionResult PaymentUpdate(OrderPaymentForm payment) {
-            payment.ToOrderForm(_OrderService.CurrentOrder());
-            _OrderService.SubmitCurrentOrder();
+            try {
+                payment.ToOrderForm(_OrderService.CurrentOrder());
+                _OrderService.SubmitCurrentOrder();
+            }
+            catch (Exception _) {
+                return Content("Something went wrong.");
+            }
+
             return RedirectToAction("Complete");
         }
 

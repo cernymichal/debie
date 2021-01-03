@@ -53,7 +53,8 @@ namespace Debie.Services {
                     Discount = product.Discount,
                     ProductID = product.ID,
                     Name = product.Name,
-                    MainProductImageID = product.MainProductImage.ImageID
+                    MainProductImageID = product.MainProductImage.ImageID,
+                    Color = product.Color
                 };
                 CurrentOrder().OrderProducts.Add(op);
             }

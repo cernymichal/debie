@@ -1,0 +1,44 @@
+@model OrderForm
+
+<div>
+  <div>
+    @foreach (var opf in Model.OrderProducts)
+    {
+      <div class="d-flex sidebar-product mt-4">
+        <div class="sidebar-product-image pe-4">
+          <img height=150 src=@Url.Action("Get", "Image", new { id = opf.MainProductImageID })>
+          <div class="rounded-circle d-inline-block text-center align-top">
+            <span class="p-0 m-0">@opf.Count</span>
+          </div>
+        </div>
+        <div class="flex-fill align-self-center">
+          <h6>@opf.Name</h6>
+          <aside class="text-muted">@opf.Color</aside>
+        </div>
+        <div class="align-self-center text-end">
+          <p>$@opf.Sum.ToString("0.00")</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <hr>
+
+  <div class="d-flex mb-2">
+    <p class="flex-fill">Subtotal</p>
+    <p class="flex-fill text-end">$@Model.Subtotal.ToString("0.00")</p>
+  </div>
+
+  <div class="d-flex">
+    <p class="flex-fill">Shipping</p>
+    <p class="flex-fill text-end">$@Model.ShippingPrice.ToString("0.00")</p>
+  </div>
+
+  <hr>
+
+  <div class="d-flex">
+    <p class="flex-fill align-self-center">Total</p>
+    <p class="flex-fill align-self-center text-end text-muted">USD</p>
+    <h3 class="ms-2">$@Model.Total.ToString("0.00")</h3>
+  </div>
+</div>

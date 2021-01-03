@@ -185,11 +185,11 @@ namespace Debie.Services {
                     ShippingMethod = "International Post",
                     ShippingPrice = 10M,
                     PaymentMethod = "Online card",
-                    BillingStreet = "Pepegova 12",
-                    BillingApartment = "8",
-                    BillingCity = "Prague",
-                    BillingCountry = "CZ",
-                    BillingZip = "120 00",
+                    ShippingStreet = "Pepegova 12",
+                    ShippingApartment = "8",
+                    ShippingCity = "Prague",
+                    ShippingCountry = "CZ",
+                    ShippingZip = "120 00",
                     OrderProducts = new List<OrderProduct>() {
                         new OrderProduct {
                             Product = product,
