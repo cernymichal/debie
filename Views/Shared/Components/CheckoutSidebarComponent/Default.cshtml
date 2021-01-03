@@ -16,7 +16,7 @@
           <aside class="text-muted">@opf.Color</aside>
         </div>
         <div class="align-self-center text-end">
-          <p>$@opf.Sum.ToString("0.00")</p>
+          <p @(opf.Discounted ? "class=accent" : "")>$@opf.Sum.ToString("0.00")</p>
         </div>
       </div>
     }
@@ -27,6 +27,11 @@
   <div class="d-flex mb-2">
     <p class="flex-fill">Subtotal</p>
     <p class="flex-fill text-end">$@Model.Subtotal.ToString("0.00")</p>
+  </div>
+
+  <div class="d-flex mb-2">
+    <p class="flex-fill">VAT (@((int)(Model.VAT * 100))%)</p>
+    <p class="flex-fill text-end">$@Model.VATSum.ToString("0.00")</p>
   </div>
 
   <div class="d-flex">

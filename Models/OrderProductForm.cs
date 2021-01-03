@@ -19,6 +19,8 @@ namespace Debie.Models {
             };
         }
 
+        public decimal DiscountedUnitPrice { get { return UnitPrice * (1 - Discount); } }
+        public bool Discounted { get { return Discount != 0; } }
         public decimal Sum { get { return UnitPrice * Count * (1 - Discount); } }
     }
 }

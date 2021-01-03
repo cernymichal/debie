@@ -34,7 +34,7 @@ namespace Debie.Models.DB {
         [NotMapped]
         public bool Discounted {
             get {
-                return DiscountFrom >= DateTime.UtcNow && DiscountUntil < DateTime.UtcNow;
+                return DiscountFrom <= DateTime.UtcNow && DiscountUntil > DateTime.UtcNow;
             }
         }
         [NotMapped]

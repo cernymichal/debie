@@ -28,11 +28,17 @@
             <span>@Model.ReviewsAvg.ToString("0.0")</span>
           }
         </div>
-        <h2 class="accent ">$@Model.Price.ToString("0.00")</h2>
+
+        @if (!Model.Discounted) {
+          <h2>$@Model.Price.ToString("0.00")</h2>
+        }
+        else {
+          <h2 class="accent">$@Model.CurrentPrice.ToString("0.00") (-@((int) (Model.Discount * 100))%)</h2>
+        }
+
         <div>
           Availability:&nbsp;<span class="accent">@(Model.Stock > 0 ? "In Stock" : "Not available")</span>
         </div>
-        
       </div>
       <hr />
       <p>@Model.Description</p>

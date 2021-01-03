@@ -49,6 +49,7 @@ namespace Debie.Controllers {
         [HttpPost]
         public IActionResult ShippingUpdate(OrderShippingForm shipping) {
             shipping.ToOrderForm(_OrderService.CurrentOrder());
+            _OrderService.CurrentOrder().ShippingPrice = OrderForm.Options.ShippingMethods[_OrderService.CurrentOrder().ShippingMethod];
             _OrderService.SaveCurrentOrder();
             return RedirectToAction("Payment");
         }
@@ -64,7 +65,7 @@ namespace Debie.Controllers {
                 payment.ToOrderForm(_OrderService.CurrentOrder());
                 _OrderService.SubmitCurrentOrder();
             }
-            catch (Exception _) {
+            catch (Exception) {
                 return Content("Something went wrong.");
             }
 

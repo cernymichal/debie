@@ -43,7 +43,8 @@ namespace Debie.Models {
         public List<OrderProductForm> OrderProducts { get; set; }
 
         public decimal Subtotal { get { return OrderProducts.Select(op => op.UnitPrice * op.Count * (1 - op.Discount)).Sum(); } }
-        public decimal Total { get { return Subtotal * (1 + VAT) + ShippingPrice; } }
+        public decimal VATSum { get { return Subtotal * VAT; } }
+        public decimal Total { get { return Subtotal + VATSum + ShippingPrice; } }
         public OrderForm() {
             OrderProducts = new List<OrderProductForm>();
         }

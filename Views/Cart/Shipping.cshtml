@@ -19,7 +19,7 @@
     <select asp-for="ShippingMethod" class="form-select"/>
       @foreach (var method in OrderForm.Options.ShippingMethods.Keys)
       {
-          <option selected=@(Model.ShippingMethod == method)>@method</option>
+          <option value=@method selected=@(Model.ShippingMethod == method)>@method ($@OrderForm.Options.ShippingMethods[@method])</option>
       }
     </select>
   </div>

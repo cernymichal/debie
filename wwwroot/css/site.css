@@ -21,6 +21,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.accent {
+  color: #aca2ff;
+}
+
 .my-button {
   background-color: #aca2ff;
   border: none;
@@ -79,14 +83,19 @@ a:hover {
   color: #000000;
 }
 
+.recent-articles-small a:hover {
+  text-decoration: underline !important;
+}
+
 .recent-articles-small p {
   font-size: 0.8em;
   color: #555555;
 }
 
 .recent-articles img,
-.recent-articles-small p {
+.recent-articles-small img {
   object-fit: contain;
+  width: 100%;
 }
 
 .blog-sidebar form,
@@ -122,8 +131,4 @@ a:hover {
 
 .product-component a h5 {
   color: black;
-}
-
-.product-component-price {
-  color: #aca2ff;
 }

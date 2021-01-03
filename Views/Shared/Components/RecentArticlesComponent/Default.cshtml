@@ -4,7 +4,10 @@
   @foreach (var article in Model)
   {
     <div class="row my-3">
-      <img class="col-4 img-fluid" src=@Url.Action("Get", "Image", new { article.Image.ID }) alt=@article.Image.Title>
+      <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID class="col-4">
+        <img src=@Url.Action("Get", "Image", new { article.Image.ID }) alt=@article.Image.Title>
+      </a>
+      
       <div class="col-8">
         <h2 class="mb-2">
           <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>@article.Title</a>
