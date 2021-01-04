@@ -21,8 +21,17 @@ namespace Debie.Controllers {
             _OrderService = orderService;
         }
 
-        public IActionResult List() {
-            return View(_ProductRepo.GetAll());
+        public IActionResult List(ProductSearch search) {
+            if (search.Query is null)
+                search.Query = "";
+
+            ViewBag.Query = search.Query;
+            ViewBag.Search = search;
+
+            if (search.Query == "" && search.Categories.Count == 0 && search.Vendors.Count == 0)
+                return View(_ProductRepo.GetAll());
+
+            return View(_ProductRepo.GetAll().Where(p => p.Search(search)).ToList());
         }
 
         public IActionResult Detail(int id) {

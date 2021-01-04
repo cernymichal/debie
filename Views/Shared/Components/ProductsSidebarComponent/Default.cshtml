@@ -1,8 +1,9 @@
+@model ProductSearch
 <div class="p-3 bg-light products-sidebar">
-  <form action="">
+  <form asp-controller="Product" asp-action="List" method="GET">
     <h6>Search</h6>
     <div class="row m-0 p-0 py-1 mb-5 search-input">
-      <input type="text" class="col" />
+      <input type="text" class="col" name="Query" value="@Model.Query" />
       <button type="submit" class="col-auto">Search</button>
     </div>
 
@@ -11,8 +12,8 @@
       @foreach (Vendor v in ViewBag.Vendors)
       {
         <div class="d-block form-check">
-          <input class="form-check-input" type="checkbox" id="vendors-check-@v.ID" /><label class="ms-2 form-check-label"
-            for="vendors-check-@v.ID">@v.Name</label>
+          <input class="form-check-input" type="checkbox" id="vendors-check-@v.ID" name="Vendors" value="@v.ID" checked=@ViewBag.Search.Vendors.Contains(v.ID) />
+          <label class="ms-2 form-check-label" for="vendors-check-@v.ID">@v.Name</label>
         </div>
       }
     </div>
@@ -21,11 +22,11 @@
 
     <h6>Categories</h6>
     <div>
-      @foreach (Vendor v in ViewBag.Vendors)
+      @foreach (Category c in ViewBag.Categories)
       {
         <div class="d-block form-check">
-          <input class="form-check-input" type="checkbox" id="categories-check-@v.ID" /><label
-            class="ms-2 form-check-label" for="categories-check-@v.ID">@v.Name</label>
+          <input class="form-check-input" type="checkbox" id="categories-check-@c.ID" name="Categories" value="@c.ID" checked=@ViewBag.Search.Categories.Contains(c.ID) />
+          <label class="ms-2 form-check-label" for="categories-check-@c.ID">@c.Name</label>
         </div>
       }
     </div>

@@ -24,9 +24,9 @@
           <a asp-controller="Page" asp-action="Index">DEBIE</a>
         </h1>
         <div class="col-6">
-          <form action="" id="search" class="w-100">
+          <form asp-controller="Product" asp-action="List" method="GET" id="search" class="w-100">
             <div class="row m-0 p-0">
-              <input type="text" name="query" placeholder="Search our store" class="col ps-3 py-2 m-0">
+              <input type="text" name="Query" placeholder="Search our store" class="col ps-3 py-2 m-0" value="@ViewBag.Query">
               <button type="submit" class="col-auto p-0 py-2 pe-3 m-0 text-center"><i class="fa-fw fas fa-search p0"></i></button>
             </div>
           </form>

@@ -3,8 +3,10 @@
   <div class="dropdown">
     <a asp-controller="Product" asp-action="List">Products <i class="fas fa-chevron-down"></i></a>
     <div class="dropdown-content">
-      <a asp-controller="Product" asp-action="List">Category 1</a>
-      <a asp-controller="Product" asp-action="List">Category 2</a>
+      @foreach (Category category in ViewBag.Categories)
+      {
+        <a href=@Url.Action("List", "Product", new { Query = "", Categories = category.ID }) >@category.Name</a>
+      }
     </div>
   </div>
   <a asp-controller="Blog" asp-action="List">Blog</a>

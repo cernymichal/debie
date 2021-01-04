@@ -61,10 +61,21 @@ namespace Debie.Models.DB {
 
         public bool Search(string query) {
             return
+                query is null ||
                 Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 Vendor.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 Color.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                 Categories.FirstOrDefault(c => c.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) != null;
+        }
+
+        public bool Search(ProductSearch search) {
+            if (search.Vendors is not null && search.Vendors.Count != 0 && !search.Vendors.Contains(VendorID))
+                return false;
+
+            if (search.Categories is not null && search.Categories.Count != 0 && Categories.FirstOrDefault(c => search.Categories.Contains(c.ID)) == null)
+                return false;
+
+            return Search(search.Query);
         }
     }
 }

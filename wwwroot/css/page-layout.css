@@ -40,6 +40,10 @@
   color: #ffffff;
 }
 
+#search button {
+  outline: none;
+}
+
 #search > div * {
   background-color: transparent;
   border: none;
