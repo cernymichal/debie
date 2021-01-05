@@ -18,7 +18,7 @@ namespace Debie.Models {
         [Required, Display(Name = "Author")]
         public int UserID { get; set; }
         public ImageForm Image { get; set; }
-        public List<string> Tags { get; set; }
+        public List<int> Tags { get; set; }
 
         public static ArticleForm FromModel(Article model) {
             return new ArticleForm {
@@ -27,16 +27,24 @@ namespace Debie.Models {
                 Content = model.Content,
                 UserID = model.User.ID,
                 Image = ImageForm.FromModel(model.Image),
-                Tags = model.Tags.Select(t => t.Name).ToList()
+                Tags = model.Tags.Select(c => c.ID).ToList()
             };
         }
 
-        public Article ToModel(Article model) {
+        public Article ToModel(Article model, List<Tag> tags) {
             model.Title = Title;
             model.Content = Content;
             model.UserID = UserID;
             model.Image = model.Image is null ? null : Image.ToModel(model.Image);
-            // Add tags
+            if (Tags is null)
+                model.Tags.RemoveRange(0, model.Tags.Count);
+            else {
+                foreach (var tagID in Tags) {
+                    if (!model.Tags.Any(t => t.ID == tagID))
+                        model.Tags.Add(tags.First(t => t.ID == tagID));
+                }
+                model.Tags = model.Tags.Where(t => Tags.Contains(t.ID)).ToList();
+            }
             return model;
         }
     }

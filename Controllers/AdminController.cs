@@ -19,6 +19,7 @@ namespace Debie.Controllers {
     public class AdminController : Controller {
         private readonly ILoginService _LoginService;
         private readonly IArticleRepository _ArticleRepo;
+        private readonly ITagRepository _TagRepo;
         private readonly ICategoryRepository _CategoryRepo;
         private readonly IOrderRepository _OrderRepo;
         private readonly IProductRepository _ProductRepo;
@@ -29,7 +30,7 @@ namespace Debie.Controllers {
 
         public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo,
             IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo, IImageRepository imageRepo,
-            IFeedbackRepository feedbackRepo, ICategoryRepository categoryRepo) {
+            IFeedbackRepository feedbackRepo, ICategoryRepository categoryRepo, ITagRepository tagRepo) {
             _LoginService = loginService;
             _ArticleRepo = articleRepo;
             _OrderRepo = orderRepo;
@@ -39,6 +40,7 @@ namespace Debie.Controllers {
             _ImageRepo = imageRepo;
             _FeedbackRepo = feedbackRepo;
             _CategoryRepo = categoryRepo;
+            _TagRepo = tagRepo;
         }
 
         [HttpGet, AllowAnonymous]
@@ -186,6 +188,7 @@ namespace Debie.Controllers {
         [HttpGet, Route("{controller}/Article/{id?}")]
         public IActionResult Article(int? id = null) {
             ViewBag.Users = _UserRepo.GetAll();
+            ViewBag.Tags = _TagRepo.GetAll();
 
             var article = _ArticleRepo.GetByID(id);
             ArticleForm articleForm;
@@ -202,6 +205,7 @@ namespace Debie.Controllers {
         public IActionResult ArticleEdit(ArticleForm articleForm) {
             ModelState.Remove("Image.ID");
             ViewBag.Users = _UserRepo.GetAll();
+            ViewBag.Tags = _TagRepo.GetAll();
 
             var zeroId = articleForm.ID == 0;
 
@@ -216,7 +220,7 @@ namespace Debie.Controllers {
 
                 var passed = true;
                 try {
-                    _ArticleRepo.Update(articleForm.ToModel(article));
+                    _ArticleRepo.Update(articleForm.ToModel(article, ViewBag.Tags));
                 }
                 catch (FormatException) {
                     ViewBag.Alert = "Couldn't parse";
@@ -300,12 +304,22 @@ namespace Debie.Controllers {
 
         [HttpPost]
         public IActionResult Category(string name, string returnUrl = "") {
-            try {
+            if (!_CategoryRepo.GetAll().Any(c => c.Name == name)) {
                 _CategoryRepo.Update(new Category() { Name = name });
                 _CategoryRepo.Save();
             }
-            catch (Exception) {
 
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+            else
+                return RedirectToAction("Products");
+        }
+
+        [HttpPost]
+        public IActionResult Tag(string name, string returnUrl = "") {
+            if (!_TagRepo.GetAll().Any(t => t.Name == name)) {
+                _TagRepo.Update(new Tag() { Name = name });
+                _TagRepo.Save();
             }
 
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))

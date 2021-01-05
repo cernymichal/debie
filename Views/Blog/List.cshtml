@@ -14,8 +14,13 @@
       <div class="blog-list-item mb-5">
         <img src="@(article.Image is null ? "/media/no-image.png" : Url.Action("Get", "Image", new { article.Image.ID }))" alt="@(article.Image is null ? "" : @article.Image.Title)" class="w-100" />
         <h2 class="my-3 font-weight-bold" style="font-size: 1.3em;">@article.Title</h2>
-        <p><i class="fa-fw fas fa-user text-muted"></i> @article.User.Username <span class="text-muted">| <i
-              class="fa-fw far fa-calendar-alt"></i> @article.Created.ToShortDateString()</span></p>
+        <p>
+          <i class="fa-fw fas fa-user text-muted"></i> @article.User.Username
+          <span class="text-muted">
+            | <i class="fa-fw far fa-calendar-alt"></i> @article.Created.ToShortDateString()
+            | @String.Join(", ", article.Tags.Select(t => t.Name))
+          </span>
+        </p>
         <hr>
         <p>@article.Content.Substring(0, Math.Min(article.Content.Length, 200))...</p>
         <a class="my-button-dark mt-2" asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>Read More</a>

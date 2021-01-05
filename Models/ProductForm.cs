@@ -60,11 +60,15 @@ namespace Debie.Models {
             model.DiscountUntil = DiscountUntil;
             model.VendorID = VendorID;
             model.MainProductImage = model.ProductImages?.First(pi => pi.ImageID == MainImageID);
-            foreach (var categoryID in Categories) {
-                if (!model.Categories.Any(c => c.ID == categoryID))
-                    model.Categories.Add(categories.First(c => c.ID == categoryID));
+            if (Categories is null)
+                model.Categories.RemoveRange(0, model.Categories.Count);
+            else {
+                foreach (var categoryID in Categories ?? Enumerable.Empty<int>()) {
+                    if (!model.Categories.Any(c => c.ID == categoryID))
+                        model.Categories.Add(categories.First(c => c.ID == categoryID));
+                }
+                model.Categories = model.Categories.Where(c => Categories.Contains(c.ID)).ToList();
             }
-            model.Categories = model.Categories.Where(c => Categories.Contains(c.ID)).ToList();
             return model;
         }
     }

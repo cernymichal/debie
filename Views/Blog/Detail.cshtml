@@ -17,6 +17,8 @@
         Posted by <strong class="text-dark">@Model.User.Username</strong> |
         <i class="far fa-calendar-alt"></i>
         Posted on @Model.Created.ToShortDateString()
+        <br>
+        @String.Join(", ", Model.Tags.Select(t => t.Name))
       </aside>
       <img src="@(Model.Image is null ? "/media/no-image.png" : Url.Action("Get", "Image", new { Model.Image.ID }))" alt=@Model.Image.Title class="img-fluid" />
       <p class="text-start mt-4 lh-lg">@Model.Content</p>
