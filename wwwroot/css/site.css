@@ -127,10 +127,15 @@ a:hover {
 .blog-sidebar-tags a {
   border: 1px solid #cccccc;
   border-radius: 5px;
+  color: #000000;
+}
+
+.blog-sidebar-tags a:hover {
+  background-color: #eeeeee;
 }
 
 .product-component a h5 {
-  color: black;
+  color: #000000;
 }
 
 .navbar-component > * {

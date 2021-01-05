@@ -7,7 +7,7 @@ namespace Debie.Models.DB {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [MaxLength(32), Required]
-        public string Label { get; set; }
+        public string Name { get; set; }
 
         public virtual List<Article> Articles { get; set; }
     }

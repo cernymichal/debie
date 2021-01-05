@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 using Debie.Services.Repositories;
-using Debie.Models.DB;
+using Debie.Models;
 
 namespace Debie.Components {
     public class BlogSidebarComponent : ViewComponent {
@@ -11,8 +11,10 @@ namespace Debie.Components {
         public BlogSidebarComponent(ITagRepository tagRepo) {
             _TagRepo = tagRepo;
         }
-        public IViewComponentResult Invoke() {
-            return View(_TagRepo.GetAll());
+        public IViewComponentResult Invoke(ArticleSearch search) {
+            ViewBag.Tags = _TagRepo.GetAll();
+
+            return View(search);
         }
     }
 }

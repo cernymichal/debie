@@ -27,7 +27,7 @@ namespace Debie.Models {
                 Content = model.Content,
                 UserID = model.User.ID,
                 Image = ImageForm.FromModel(model.Image),
-                Tags = model.Tags.Select(t => t.Label).ToList()
+                Tags = model.Tags.Select(t => t.Name).ToList()
             };
         }
 

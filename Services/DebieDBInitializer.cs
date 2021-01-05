@@ -10,7 +10,7 @@ using Debie.Models.DB;
 namespace Debie.Services {
     public static class DebieDBInitializer {
         public static void Initialize(DebieDBContext context) {
-            //context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             AddArticles(context);
@@ -28,7 +28,7 @@ namespace Debie.Services {
                 passwordHash = sha.ComputeHash(Encoding.UTF8.GetBytes("password"));
             }
 
-            var tag = new Tag { Label = "Test" };
+            var tag = new Tag { Name = "Test" };
             var admin = new User {
                 Username = "admin",
                 Password = passwordHash
@@ -55,7 +55,7 @@ namespace Debie.Services {
                         ContentType = "image/png",
                         Data = File.ReadAllBytes("wwwroot/media/about-portrait.png")
                     },
-                    Tags = new List<Tag>() { tag, new Tag { Label = "Test2" } } },
+                    Tags = new List<Tag>() { tag, new Tag { Name = "Test2" } } },
             };
 
             foreach (var a in articles) {

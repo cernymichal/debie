@@ -18,8 +18,16 @@ namespace Debie.Controllers {
             _ArticleRepo = articleRepo;
         }
 
-        public IActionResult List() {
-            return View(_ArticleRepo.GetAll());
+        public IActionResult List(ArticleSearch search) {
+            if (search.Query is null)
+                search.Query = "";
+
+            ViewBag.Search = search;
+
+            if (search.Query == "" && search.Tags.Count == 0)
+                return View(_ArticleRepo.GetAll());
+
+            return View(_ArticleRepo.GetAll().Where(p => p.Search(search)).ToList());
         }
 
         public IActionResult Detail(int id) {

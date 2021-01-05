@@ -1,10 +1,10 @@
-@model List<Tag>
+@model ArticleSearch
 <div class="blog-sidebar bg-light">
   <div class="p-4">
     <div class="mb-4">
       <h6>Search</h6>
-      <form action="" class="row m-0 p-0 py-1">
-        <input type="text" class="col" />
+      <form asp-controller="Blog" asp-action="List" method="GET" class="row m-0 p-0 py-1">
+        <input type="text" class="col" name="Query" value="@Model.Query" />
         <button type="submit" class="col-auto">Search</button>
       </form>
     </div>
@@ -17,9 +17,9 @@
     <div>
       <h6 class="mb-3">Tags</h6>
       <div class="blog-sidebar-tags">
-        @foreach (var tag in Model)
+        @foreach (var tag in ViewBag.Tags)
         {
-          <a class="px-2 py-1 mx-1">@tag.Label</a>
+          <a class="px-2 py-1 m-1 d-inline-block" href=@Url.Action("List", "Blog", new { Tags = tag.ID }) >@tag.Name</a>
         }
       </div>
     </div>

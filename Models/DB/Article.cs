@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using System.Linq;
 using System;
 
 namespace Debie.Models.DB {
@@ -23,8 +24,17 @@ namespace Debie.Models.DB {
 
         public bool Search(string query) {
             return
+                query is null ||
                 Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                User.Username.Contains(query, StringComparison.OrdinalIgnoreCase);
+                User.Username.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                Tags.FirstOrDefault(t => t.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) != null;
+        }
+
+        public bool Search(ArticleSearch search) {
+            if (search.Tags is not null && search.Tags.Count != 0 && Tags.FirstOrDefault(t => search.Tags.Contains(t.ID)) == null)
+                return false;
+
+            return Search(search.Query);
         }
     }
 }

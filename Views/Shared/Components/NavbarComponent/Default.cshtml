@@ -5,7 +5,7 @@
     <div class="dropdown-content">
       @foreach (Category category in ViewBag.Categories)
       {
-        <a href=@Url.Action("List", "Product", new { Query = "", Categories = category.ID }) >@category.Name</a>
+        <a href=@Url.Action("List", "Product", new { Categories = category.ID }) >@category.Name</a>
       }
     </div>
   </div>

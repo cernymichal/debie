@@ -30,7 +30,7 @@
         <th scope="row">@article.ID</th>
         <td>@article.Title</td>
         <td>@article.User.Username</td>
-        <td>@string.Join(", ", article.Tags.Select(t => t.Label))</td>
+        <td>@string.Join(", ", article.Tags.Select(t => t.Name))</td>
       </tr>
     }
   </tbody>
