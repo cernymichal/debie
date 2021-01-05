@@ -19,6 +19,7 @@ namespace Debie.Controllers {
     public class AdminController : Controller {
         private readonly ILoginService _LoginService;
         private readonly IArticleRepository _ArticleRepo;
+        private readonly ICategoryRepository _CategoryRepo;
         private readonly IOrderRepository _OrderRepo;
         private readonly IProductRepository _ProductRepo;
         private readonly IUserRepository _UserRepo;
@@ -28,7 +29,7 @@ namespace Debie.Controllers {
 
         public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo,
             IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo, IImageRepository imageRepo,
-            IFeedbackRepository feedbackRepo) {
+            IFeedbackRepository feedbackRepo, ICategoryRepository categoryRepo) {
             _LoginService = loginService;
             _ArticleRepo = articleRepo;
             _OrderRepo = orderRepo;
@@ -37,6 +38,7 @@ namespace Debie.Controllers {
             _VendorRepo = vendorRepo;
             _ImageRepo = imageRepo;
             _FeedbackRepo = feedbackRepo;
+            _CategoryRepo = categoryRepo;
         }
 
         [HttpGet, AllowAnonymous]
@@ -90,6 +92,7 @@ namespace Debie.Controllers {
         [HttpGet, Route("{controller}/Product/{id?}")]
         public IActionResult Product(int? id = null) {
             ViewBag.Vendors = _VendorRepo.GetAll();
+            ViewBag.Categories = _CategoryRepo.GetAll();
 
             var product = _ProductRepo.GetByID(id);
 
@@ -105,6 +108,7 @@ namespace Debie.Controllers {
         [HttpPost, Route("{controller}/Product/{id?}")]
         public IActionResult ProductEdit(ProductForm productForm) {
             ViewBag.Vendors = _VendorRepo.GetAll();
+            ViewBag.Categories = _CategoryRepo.GetAll();
 
             var zeroId = productForm.ID == 0;
 
@@ -112,7 +116,8 @@ namespace Debie.Controllers {
                 var product = productForm.ID != 0 ? _ProductRepo.GetByID(productForm.ID) : new Product { ID = productForm.ID };
                 var passed = true;
                 try {
-                    _ProductRepo.Update(productForm.ToModel(product));
+                    var p = productForm.ToModel(product, ViewBag.Categories);
+                    _ProductRepo.Update(p);
                 }
                 catch (System.FormatException) {
                     ViewBag.Alert = "Couldn't parse";
@@ -196,7 +201,6 @@ namespace Debie.Controllers {
         [HttpPost, Route("{controller}/Article/{id?}")]
         public IActionResult ArticleEdit(ArticleForm articleForm) {
             ModelState.Remove("Image.ID");
-
             ViewBag.Users = _UserRepo.GetAll();
 
             var zeroId = articleForm.ID == 0;
@@ -292,6 +296,22 @@ namespace Debie.Controllers {
             _FeedbackRepo.Delete(_FeedbackRepo.GetByID(id));
             _FeedbackRepo.Save();
             return RedirectToAction("Feedbacks");
+        }
+
+        [HttpPost]
+        public IActionResult Category(string name, string returnUrl = "") {
+            try {
+                _CategoryRepo.Update(new Category() { Name = name });
+                _CategoryRepo.Save();
+            }
+            catch (Exception) {
+
+            }
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+            else
+                return RedirectToAction("Products");
         }
 
 

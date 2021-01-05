@@ -55,6 +55,20 @@
     </div>
   </div>
 
+  <div class="mb-3">
+    <div class="row">
+      <div class="col-sm-6">
+        @foreach (Category category in ViewBag.Categories)
+        {
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="input-check-@category.ID" name="Categories" value="@category.ID" checked=@Model.Categories.Contains(category.ID)>
+            <label class="form-check-label" for="input-check-@category.ID">@category.Name</label>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
   <div class="mb-3 d-flex flex-wrap">
     @foreach (ImageForm image in Model.Images)
     {
@@ -89,6 +103,15 @@
   <button class="btn btn-primary" type="submit">Save</button>
   <a asp-action="ProductDelete" asp-route-id=@Model.ID class="btn btn-danger">Delete</a>
 </form>
+
+<div class="row mt-5">
+  <div class="col-sm-6">
+    <form asp-action="Category" asp-route-returnUrl="@Context.Request.Path" method="POST" class="input-group">
+      <input type="text" class="form-control" placeholder="Category" name="name" aria-describedby="category-add">
+      <button type="submit" class="input-group-text" id="category-add">+</button>
+    </form>
+  </div>
+</div>
 
 @section Scripts {
   <partial name="_ValidationScriptsPartial" />

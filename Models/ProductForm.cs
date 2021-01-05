@@ -27,6 +27,7 @@ namespace Debie.Models {
         public List<ImageForm> Images { get; set; }
         [Display(Name = "Main")]
         public int MainImageID { get; set; }
+        public List<int> Categories { get; set; }
 
         public ProductForm() {
             Images = new List<ImageForm>();
@@ -44,11 +45,12 @@ namespace Debie.Models {
                 DiscountUntil = model.DiscountUntil,
                 VendorID = model.VendorID,
                 Images = model.ProductImages is null ? new List<ImageForm>() : model.ProductImages.Select(i => ImageForm.FromModel(i.Image)).ToList(),
-                MainImageID = model.MainProductImage is null ? 0 : model.MainProductImage.Image.ID
+                MainImageID = model.MainProductImage is null ? 0 : model.MainProductImage.Image.ID,
+                Categories = model.Categories.Select(c => c.ID).ToList()
             };
         }
 
-        public Product ToModel(Product model) {
+        public Product ToModel(Product model, List<Category> categories) {
             model.Name = Name;
             model.Description = Description;
             model.Color = Color;
@@ -58,6 +60,11 @@ namespace Debie.Models {
             model.DiscountUntil = DiscountUntil;
             model.VendorID = VendorID;
             model.MainProductImage = model.ProductImages?.First(pi => pi.ImageID == MainImageID);
+            foreach (var categoryID in Categories) {
+                if (!model.Categories.Any(c => c.ID == categoryID))
+                    model.Categories.Add(categories.First(c => c.ID == categoryID));
+            }
+            model.Categories = model.Categories.Where(c => Categories.Contains(c.ID)).ToList();
             return model;
         }
     }
