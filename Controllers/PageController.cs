@@ -7,14 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using Debie.Models;
+using Debie.Models.DB;
 using Debie.Services.Repositories;
 
 namespace Debie.Controllers {
     public class PageController : Controller {
         private readonly IProductRepository _ProductRepo;
+        private readonly IFeedbackRepository _FeedbackRepo;
 
-        public PageController(IProductRepository productRepo) {
+        public PageController(IProductRepository productRepo, IFeedbackRepository feedbackRepo) {
             _ProductRepo = productRepo;
+            _FeedbackRepo = feedbackRepo;
         }
 
         public IActionResult Index() {
@@ -31,6 +34,14 @@ namespace Debie.Controllers {
 
         public IActionResult Contact() {
             return View();
+        }
+
+        [HttpPost, Route("{controller}/Contact")]
+        public IActionResult ContactFeedback(Feedback feedback) {
+            feedback.Created = DateTime.UtcNow;
+            _FeedbackRepo.Insert(feedback);
+            _FeedbackRepo.Save();
+            return RedirectToAction("Contact");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

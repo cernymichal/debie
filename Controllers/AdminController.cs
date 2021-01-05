@@ -23,8 +23,11 @@ namespace Debie.Controllers {
         private readonly IUserRepository _UserRepo;
         private readonly IVendorRepository _VendorRepo;
         private readonly IImageRepository _ImageRepo;
+        private readonly IFeedbackRepository _FeedbackRepo;
 
-        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo, IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo, IImageRepository imageRepo) {
+        public AdminController(ILoginService loginService, IArticleRepository articleRepo, IOrderRepository orderRepo,
+            IProductRepository productRepo, IUserRepository userRepo, IVendorRepository vendorRepo, IImageRepository imageRepo,
+            IFeedbackRepository feedbackRepo) {
             _LoginService = loginService;
             _ArticleRepo = articleRepo;
             _OrderRepo = orderRepo;
@@ -32,6 +35,7 @@ namespace Debie.Controllers {
             _UserRepo = userRepo;
             _VendorRepo = vendorRepo;
             _ImageRepo = imageRepo;
+            _FeedbackRepo = feedbackRepo;
         }
 
         [HttpGet, AllowAnonymous]
@@ -247,6 +251,25 @@ namespace Debie.Controllers {
             _OrderRepo.Delete(_OrderRepo.GetByID(id));
             _OrderRepo.Save();
             return RedirectToAction("Orders");
+        }
+
+        public IActionResult Feedbacks(string query = null) {
+            ViewBag.Query = query;
+            if (!string.IsNullOrEmpty(query))
+                return View(_FeedbackRepo.GetAll().Where(o => o.Search(query)).ToList());
+            return View(_FeedbackRepo.GetAll());
+        }
+
+        [HttpGet, Route("{controller}/Feedback/{id?}")]
+        public IActionResult Feedback(int? id = null) {
+            var feedback = _FeedbackRepo.GetByID(id);
+            return View(feedback ?? new Feedback());
+        }
+
+        public IActionResult FeedbackDelete(int id) {
+            _FeedbackRepo.Delete(_FeedbackRepo.GetByID(id));
+            _FeedbackRepo.Save();
+            return RedirectToAction("Feedbacks");
         }
 
 

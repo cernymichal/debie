@@ -15,7 +15,6 @@ namespace Debie.Services {
 
             AddArticles(context);
             AddProducts(context);
-            AddOrders(context);
         }
 
         private static void AddArticles(DebieDBContext context) {
@@ -102,8 +101,8 @@ namespace Debie.Services {
                     Color = "Blue",
                     Price = 99.99M,
                     Discount = .20M,
-                    DiscountFrom = DateTime.Now,
-                    DiscountUntil = DateTime.Now.AddDays(1),
+                    DiscountFrom = DateTime.UtcNow,
+                    DiscountUntil = DateTime.UtcNow.AddDays(1),
                     ReviewsCount = 4,
                     ReviewsSum= 4 * 2.5M,
                     Vendor = vendor1,
@@ -148,8 +147,8 @@ namespace Debie.Services {
                     Color = "Red",
                     Price = 49.99M,
                     Discount = .50M,
-                    DiscountFrom = DateTime.Now,
-                    DiscountUntil = DateTime.Now.AddHours(3),
+                    DiscountFrom = DateTime.UtcNow,
+                    DiscountUntil = DateTime.UtcNow.AddHours(3),
                     Vendor = new Vendor { Name = "Vendor 2" },
                     Categories = new List<Category>() { cat2 },
                     ProductImages = new List<ProductImage>() {
@@ -166,43 +165,6 @@ namespace Debie.Services {
 
             foreach (var p in products) {
                 context.Products.Add(p);
-            }
-            context.SaveChanges();
-        }
-
-        private static void AddOrders(DebieDBContext context) {
-            if (context.Orders.Any()) {
-                return;
-            }
-
-            var product = context.Products.First();
-
-            var orders = new Order[] {
-                new Order {
-                    Email = "customer@example.com",
-                    FirstName = "Petr",
-                    LastName = "Novák",
-                    ShippingMethod = "International Post",
-                    ShippingPrice = 10M,
-                    PaymentMethod = "Online card",
-                    ShippingStreet = "Pepegova 12",
-                    ShippingApartment = "8",
-                    ShippingCity = "Prague",
-                    ShippingCountry = "CZ",
-                    ShippingZip = "120 00",
-                    OrderProducts = new List<OrderProduct>() {
-                        new OrderProduct {
-                            Product = product,
-                            UnitPrice = product.Price,
-                            Discount = product.Discounted ? product.Discount : 0,
-                            Count = 2
-                        }
-                    }
-                }
-            };
-
-            foreach (var o in orders) {
-                context.Orders.Add(o);
             }
             context.SaveChanges();
         }

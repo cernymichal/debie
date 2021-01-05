@@ -18,6 +18,7 @@ namespace Debie.Services {
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Feedback> Feedback { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Article>().ToTable("Articles");
@@ -31,6 +32,7 @@ namespace Debie.Services {
             modelBuilder.Entity<Tag>().ToTable("Tags");
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Vendor>().ToTable("Vendors");
+            modelBuilder.Entity<Feedback>().ToTable("Feedbacks");
 
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(op => new { op.OrderID, op.ProductID });

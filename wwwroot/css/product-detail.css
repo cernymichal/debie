@@ -1,14 +1,14 @@
-.productInfo {
+.product-info {
   border: solid;
   border-width: 1px;
   border-color: lightgrey;
 }
 
-.productImagesIcons {
+.product-images-icons {
   display: inline-flex;
 }
 
-.productImagesIcons img {
+.product-images-icons img {
   width: 20%;
   margin-right: 3px;
 }
@@ -31,7 +31,7 @@
   min-height: 400px;
 }
 
-.productImagesIcons .active {
+.product-images-icons .active {
   border-bottom: solid;
 }
 

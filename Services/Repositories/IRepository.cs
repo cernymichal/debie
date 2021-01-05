@@ -36,4 +36,7 @@ namespace Debie.Services.Repositories {
 
     public interface IVendorRepository : IRepository<Vendor> {
     }
+
+    public interface IFeedbackRepository : IRepository<Feedback> {
+    }
 }

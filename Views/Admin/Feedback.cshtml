@@ -1,0 +1,45 @@
+@model Feedback
+@{
+  Layout = "_AdminLayout";
+  ViewData["Title"] = $"Feedback n.{Model.ID}";
+  ViewData["SearchAction"] = "Feedbacks";
+}
+
+<form method=POST enctype=multipart/form-data>
+  <input asp-for="ID" hidden />
+
+  <div class="mb-3">
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="form-label" asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Name" disabled />
+      </div>
+      
+      <div class="col-sm-6">
+        <label class="form-label" asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" placeholder="Email" disabled />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="form-label" asp-for="Subject"></label>
+        <input asp-for="Subject" class="form-control" placeholder="Subject" disabled />
+      </div>
+
+      <div class="col-sm-6">
+        <label class="form-label" asp-for="Created"></label>
+        <input asp-for="Created" class="form-control" placeholder="Created" disabled />
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" asp-for="Message"></label>
+    <textarea asp-for="Message" class="form-control" rows="20" disabled></textarea>
+  </div>
+
+  <br>
+
+  <a asp-action="FeedbackDelete" asp-route-id=@Model.ID class="btn btn-danger">Delete</a>
+</form>

@@ -1,7 +1,7 @@
 @model Product
 <div class="border border-light product-component">
   <a href=@Url.Action("Detail", "Product", new { Model.ID })>
-    <img src=@Url.Action("Get", "Image", new { Model.MainProductImage.Image.ID }) class="img-fluid" />
+    <img src="@(Model.MainProductImage is null ? "/media/no-image.png" : Url.Action("Get", "Image", new { Model.MainProductImage.Image.ID }))" class="img-fluid" />
   </a>
   <div class="p-3">
     <a class="mb-1" href=@Url.Action("Detail", "Product", new { Model.ID })>

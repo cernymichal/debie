@@ -27,7 +27,7 @@
     </div>
 
     <label class="form-label" asp-for="Content"></label> <span asp-validation-for="Content" class="text-danger "></span>
-    <textarea asp-for="Content" class="form-control" rows="10" required></textarea>
+    <textarea asp-for="Content" class="form-control" rows="20" required></textarea>
   </div>
 
   <br>
@@ -43,7 +43,7 @@
 
         <div class="col-7">
           <label for="product-image-input" class="form-label">Upload image</label>
-          <input class="form-control" type="file" id="product-image-input" name="cover-image" @(Model.Image is null ? "required" : "") />
+          <input class="form-control" type="file" id="product-image-input" name="cover-image" />
         </div>
       </div>
 

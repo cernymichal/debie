@@ -1,0 +1,38 @@
+@model List<Feedback>
+@{
+  Layout = "_AdminLayout";
+  ViewData["Title"] = "Feedback";
+  ViewData["SearchAction"] = "Feedbacks";
+}
+
+@section Head {
+  <style>
+    #link-feedback {
+      color: #007bff;
+    }
+  </style>
+}
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Created</th>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Subject</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Feedback feedback in Model)
+    {
+      <tr onclick="location.href = '@Url.Action("Feedback", new { feedback.ID })'">
+        <th scope="row">@feedback.ID</th>
+        <td>@feedback.Created.ToString()</td>
+        <td>@feedback.Email</td>
+        <td>@feedback.Name</td>
+        <td>@feedback.Subject</td>
+      </tr>
+    }
+  </tbody>
+</table>
