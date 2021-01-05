@@ -6,7 +6,7 @@
     {
       <div class="d-flex sidebar-product mt-4">
         <div class="sidebar-product-image pe-4">
-          <img height=150 src="@(opf.MainProductImageID == 0 ? "/media/no-image.png" : Url.Action("Get", "Image", new { opf.MainProductImageID }))">
+          <img height=150 src="@(opf.MainProductImageID == 0 ? "/media/no-image.png" : Url.Action("Get", "Image", new { id = opf.MainProductImageID }))">
           <div class="rounded-circle d-inline-block text-center align-top">
             <span class="p-0 m-0">@opf.Count</span>
           </div>

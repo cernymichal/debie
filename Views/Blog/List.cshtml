@@ -18,7 +18,7 @@
               class="fa-fw far fa-calendar-alt"></i> @article.Created.ToShortDateString()</span></p>
         <hr>
         <p>@article.Content.Substring(0, Math.Min(article.Content.Length, 200))...</p>
-        <a class="my-button-dark mt-2" asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>READ MORE</a>
+        <a class="my-button-dark mt-2" asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID>Read More</a>
       </div>
     }
   </div>

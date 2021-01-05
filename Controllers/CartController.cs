@@ -22,6 +22,25 @@ namespace Debie.Controllers {
             return View(_OrderService.CurrentOrder());
         }
 
+        [HttpPost]
+        public IActionResult Update() {
+            for (var i = _OrderService.CurrentOrder().OrderProducts.Count - 1; i >= 0; i--) {
+                var product = _OrderService.CurrentOrder().OrderProducts[i];
+                product.Count = Convert.ToInt32(Request.Form[product.ProductID.ToString()]);
+                if (product.Count <= 0)
+                    _OrderService.CurrentOrder().OrderProducts.RemoveAt(i);
+            }
+
+            _OrderService.SaveCurrentOrder();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Clear() {
+            _OrderService.ClearOrder();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult RemoveOrderProduct(int id) {
             _OrderService.RemoveProduct(id);
             _OrderService.SaveCurrentOrder();

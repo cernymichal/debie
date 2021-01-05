@@ -14,6 +14,7 @@ namespace Debie.Services {
         void AddProduct(int id, int count);
         void RemoveProduct(int id);
         void SubmitCurrentOrder();
+        void ClearOrder();
     }
 
     public class OrderService : IOrderService {
@@ -71,11 +72,15 @@ namespace Debie.Services {
             _HttpContextAccessor.HttpContext.Session.SetString("order", serialized);
         }
 
+        public void ClearOrder() {
+            _CurrentOrder = null;
+            SaveCurrentOrder();
+        }
+
         public void SubmitCurrentOrder() {
             _OrderRepo.Insert(CurrentOrder().ToModel(0));
             _OrderRepo.Save();
-            _CurrentOrder = null;
-            SaveCurrentOrder();
+            ClearOrder();
         }
     }
 }
