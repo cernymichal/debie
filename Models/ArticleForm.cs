@@ -35,7 +35,7 @@ namespace Debie.Models {
             model.Title = Title;
             model.Content = Content;
             model.UserID = UserID;
-            model.Image = Image.ToModel(model.Image);
+            model.Image = model.Image is null ? null : Image.ToModel(model.Image);
             // Add tags
             return model;
         }

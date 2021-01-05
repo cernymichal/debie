@@ -1,3 +1,5 @@
+@model Feedback
+
 @{
   ViewData["Header"] = "Contact";
   ViewData["Title"] = ViewData["Header"];
@@ -15,20 +17,24 @@
   <form asp-action="Contact" method="POST" class="col-md-7" id="contact-form">
     <h1 class="mb-4">Tell Us What You Think</h1>
     <div class="mb-3">
-      <label class="form-label" for="input-name">Your name <span>*</span></label>
-      <input type="name" class="form-control" id="input-name" name="name" placeholder="Full Name" required>
+      <label class="form-label" asp-for="Name">Your name <span>*</span></label>
+      <span asp-validation-for="Name" class="text-danger"></span>
+      <input type="name" class="form-control" id="input-name" asp-for="Name" placeholder="Full Name">
     </div>
     <div class="mb-3">
-      <label class="form-label" for="input-email">Your Email <span>*</span></label>
-      <input type="email" class="form-control" id="input-email" name="email" placeholder="Email Address" required>
+      <label class="form-label" asp-for="Email">Your Email <span>*</span></label>
+      <span asp-validation-for="Email" class="text-danger"></span>
+      <input type="email" class="form-control" id="input-email" asp-for="Email" placeholder="Email Address">
     </div>
     <div class="mb-3">
-      <label class="form-label" for="input-subject">Subject</label>
-      <input type="text" class="form-control" name="subject" id="input-subject" placeholder="Subject">
+      <label class="form-label" asp-for="Subject">Subject</label>
+      <span asp-validation-for="Subject" class="text-danger"></span>
+      <input type="text" class="form-control" asp-for="Subject" id="input-subject" placeholder="Subject">
     </div>
     <div class="mb-3">
-      <label class="form-label" for="input-message">Your Message <span>*</span></label>
-      <textarea class="form-control" id="input-message" name="message" rows="5" required placeholder="Message"></textarea>
+      <label class="form-label" asp-for="Message">Your Message <span>*</span></label>
+      <span asp-validation-for="Message" class="text-danger"></span>
+      <textarea class="form-control" id="input-message" asp-for="Message" rows="5" required placeholder="Message"></textarea>
     </div>
     <button type="submit" class="my-button">Send Message</button>
   </form>
@@ -63,6 +69,7 @@
 }
  
 @section Scripts {
+  <partial name="_ValidationScriptsPartial" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
   <script src="/js/contact.js"></script>
 }

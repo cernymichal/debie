@@ -4,200 +4,6 @@ body {
   height: 100vh;
 }
 
-.my-tabs .nav-tabs {
-  justify-content: center;
-}
-
-.my-tabs .nav-tabs .nav-link {
-  border: none;
-  color: #808080;
-  font-weight: bold;
-}
-
-.my-tabs .nav-tabs .nav-link:hover {
-  color: #000000;
-}
-
-.my-tabs .nav-tabs .nav-link.active {
-  color: #000000;
-  border-bottom: solid;
-  border-color: #aca2ff;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown > * > i {
-  font-size: 0.7em;
-  color: #bbbbbb;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  background-color: #ffffff;
-  text-align: center;
-  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-  padding: 10px 0;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.dropdown-content a {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 5px 20px;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-a {
-  text-decoration: none !important;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.accent {
-  color: #aca2ff;
-}
-
-.my-button {
-  background-color: #aca2ff;
-  border: none;
-  color: #ffffff;
-  padding: 8px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.my-button-big {
-  background-color: #aca2ff;
-  border: none;
-  border-radius: 5px;
-  color: #ffffff;
-  padding: 20px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.my-button:hover,
-.my-button-big:hover {
-  transition: 300ms;
-  background-color: #342b80;
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.my-button-dark {
-  background-color: #000000;
-  border: none;
-  color: #ffffff;
-  padding: 8px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.my-button-dark:hover {
-  transition: 300ms;
-  background-color: #8a83cc;
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.recent-articles h2 {
-  font-size: 1.2em;
-}
-
-.recent-articles-small h2 {
-  font-size: 1em;
-}
-
-.recent-articles-small a {
-  color: #000000;
-}
-
-.recent-articles-small a:hover {
-  text-decoration: underline !important;
-}
-
-.recent-articles-small p {
-  font-size: 0.8em;
-  color: #555555;
-}
-
-.recent-articles img,
-.recent-articles-small img {
-  object-fit: contain;
-  width: 100%;
-}
-
-.blog-sidebar form,
-.products-sidebar .search-input {
-  border: 1px solid #cccccc;
-  background-color: #ffffff;
-  border-radius: 5px;
-}
-
-.blog-sidebar form input,
-.products-sidebar .search-input input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
-.blog-sidebar form button,
-.products-sidebar .search-input button {
-  background-color: transparent;
-  border: none;
-  border-left: 1px solid #cccccc;
-  outline: none;
-}
-
-.blog-sidebar h6 {
-  font-weight: bold;
-}
-
-.blog-sidebar-tags a {
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  color: #000000;
-}
-
-.blog-sidebar-tags a:hover {
-  background-color: #eeeeee;
-}
-
-.product-component a h5 {
-  color: #000000;
-}
-
-.navbar-component > * {
-  margin: 0 10px;
-}
-
-.navbar-component a {
-  color: #000000;
-  text-decoration: none;
-  transition: 300ms;
-}
-
-.navbar-component a:hover {
-  color: #8a83cc;
-}
-
 #page-header {
   width: 100%;
   margin: 0;
@@ -261,16 +67,17 @@ a:hover {
 #page-footer a {
   color: #000000 !important;
   text-decoration: none;
+  transition: 300ms;
 }
 
 #page-footer .fa-fw {
   color: #342b80 !important;
+  transition: 300ms;
 }
 
 #page-footer .fa-fw:hover,
 #page-footer a:hover {
   color: #8a83cc !important;
-  transition: 300ms;
 }
 
 #footer-address h3 {

@@ -5,7 +5,7 @@
   {
     <div class="row my-3">
       <a asp-controller="Blog" asp-action="Detail" asp-route-id=@article.ID class="col-4">
-        <img src=@Url.Action("Get", "Image", new { article.Image.ID }) alt=@article.Image.Title>
+        <img src="@(article.Image is null ? "/media/no-image.png" : Url.Action("Get", "Image", new { article.Image.ID }))" alt="@(article.Image is null ? "" : @article.Image.Title)">
       </a>
       
       <div class="col-8">

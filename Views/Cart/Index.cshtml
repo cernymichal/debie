@@ -21,7 +21,9 @@
         @foreach (var op in Model.OrderProducts)
         {
           <tr>
-            <td><img height=150 src=@Url.Action("Get", "Image", new { id = op.MainProductImageID })></td>
+            <td>
+              <img height=150 src="@(op.MainProductImageID == 0 ? "/media/no-image.png" : Url.Action("Get", "Image", new { op.MainProductImageID }))">
+            </td>
             <th scope="row" class="fw-normal">@op.Name</th>
             @if (!op.Discounted) {
               <td>$@op.UnitPrice.ToString("0.00")</td>

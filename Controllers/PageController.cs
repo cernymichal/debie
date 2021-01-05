@@ -32,15 +32,20 @@ namespace Debie.Controllers {
             return View();
         }
 
-        public IActionResult Contact() {
-            return View();
+        public IActionResult Contact(Feedback feedback) {
+            return View(feedback);
         }
 
         [HttpPost, Route("{controller}/Contact")]
         public IActionResult ContactFeedback(Feedback feedback) {
-            feedback.Created = DateTime.UtcNow;
-            _FeedbackRepo.Insert(feedback);
-            _FeedbackRepo.Save();
+            if (ModelState.IsValid) {
+                feedback.Created = DateTime.UtcNow;
+                _FeedbackRepo.Insert(feedback);
+                _FeedbackRepo.Save();
+            }
+            else
+                return RedirectToAction("Contact", feedback);
+
             return RedirectToAction("Contact");
         }
 

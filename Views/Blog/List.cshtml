@@ -12,7 +12,7 @@
     @foreach (Article article in Model)
     {
       <div class="blog-list-item mb-5">
-        <img src=@Url.Action("Get", "Image", new { article.Image.ID }) alt=@article.Image.Title class="w-100" />
+        <img src="@(article.Image is null ? "/media/no-image.png" : Url.Action("Get", "Image", new { article.Image.ID }))" alt="@(article.Image is null ? "" : @article.Image.Title)" class="w-100" />
         <h2 class="my-3 font-weight-bold" style="font-size: 1.3em;">@article.Title</h2>
         <p><i class="fa-fw fas fa-user text-muted"></i> @article.User.Username <span class="text-muted">| <i
               class="fa-fw far fa-calendar-alt"></i> @article.Created.ToShortDateString()</span></p>

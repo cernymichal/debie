@@ -22,10 +22,10 @@ namespace Debie.Controllers {
         public IActionResult Get(int id) {
             var image = _ImageRepo.GetByID(id);
 
+            Response.Headers["Cache-Control"] = $"public,max-age={CacheAgeSeconds}";
+
             if (image == null)
                 return NotFound();
-
-            Response.Headers["Cache-Control"] = $"public,max-age={CacheAgeSeconds}";
 
             return File(image.Data, image.ContentType);
         }

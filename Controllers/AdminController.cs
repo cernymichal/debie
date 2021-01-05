@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Linq;
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -125,7 +126,7 @@ namespace Debie.Controllers {
                 }
             }
 
-            if (Request.Form.Files["product-image"] != null) {
+            if (Request.Form.Files["product-image"] != null && productForm.ID != 0) {
                 var product = _ProductRepo.GetByID(productForm.ID);
                 var image = new Image {
                     ContentType = Request.Form.Files["product-image"].ContentType,
@@ -147,7 +148,7 @@ namespace Debie.Controllers {
                 ViewBag.Message = "Image added!";
             }
 
-            if (zeroId) {
+            if (zeroId && ModelState.IsValid) {
                 return RedirectToAction("Product", new { productForm.ID });
             }
 
@@ -185,28 +186,49 @@ namespace Debie.Controllers {
             ArticleForm articleForm;
             if (article != null)
                 articleForm = ArticleForm.FromModel(article);
-            else
+            else {
                 articleForm = new ArticleForm();
+            }
 
             return View(articleForm);
         }
 
         [HttpPost, Route("{controller}/Article/{id?}")]
         public IActionResult ArticleEdit(ArticleForm articleForm) {
+            ModelState.Remove("Image.ID");
+
             ViewBag.Users = _UserRepo.GetAll();
 
             var zeroId = articleForm.ID == 0;
 
             if (ModelState.IsValid) {
-                var article = articleForm.ID != 0 ? _ArticleRepo.GetByID(articleForm.ID) : new Article { ID = articleForm.ID };
-                _ArticleRepo.Update(articleForm.ToModel(article));
-                _ArticleRepo.Save();
-                ViewBag.Alert = "Saved!";
-                articleForm = ArticleForm.FromModel(article);
+                Article article;
+                if (articleForm.ID != 0)
+                    article = _ArticleRepo.GetByID(articleForm.ID);
+                else {
+                    article = new Article { ID = articleForm.ID };
+                    article.Created = DateTime.UtcNow;
+                }
+
+                var passed = true;
+                try {
+                    _ArticleRepo.Update(articleForm.ToModel(article));
+                }
+                catch (FormatException) {
+                    ViewBag.Alert = "Couldn't parse";
+                    passed = false;
+                }
+
+                if (passed) {
+                    _ArticleRepo.Save();
+                    ViewBag.Alert = "Saved!";
+                    articleForm = ArticleForm.FromModel(article);
+                }
             }
 
-            if (Request.Form.Files["cover-image"] != null) {
+            if (Request.Form.Files["cover-image"] is not null && articleForm.ID != 0) {
                 var article = _ArticleRepo.GetByID(articleForm.ID);
+
                 article.Image = new Image {
                     ContentType = Request.Form.Files["cover-image"].ContentType,
                     Data = new byte[Request.Form.Files["cover-image"].Length]
@@ -221,7 +243,7 @@ namespace Debie.Controllers {
                 ViewBag.Message = "Image updated!";
             }
 
-            if (zeroId) {
+            if (zeroId && ModelState.IsValid) {
                 return RedirectToAction("Article", new { articleForm.ID });
             }
 
