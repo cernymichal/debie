@@ -10,7 +10,7 @@ using Debie.Models.DB;
 namespace Debie.Services {
     public static class DebieDBInitializer {
         public static void Initialize(DebieDBContext context) {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             AddArticles(context);

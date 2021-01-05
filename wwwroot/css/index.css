@@ -1,0 +1,6 @@
+#image-header {
+  background-image: url("/media/index.png");
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+}

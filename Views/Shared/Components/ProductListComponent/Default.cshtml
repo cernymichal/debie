@@ -3,7 +3,7 @@
   <div class="row">
     @foreach (Product product in Model)
     {
-      <div class="col-sm-4">
+      <div class="col-sm-@(12 / ViewBag.Columns)">
         <vc:product-component product=@product></vc:product-component>
       </div>
     }

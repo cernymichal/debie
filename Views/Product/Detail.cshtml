@@ -94,22 +94,19 @@
   </div>
 </div>
 
-<div class="mt-4">
+<div class="mt-4 my-tabs">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-        aria-controls="nav-home" aria-selected="true">Description</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab"
-        aria-controls="nav-profile" aria-selected="false">Shipping Policy</a>
+      <a class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" href="#nav-description" role="tab" aria-controls="nav-description" aria-selected="true">Description</a>
+      <a class="nav-link" id="nav-shipping-policy-tab" data-bs-toggle="tab" href="#nav-shipping-policy" role="tab" aria-controls="nav-shipping-policy" aria-selected="false">Shipping Policy</a>
     </div>
   </nav>
-  <div>
-    <div class="mt-1 fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      @Model.Description
+  <div class="tab-content mt-3" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+      <p>@Model.Description</p>
     </div>
-    <div class="mt-1 fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Lorem ipsum dolor sit
-      amet consectetur adipisicing elit. Animi molestias deserunt vel quo ratione maiores accusantium similique! Atque
-      quo autem eligendi omnis iusto doloribus numquam velit rem, nemo, sapiente accusamus!
+    <div class="tab-pane fade" id="nav-shipping-policy" role="tabpanel" aria-labelledby="nav-shipping-policy-tab">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur repudiandae nisi sed doloremque asperiores exercitationem, temporibus maxime voluptatum alias excepturi cumque cum labore commodi deleniti voluptatibus dolores, nesciunt illum odit?
     </div>
   </div>
 </div>

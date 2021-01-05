@@ -7,14 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using Debie.Models;
-using Debie.Models.DB;
+using Debie.Services.Repositories;
 
 namespace Debie.Controllers {
     public class PageController : Controller {
-        public PageController() { }
+        private readonly IProductRepository _ProductRepo;
+
+        public PageController(IProductRepository productRepo) {
+            _ProductRepo = productRepo;
+        }
 
         public IActionResult Index() {
-            return View();
+            var products = _ProductRepo.GetAll();
+            var inSale = products.Where(p => p.Discounted).ToList();
+            products.Reverse();
+            var newArrivals = products.ToList();
+            return View(new IndexView(inSale, newArrivals));
         }
 
         public IActionResult About() {

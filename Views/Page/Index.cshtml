@@ -1,8 +1,41 @@
+@model IndexView
 @{
   ViewData["Title"] = "Home";
   Layout = "~/Views/Shared/_PageLayout.cshtml";
 }
 
+@section Head {
+  <link rel="stylesheet" href="~/css/index.css" />
+}
+
 <main class="container">
-  <h1>Page Index</h1>
+  <div class="row justify-content-md-center py-5" id="image-header">
+    <div class="col-md-5">
+
+    </div>
+    <div class="col-md-6 py-5 text-center">
+      <h1>Debie</h1>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda rem voluptates facere.</p>
+      <a asp-controller="Product" asp-action="List" class="my-button-big py-3">Shop now</a>
+    </div>
+  </div>
+
+  <div class="mt-4 my-tabs">
+    <nav>
+      <div class="nav nav-tabs border-bottom-0" id="nav-tab" role="tablist">
+        <a class="nav-link active" id="nav-sale-tab" data-bs-toggle="tab" href="#nav-sale" role="tab"
+          aria-controls="nav-sale" aria-selected="true">Sale</a>
+        <a class="nav-link" id="nav-new-arrivals-tab" data-bs-toggle="tab" href="#nav-new-arrivals" role="tab"
+          aria-controls="nav-new-arrivals" aria-selected="false">New Arrivals</a>
+      </div>
+    </nav>
+    <div class="tab-content mt-3" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-sale" role="tabpanel" aria-labelledby="nav-sale-tab">
+        <vc:product-list-component products=@Model.InSale count=12 columns=4></vc:product-list-component>
+      </div>
+      <div class="tab-pane fade" id="nav-new-arrivals" role="tabpanel" aria-labelledby="nav-new-arrivals-tab">
+        <vc:product-list-component products=@Model.NewArrivals count=12 columns=4></vc:product-list-component>
+      </div>
+    </div>
+  </div>
 </main>
