@@ -26,8 +26,7 @@ namespace Debie {
             services.AddDbContext<DebieDBContext>(dbContextOptions =>
                 dbContextOptions.UseMySql(
                     Configuration["ConnectionString"],
-                    new MySqlServerVersion(new Version(8, 0, 22)),
-                    mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)
+                    new MariaDbServerVersion(new Version(10, 4, 17))
                 )
                 .UseLazyLoadingProxies()
                 .EnableSensitiveDataLogging()
